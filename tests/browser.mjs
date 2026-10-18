@@ -96,6 +96,17 @@ try {
   await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   await load();
+  const initialStorage = await evaluate(`localStorage.getItem('my-kpop-collection:v1')`);
+  for (const album of releaseData) {
+    await click(`[data-album="${album.id}"]`);
+    const expected = versionData.filter(v => v.albumId === album.id);
+    assert.equal(await count('#album-dialog .version-row'), expected.length, album.id);
+    assert.equal(await count('#album-dialog .verification-pending'), expected.filter(v => v.verificationStatus === 'pending').length, album.id);
+    assert.equal(await count('#album-dialog .no-versions'), expected.length ? 0 : 1, album.id);
+    await click('[data-close="album-dialog"]');
+  }
+  assert.equal(await evaluate(`localStorage.getItem('my-kpop-collection:v1')`), initialStorage);
+  console.log('PASS: every release opens its actual versions or explicit empty state, pending evidence labels, browsing leaves storage unchanged');
   const overviewSelector = '[data-album="twice-ready-to-be"] .cover-wrap img';
   const versionImages = '.version-album:has(#list-twice-ready-to-be-ready-owned) .version-cover';
   const readyVersions = versionData.filter(v => v.albumId === 'twice-ready-to-be');

@@ -4,144 +4,869 @@
     {
       "id": "twice-the-story-begins-original",
       "albumId": "twice-the-story-begins",
-      "name": "Original ver.",
+      "name": "THE STORY BEGINS",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://m.en.thejypshop.com/product/twice-1st-mini-album-the-story-begins/126/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-page-two-pink",
       "albumId": "twice-page-two",
-      "name": "Pink ver.",
+      "name": "PINK ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://m.en.thejypshop.com/product/twice-2nd-mini-album-page-two/125",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-page-two-mint",
       "albumId": "twice-page-two",
-      "name": "Mint ver.",
+      "name": "MINT ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://m.en.thejypshop.com/product/twice-2nd-mini-album-page-two/125",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-candy-pop-regular",
       "albumId": "twice-candy-pop",
       "name": "通常盤",
       "format": "CD",
-      "source": "https://www.twicejapan.com/feature/candypop"
+      "source": "https://www.twicejapan.com/feature/candypop",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-bdz-regular",
       "albumId": "twice-bdz",
       "name": "通常盤",
       "format": "CD",
-      "source": "https://www.twicejapan.com/feature/bdz"
+      "source": "https://www.twicejapan.com/feature/bdz",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-feel-special-a",
       "albumId": "twice-feel-special",
       "name": "A ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://en.thejypshop.com/product/twice-8th-mini-album-feel-special/96/",
+      "editionType": "standard",
+      "verificationStatus": "pending",
+      "verificationNote": "保留既有版本 ID；官方文字可確認 3 種包裝，A／B／C 名稱對照尚待官方規格圖核實。"
     },
     {
       "id": "twice-feel-special-b",
       "albumId": "twice-feel-special",
       "name": "B ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://en.thejypshop.com/product/twice-8th-mini-album-feel-special/96/",
+      "editionType": "standard",
+      "verificationStatus": "pending",
+      "verificationNote": "保留既有版本 ID；官方文字可確認 3 種包裝，A／B／C 名稱對照尚待官方規格圖核實。"
     },
     {
       "id": "twice-feel-special-c",
       "albumId": "twice-feel-special",
       "name": "C ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://en.thejypshop.com/product/twice-8th-mini-album-feel-special/96/",
+      "editionType": "standard",
+      "verificationStatus": "pending",
+      "verificationNote": "保留既有版本 ID；官方文字可確認 3 種包裝，A／B／C 名稱對照尚待官方規格圖核實。"
     },
     {
       "id": "twice-eyes-wide-open-story",
       "albumId": "twice-eyes-wide-open",
       "name": "Story ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://twiceshop.com/products/eyes-wide-open-story-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-eyes-wide-open-style",
       "albumId": "twice-eyes-wide-open",
       "name": "Style ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://twiceshop.com/products/eyes-wide-open-style-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-eyes-wide-open-retro",
       "albumId": "twice-eyes-wide-open",
       "name": "Retro ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://twiceshop.com/products/eyes-wide-open-retro-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-celebrate-regular",
       "albumId": "twice-celebrate",
       "name": "通常盤",
       "format": "CD",
-      "source": "https://www.twicejapan.com/feature/Celebrate"
+      "source": "https://www.twicejapan.com/feature/Celebrate",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-between-1-and-2-archive",
       "albumId": "twice-between-1-and-2",
       "name": "Archive ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://twiceshop.com/collections/between-1-2",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-between-1-and-2-cryptography",
       "albumId": "twice-between-1-and-2",
       "name": "Cryptography ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://twiceshop.com/collections/between-1-2",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-between-1-and-2-pathfinder",
       "albumId": "twice-between-1-and-2",
       "name": "Pathfinder ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://twiceshop.com/collections/between-1-2",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-between-1-and-2-complete",
       "albumId": "twice-between-1-and-2",
       "name": "Complete ver.",
       "format": "CD",
-      "source": "https://oncecollector.com/discography"
+      "source": "https://twiceshop.com/collections/between-1-2",
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-ready-to-be-ready",
       "albumId": "twice-ready-to-be",
       "name": "READY ver.",
       "format": "CD",
-      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+      "source": "https://twiceshop.com/products/ready-to-be-ready-ver-not-signed",
       "cover": "./assets/covers/ready-to-be-ready.svg",
       "coverAlt": "TWICE READY TO BE READY ver. 自製文字佔位封面（非官方美術）",
-      "coverIsPlaceholder": true
+      "coverIsPlaceholder": true,
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-ready-to-be-to",
       "albumId": "twice-ready-to-be",
       "name": "TO ver.",
       "format": "CD",
-      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+      "source": "https://twiceshop.com/products/ready-to-be-ready-ver-not-signed",
       "cover": "./assets/covers/ready-to-be-to.svg",
       "coverAlt": "TWICE READY TO BE TO ver. 自製文字佔位封面（非官方美術）",
-      "coverIsPlaceholder": true
+      "coverIsPlaceholder": true,
+      "editionType": "standard",
+      "verificationStatus": "verified"
     },
     {
       "id": "twice-ready-to-be-be",
       "albumId": "twice-ready-to-be",
       "name": "BE ver.",
       "format": "CD",
-      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+      "source": "https://twiceshop.com/products/ready-to-be-ready-ver-not-signed",
       "cover": "./assets/covers/ready-to-be-be.svg",
       "coverAlt": "TWICE READY TO BE BE ver. 自製文字佔位封面（非官方美術）",
-      "coverIsPlaceholder": true
+      "coverIsPlaceholder": true,
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-twicecoaster-lane-1-a",
+      "albumId": "twice-twicecoaster-lane-1",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-3rd-mini-album-twicecoaster-lane-1/120/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-twicecoaster-lane-1-b",
+      "albumId": "twice-twicecoaster-lane-1",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-3rd-mini-album-twicecoaster-lane-1/120/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-twicecoaster-lane-2-a",
+      "albumId": "twice-twicecoaster-lane-2",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-special-album-twicecoaster-lane-2/117/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-twicecoaster-lane-2-b",
+      "albumId": "twice-twicecoaster-lane-2",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-special-album-twicecoaster-lane-2/117/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-what-is-love-a",
+      "albumId": "twice-what-is-love",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-5th-mini-album-what-is-love/108/category/45/display/1/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-what-is-love-b",
+      "albumId": "twice-what-is-love",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-5th-mini-album-what-is-love/108/category/45/display/1/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-summer-nights-a",
+      "albumId": "twice-summer-nights",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-2nd-summer-special-album-summer-nights/107/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-summer-nights-b",
+      "albumId": "twice-summer-nights",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-2nd-summer-special-album-summer-nights/107/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-summer-nights-c",
+      "albumId": "twice-summer-nights",
+      "name": "C ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-2nd-summer-special-album-summer-nights/107/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-yes-or-yes-a",
+      "albumId": "twice-yes-or-yes",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-6th-mini-album-yes-or-yes/104/category/45/display/1/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-yes-or-yes-b",
+      "albumId": "twice-yes-or-yes",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-6th-mini-album-yes-or-yes/104/category/45/display/1/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-yes-or-yes-c",
+      "albumId": "twice-yes-or-yes",
+      "name": "C ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-6th-mini-album-yes-or-yes/104/category/45/display/1/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-the-year-of-yes-a",
+      "albumId": "twice-the-year-of-yes",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://cn.thejypshop.com/product/twice-3rd-special-album-the-year-of-yes/206/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-the-year-of-yes-b",
+      "albumId": "twice-the-year-of-yes",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://cn.thejypshop.com/product/twice-3rd-special-album-the-year-of-yes/206/",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-more-and-more-a",
+      "albumId": "twice-more-and-more",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://thejypshop.com/product/twice-9th-mini-album-more-more/91",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-more-and-more-b",
+      "albumId": "twice-more-and-more",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://thejypshop.com/product/twice-9th-mini-album-more-more/91",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-more-and-more-c",
+      "albumId": "twice-more-and-more",
+      "name": "C ver.",
+      "format": "CD",
+      "source": "https://thejypshop.com/product/twice-9th-mini-album-more-more/91",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-taste-of-love-taste",
+      "albumId": "twice-taste-of-love",
+      "name": "TASTE version",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/taste-of-love-taste-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-taste-of-love-fallen",
+      "albumId": "twice-taste-of-love",
+      "name": "FALLEN version",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/taste-of-love-taste-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-taste-of-love-in-love",
+      "albumId": "twice-taste-of-love",
+      "name": "IN LOVE version",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/taste-of-love-taste-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-formula-of-love-study-about-love",
+      "albumId": "twice-formula-of-love",
+      "name": "Study about Love version",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/formula-of-love-o-t-3-study-about-love-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-formula-of-love-break-it",
+      "albumId": "twice-formula-of-love",
+      "name": "Break It version",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/formula-of-love-o-t-3-break-it-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-formula-of-love-explosion",
+      "albumId": "twice-formula-of-love",
+      "name": "Explosion version",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/formula-of-love-o-t-3-explosion-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-formula-of-love-full-of-love",
+      "albumId": "twice-formula-of-love",
+      "name": "Full of Love version",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/formula-of-love-o-t-3-full-of-love-version",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-with-you-th-forever",
+      "albumId": "twice-with-you-th",
+      "name": "Forever ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/collections/back-to-school-sale",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-with-you-th-glowing",
+      "albumId": "twice-with-you-th",
+      "name": "Glowing ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/collections/back-to-school-sale",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-with-you-th-blast",
+      "albumId": "twice-with-you-th",
+      "name": "Blast ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/collections/back-to-school-sale",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-with-you-th-digipack-nayeon",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (NAYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "NAYEON"
+    },
+    {
+      "id": "twice-with-you-th-digipack-jeongyeon",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (JEONGYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JEONGYEON"
+    },
+    {
+      "id": "twice-with-you-th-digipack-momo",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (MOMO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MOMO"
+    },
+    {
+      "id": "twice-with-you-th-digipack-sana",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (SANA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "SANA"
+    },
+    {
+      "id": "twice-with-you-th-digipack-jihyo",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (JIHYO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JIHYO"
+    },
+    {
+      "id": "twice-with-you-th-digipack-mina",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (MINA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MINA"
+    },
+    {
+      "id": "twice-with-you-th-digipack-dahyun",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (DAHYUN)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "DAHYUN"
+    },
+    {
+      "id": "twice-with-you-th-digipack-chaeyoung",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (CHAEYOUNG)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "CHAEYOUNG"
+    },
+    {
+      "id": "twice-with-you-th-digipack-tzuyu",
+      "albumId": "twice-with-you-th",
+      "name": "Digipack Ver. (TZUYU)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/with-you-th-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "TZUYU"
+    },
+    {
+      "id": "twice-strategy-step-1",
+      "albumId": "twice-strategy",
+      "name": "Step 1 ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-3-ver",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-strategy-step-2",
+      "albumId": "twice-strategy",
+      "name": "Step 2 ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-3-ver",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-strategy-step-3",
+      "albumId": "twice-strategy",
+      "name": "Step 3 ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-3-ver",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-strategy-highlight",
+      "albumId": "twice-strategy",
+      "name": "Highlight ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-highlight-ver",
+      "editionType": "special",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-strategy-step-4-nayeon",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (NAYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "NAYEON"
+    },
+    {
+      "id": "twice-strategy-step-4-jeongyeon",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (JEONGYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JEONGYEON"
+    },
+    {
+      "id": "twice-strategy-step-4-momo",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (MOMO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MOMO"
+    },
+    {
+      "id": "twice-strategy-step-4-sana",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (SANA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "SANA"
+    },
+    {
+      "id": "twice-strategy-step-4-jihyo",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (JIHYO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JIHYO"
+    },
+    {
+      "id": "twice-strategy-step-4-mina",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (MINA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MINA"
+    },
+    {
+      "id": "twice-strategy-step-4-dahyun",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (DAHYUN)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "DAHYUN"
+    },
+    {
+      "id": "twice-strategy-step-4-chaeyoung",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (CHAEYOUNG)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "CHAEYOUNG"
+    },
+    {
+      "id": "twice-strategy-step-4-tzuyu",
+      "albumId": "twice-strategy",
+      "name": "Step 4 ver. (TZUYU)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/strategy-step-4-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "TZUYU"
+    },
+    {
+      "id": "twice-this-is-for-this",
+      "albumId": "twice-this-is-for",
+      "name": "THIS ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/collections/this-is-for",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-this-is-for-is",
+      "albumId": "twice-this-is-for",
+      "name": "IS ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/collections/this-is-for",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-this-is-for-for",
+      "albumId": "twice-this-is-for",
+      "name": "FOR ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/collections/this-is-for",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-this-is-for-confetti",
+      "albumId": "twice-this-is-for",
+      "name": "CONFETTI ver.",
+      "format": "Mini CD",
+      "source": "https://twiceshop.com/products/this-is-for-confetti-ver",
+      "editionType": "special",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-this-is-for-digipack-nayeon",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (NAYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "NAYEON"
+    },
+    {
+      "id": "twice-this-is-for-digipack-jeongyeon",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (JEONGYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JEONGYEON"
+    },
+    {
+      "id": "twice-this-is-for-digipack-momo",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (MOMO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MOMO"
+    },
+    {
+      "id": "twice-this-is-for-digipack-sana",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (SANA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "SANA"
+    },
+    {
+      "id": "twice-this-is-for-digipack-jihyo",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (JIHYO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JIHYO"
+    },
+    {
+      "id": "twice-this-is-for-digipack-mina",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (MINA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MINA"
+    },
+    {
+      "id": "twice-this-is-for-digipack-dahyun",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (DAHYUN)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "DAHYUN"
+    },
+    {
+      "id": "twice-this-is-for-digipack-chaeyoung",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (CHAEYOUNG)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "CHAEYOUNG"
+    },
+    {
+      "id": "twice-this-is-for-digipack-tzuyu",
+      "albumId": "twice-this-is-for",
+      "name": "DIGIPACK ver. (TZUYU)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "TZUYU"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-episode",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Episode Ver.",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-episode-ver",
+      "editionType": "standard",
+      "verificationStatus": "verified"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-nayeon",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (NAYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "NAYEON"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-jeongyeon",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (JEONGYEON)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JEONGYEON"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-momo",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (MOMO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MOMO"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-sana",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (SANA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "SANA"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-jihyo",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (JIHYO)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "JIHYO"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-mina",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (MINA)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "MINA"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-dahyun",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (DAHYUN)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "DAHYUN"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-chaeyoung",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (CHAEYOUNG)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "CHAEYOUNG"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-tzuyu",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (TZUYU)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "TZUYU"
     }
   ]
 }

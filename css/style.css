@@ -797,6 +797,9 @@ dialog p {
   font-weight:400;
   margin-top:3px
 }
+.version-name .verification-pending {
+  color:var(--peach)
+}
 .version-controls {
   display:flex;
   flex-wrap:wrap;
