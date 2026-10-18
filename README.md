@@ -4,7 +4,7 @@
 
 ## 功能
 
-- TWICE 團體實體發行目錄：前兩階段共 47 張專輯（韓國 23、日本 24）、19 種待逐項複核的版本。
+- TWICE 團體實體發行目錄：47 張專輯（韓國 23、日本 24）、91 種版本（88 已核實、3 筆既有待核實；日本擴充另階段處理）。
 - 沿用第二版的預設深色主題，使用深灰層次、柔粉與杏桃點綴；表單、收藏詳情及備份視窗皆支援深色顯示，無主題切換按鈕。
 - 頁首品牌為「專輯圖鑑」，捲動時固定在頂端；錨點與收藏導覽跳轉會預留頁首高度。主內容順序為介紹 → 團體選擇與收藏統計 → 專輯圖鑑；桌面兩區同列、間距 20px，手機上下排列。統計卡片各含邊框及內距最多 150px。
 - 年份、韓國／日本發行、專輯類型交叉篩選；名稱搜尋（忽略大小寫，支援全形正規化）。
@@ -125,29 +125,23 @@ tests/
 
 收藏儲存在目前瀏覽器及網站網域。不同裝置、瀏覽器、HTTP／HTTPS 不共用；同一 GitHub Pages 網域會共用 localStorage。沒有雲端同步，請定期匯出；日常維護本網站不要更改儲存鍵或清除網站資料。
 
-## 示範目錄與資料來源
+## 目錄範圍與資料來源
 
-| 專輯 | 發行日 | 地區／類型 | 收錄版本範圍 |
+截止 **2026-10-19**，目前 47 張團體作品、91 個版本紀錄（88 已核實、3 筆既有待核實），不宣稱所有實體商品版本已補齊。
+
+| 地區 | 作品數 | 類型 | 版本核實進度 |
 | --- | --- | --- | --- |
-| THE STORY BEGINS | 2015-10-20 | 韓國／迷你 | Original |
-| PAGE TWO | 2016-04-25 | 韓國／迷你 | Pink、Mint |
-| twicetagram | 2017-10-30 | 韓國／正規 | 暫不收錄版本，顯示待補齊提示 |
-| Candy Pop | 2018-02-07 | 日本／單曲 | 通常盤 |
-| BDZ | 2018-09-12 | 日本／正規 | 通常盤 |
-| Feel Special | 2019-09-23 | 韓國／迷你 | A、B、C |
-| Eyes wide open | 2020-10-26 | 韓國／正規 | Story、Style、Retro |
-| Celebrate | 2022-07-27 | 日本／正規 | 通常盤 |
-| BETWEEN 1&2 | 2022-08-26 | 韓國／迷你 | Archive、Cryptography、Pathfinder、Complete |
-| READY TO BE | 2023-03-10 | 韓國／迷你 | READY、TO、BE 寫真書版本 |
+| 韓國 | 23 | 14 迷你、4 正規、4 改版、1 特別 | 88 種：85 已核實、3 筆 Feel Special 既有名稱待核實 |
+| 日本 | 24 | 6 正規、6 精選、10 單曲、2 改版 | 既有 3 通常盤已核實，其餘版本另階段補齊 |
 
-共 10 張專輯、19 種示範實體版本；是部分目錄，不能用來判斷完整發行數或全部版本集齊率。twicetagram 的包裝、表面處理與版本分類尚未納入，避免把未核實的分類寫成已確認版本。尚未包含 Digipack、黑膠、店鋪限定、簽名、隨機小卡或全部再版。
+收錄有官方實體商品證據的韓國／日本團體作品。排除 SOLO、MISAMO、演唱會 DVD／Blu-ray、非唱片周邊、小卡、簽名商品、無實體商品的純數位發行與截止日之後商品。一般 CD 優先；黑膠／平台等特殊媒介另列待查，不用特殊媒介取代 CD。`releaseDate` 是官方作品日期；數位與實體日期不同或實體日未查明時，在 `catalogNote`／稽核表明載。
 
-資料參考：[JYP 官方專輯目錄](https://twice.jype.com/discography)、[PAGE TWO 官方頁](https://twice.jype.com/discography/yw7w9t50)、[Candy Pop 官方專頁](https://www.twicejapan.com/feature/candypop)、[BDZ 官方專頁](https://www.twicejapan.com/feature/bdz)、[Celebrate 官方專頁](https://www.twicejapan.com/feature/Celebrate)、[READY TO BE JYP SHOP](https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/)、[Once Collector 發行目錄](https://oncecollector.com/discography)。各 JSON 紀錄另有來源連結。此站為非官方個人收藏工具。
+依據 [JYP 官方目錄](https://twice.jype.com/discography)、[JYP SHOP](https://m.en.thejypshop.com/)、[TWICE 官方商店](https://twiceshop.com/)、[日本官方目錄](https://www.twicejapan.com/discography/) 與 [Warner Music Japan](https://wmg.jp/twice/discography)。每張作品和版本的 JSON 另有具體來源；[資料稽核表](docs/twice-catalog-audit.md) 提供逐張證據、階段新增數量及明確待核實清單。發行證據不等於圖片授權，此站為非官方個人收藏工具。
 
 ### 增加專輯或版本
 
-1. 在 `data/twice/albums.json` 的 `albums` 陣列新增專輯，填寫唯一且永久的 `id`、`groupId`、`name`、`releaseDate`（ISO 日期）、`region`（`KR`／`JP`）、`type`（`mini`／`studio`／`single`）、`cover`、`coverAlt`、`coverIsPlaceholder`、`versionsComplete`、`catalogNote`、`sources`。
-2. 在 `data/twice/versions.json` 的 `versions` 陣列新增已核實版本，填寫永久 `id`、對應 `albumId`、`name`、`format`、`source`。沒有把握的版本先不新增；網站會顯示待資料補齊的提示。
+1. 在 `data/twice/albums.json` 的 `albums` 陣列新增專輯，填寫唯一且永久的 `id`、`groupId`、`name`、`releaseDate`（ISO 日期）、`region`（`KR`／`JP`）、`type`（`mini`／`studio`／`single`／`repackage`／`special`／`compilation`）、`cover`、`coverAlt`、`coverIsPlaceholder`、`versionsComplete`、`catalogNote`、`sources`。
+2. 在 `data/twice/versions.json` 的 `versions` 陣列新增已核實版本，填寫永久 `id`、對應 `albumId`、`name`、`format`、`source`、`editionType` 與 `verificationStatus: "verified"`；成員版另填 `member`，有品番時填 `catalogNumber`。沒有把握的版本先不新增；網站會顯示待資料補齊的提示。
 3. 圖片放入 `assets/covers/`，`cover` 使用 `./assets/covers/檔名`。確認圖片授權後才替換，填寫來源／授權資訊、更新 `coverAlt` 並設 `coverIsPlaceholder: false`；不用更改專輯或版本 ID。
 4. 執行測試；增加專輯時同步更新本頁表格及瀏覽器測試中的目錄／篩選數量預期。核心測試允許替換為實際封面。
 
@@ -223,7 +217,7 @@ JSON 是有固定標點的文字清單：文字使用英文雙引號 `"`；相�
   "albumId": "twice-ready-to-be",
   "name": "READY ver.",
   "format": "CD + Photobook",
-  "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+  "source": "https://twiceshop.com/products/ready-to-be-ready-ver-not-signed"
 }
 ```
 
@@ -249,7 +243,7 @@ JSON 是有固定標點的文字清單：文字使用英文雙引號 `"`；相�
   "albumId": "twice-ready-to-be",
   "name": "READY ver.",
   "format": "CD",
-  "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+  "source": "https://twiceshop.com/products/ready-to-be-ready-ver-not-signed",
   "cover": "./assets/covers/ready-to-be-ready.jpg",
   "coverAlt": "TWICE READY TO BE READY 版本封面",
   "coverIsPlaceholder": false
@@ -268,7 +262,7 @@ JSON 是有固定標點的文字清單：文字使用英文雙引號 `"`；相�
   "albumId": "twice-ready-to-be",
   "name": "READY ver.",
   "format": "CD",
-  "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+  "source": "https://twiceshop.com/products/ready-to-be-ready-ver-not-signed"
 }
 ```
 
@@ -280,7 +274,7 @@ JSON 是有固定標點的文字清單：文字使用英文雙引號 `"`；相�
   "albumId": "twice-page-two",
   "name": "Pink ver.",
   "format": "CD",
-  "source": "https://oncecollector.com/discography"
+  "source": "https://m.en.thejypshop.com/product/twice-2nd-mini-album-page-two/125"
 }
 ```
 
@@ -350,3 +344,7 @@ TEST_URL=http://localhost:8000/ npm run test:browser
 資料整理截至 2026-10-19。收錄韓國／日本團體正規、迷你、改版、特別、精選與實體單曲；排除 SOLO、MISAMO、演唱會影像、非唱片周邊與未確認實體商品的純數位發行。未來發行不納入。逐張官方來源、階段數量、待核實項目見 [資料稽核表](docs/twice-catalog-audit.md)。黑膠與特殊媒介後續另核對，不取代一般 CD。
 
 維護時先核對官方發行日、實體商品規格與版本名稱，再加入穩定 ID；不把隨機小卡／海報／通路特典拆成版本。不確定的包裝差異先記稽核表，所有版本核實前保持 `versionsComplete: false`。新增類型同步更新 `TYPE_LABELS`、下拉選單與測試；改動數量後更新 README 與測試斷言。專輯總覽與版本封面獨立，缺圖用既有自製佔位圖，未確認授權不下載／提交官方圖片。
+
+## 版本核實與維護狀態
+
+版本使用 `editionType`（standard／limited／member／special）、可選 `member`、`verificationStatus`（verified／pending）及待核實原因 `verificationNote`。這些都是公開目錄欄位，不寫入個人收藏或 JSON 備份。既有待核實 ID 保留並顯示原因；新版本只加入官方證實的商品，尚未完成全版本檢查的專輯保持 `versionsComplete: false`。每階段新增數量、逐張證據與具體待辦請見 [資料稽核表](docs/twice-catalog-audit.md)。
