@@ -6,6 +6,32 @@ import { validateCatalog, filterAlbums, relativeAsset, loadCatalog, DEFAULT_COVE
 const read = async path => JSON.parse(await readFile(new URL(path, import.meta.url), 'utf8'));
 const catalog = validateCatalog((await read('../data/groups.json')).groups, (await read('../data/twice/albums.json')).albums, (await read('../data/twice/versions.json')).versions);
 const [ready, to, be] = catalog.versions.filter(v => v.albumId === 'twice-ready-to-be');
+test('cutoff, original identities, new release types and chronological filters', async () => {
+  const baseline = await read('./fixtures/twice-legacy-ids.json');
+  for (const id of baseline.albumIds) assert.ok(catalog.albums.some(a => a.id === id));
+  for (const original of baseline.versions) {
+    assert.equal(catalog.versions.find(v => v.id === original.id)?.albumId, original.albumId);
+  }
+  const identities = new Set();
+  for (const a of catalog.albums) {
+    assert.ok(a.releaseDate <= '2026-10-19', a.name);
+    const identity = `${a.region}:${a.name.normalize('NFKC').toLowerCase()}`;
+    assert.ok(!identities.has(identity), `duplicate release: ${a.name}`);
+    identities.add(identity);
+    assert.equal(a.versionsComplete, false, 'unresolved exhaustive version checks must stay explicit');
+    assert.ok(a.sources.some(url => /^https:\/\/(twice\.jype\.com|www\.twicejapan\.com|wmg\.jp)\//.test(url)));
+  }
+  const sorted = filterAlbums(catalog, emptyCollection(), {});
+  assert.deepEqual(sorted.map(a => a.releaseDate), sorted.map(a => a.releaseDate).sort().reverse());
+  for (const type of ['repackage', 'special']) {
+    const matching = filterAlbums(catalog, emptyCollection(), { region: 'KR', type });
+    assert.ok(matching.length);
+    assert.ok(matching.every(a => a.type === type && a.region === 'KR'));
+  }
+  for (const year of new Set(catalog.albums.map(a => a.releaseDate.slice(0, 4)))) {
+    assert.ok(filterAlbums(catalog, emptyCollection(), { year }).every(a => a.releaseDate.startsWith(year)));
+  }
+});
 test('optional version covers normalize independently, inherit album metadata and validate types/paths', async () => {
   const album = catalog.albums.find(a => a.id === ready.albumId);
   const legacy = { id: ready.id, albumId: ready.albumId, name: ready.name, format: 'CD' };
@@ -59,7 +85,9 @@ test('cover metadata never enters collection storage or JSON backups', () => {
   assert.deepEqual(parseBackup(backup), saved);
 });
 test('catalog: releases, unique IDs, correct references, relative existing covers', async () => {
-  assert.ok(catalog.albums.length >= 10);
+  assert.equal(catalog.albums.length, 26);
+  assert.equal(catalog.albums.filter(a => a.region === 'KR').length, 23);
+  assert.equal(catalog.versions.length, 19);
   assert.equal(ready.id, 'twice-ready-to-be-ready');
   assert.equal(to.id, 'twice-ready-to-be-to');
   assert.equal(be.id, 'twice-ready-to-be-be');
@@ -141,7 +169,7 @@ test('reject malformed JSON, schema, unsafe IDs, wrong types, unsupported fields
 test('filters combine year/region/type/search; pending-only albums never enter owned or wanted', () => {
   const c = setVersion(emptyCollection(), ready, { wanted: true });
   c.pending['twice-bdz'] = { quantity: 2 };
-  assert.equal(filterAlbums(catalog, c, { year: '2022' }).length, 2);
+  assert.deepEqual(filterAlbums(catalog, c, { year: '2022' }).map(a => a.id), ['twice-between-1-and-2', 'twice-celebrate']);
   assert.equal(filterAlbums(catalog, c, { year: '2022', region: 'JP', type: 'studio' })[0].id, 'twice-celebrate');
   assert.equal(filterAlbums(catalog, c, { search: '  ＲＥＡＤＹ  ' })[0].id, ready.albumId);
   assert.deepEqual(filterAlbums(catalog, c, { list: 'owned' }).map(a => a.id), []);

@@ -1,4 +1,4 @@
-export const TYPE_LABELS = { mini: '迷你專輯', studio: '正規專輯', single: '單曲' };
+export const TYPE_LABELS = { mini: '迷你專輯', studio: '正規專輯', single: '單曲', repackage: '改版專輯', special: '特別專輯', compilation: '精選專輯' };
 export const REGION_LABELS = { KR: '韓國發行', JP: '日本發行' };
 export const DEFAULT_COVER = './assets/covers/placeholder.svg';
 export const DEFAULT_COVER_ALT = '專輯封面佔位圖片';

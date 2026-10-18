@@ -32,3 +32,41 @@
 - 日本官方列出 #BEST 2015-2025：2026-08-26，可收錄已確認的當日實體版本。
 - Warner 列出 #BEST 2015-2025 LIMITED BOX：2026-12-16，晚於截止日，排除正式目錄。
 - SOLO、MISAMO、演唱會影像、非唱片周邊及沒有實體商品證據的純數位發行不納入。
+
+## 第一階段結果
+
+新增 16 張；韓國共 23 張（14 迷你、4 正規、4 改版、1 特別），連同原日本 3 張共 26 張。版本仍維持原 19 種，留待第三階段核實。
+
+| 專輯 ID | 正式名稱 | 發行日 | 類型 | 原目錄 | 官方來源 |
+| --- | --- | --- | --- | --- | --- |
+| twice-the-story-begins | THE STORY BEGINS | 2015-10-20 | mini | 既有 | [來源 1](https://twice.jype.com/discography?PgIndex=6)、[來源 2](https://m.en.thejypshop.com/product/twice-1st-mini-album-the-story-begins/126/) |
+| twice-page-two | PAGE TWO | 2016-04-25 | mini | 既有 | [來源 1](https://twice.jype.com/discography?PgIndex=6)、[來源 2](https://m.en.thejypshop.com/product/twice-2nd-mini-album-page-two/125) |
+| twice-twicecoaster-lane-1 | TWICEcoaster : LANE 1 | 2016-10-24 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=5)、[來源 2](https://m.en.thejypshop.com/product/twice-3rd-mini-album-twicecoaster-lane-1/120/) |
+| twice-twicecoaster-lane-2 | TWICEcoaster : LANE 2 | 2017-02-20 | repackage | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=5)、[來源 2](https://m.en.thejypshop.com/product/twice-special-album-twicecoaster-lane-2/117/) |
+| twice-signal | SIGNAL | 2017-05-15 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=5)、[來源 2](https://m.en.thejypshop.com/product/twice-4th-mini-album-signal/116/) |
+| twice-twicetagram | twicetagram | 2017-10-30 | studio | 既有 | [來源 1](https://twice.jype.com/discography?PgIndex=5)、[來源 2](https://twice.jype.com/discography/cpzs0rno) |
+| twice-merry-and-happy | Merry & Happy | 2017-12-11 | repackage | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=5)、[來源 2](https://twice.jype.com/discography/hu3q4v3u) |
+| twice-what-is-love | What is Love? | 2018-04-09 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=5)、[來源 2](https://m.en.thejypshop.com/product/twice-5th-mini-album-what-is-love/108/category/45/display/1/) |
+| twice-summer-nights | Summer Nights | 2018-07-09 | repackage | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=4)、[來源 2](https://m.en.thejypshop.com/product/twice-2nd-summer-special-album-summer-nights/107/) |
+| twice-yes-or-yes | YES or YES | 2018-11-05 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=4)、[來源 2](https://m.en.thejypshop.com/product/twice-6th-mini-album-yes-or-yes/104/category/45/display/1/) |
+| twice-the-year-of-yes | The year of "YES" | 2018-12-12 | repackage | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=4)、[來源 2](https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4) |
+| twice-fancy-you | FANCY YOU | 2019-04-22 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=4)、[來源 2](https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4) |
+| twice-feel-special | Feel Special | 2019-09-23 | mini | 既有 | [來源 1](https://twice.jype.com/discography?PgIndex=4)、[來源 2](https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4) |
+| twice-more-and-more | MORE & MORE | 2020-06-01 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=4)、[來源 2](https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4) |
+| twice-eyes-wide-open | Eyes wide open | 2020-10-26 | studio | 既有 | [來源 1](https://twice.jype.com/discography?PgIndex=3)、[來源 2](https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4) |
+| twice-taste-of-love | Taste of Love | 2021-06-09 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=3)、[來源 2](https://twiceshop.com/products/taste-of-love-taste-version) |
+| twice-formula-of-love | Formula of Love: O+T=<3 | 2021-11-12 | studio | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=3)、[來源 2](https://twiceshop.com/products/formula-of-love-o-t-3-full-of-love-version) |
+| twice-between-1-and-2 | BETWEEN 1&2 | 2022-08-26 | mini | 既有 | [來源 1](https://twice.jype.com/discography?PgIndex=2) |
+| twice-ready-to-be | READY TO BE | 2023-03-10 | mini | 既有 | [來源 1](https://twice.jype.com/discography?PgIndex=2)、[來源 2](https://twiceshop.com/products/ready-to-be-ready-ver-not-signed) |
+| twice-with-you-th | With YOU-th | 2024-02-23 | mini | 新增 | [來源 1](https://twice.jype.com/discography?PgIndex=2)、[來源 2](https://twiceshop.com/products/with-you-th-forever-ver) |
+| twice-strategy | STRATEGY | 2024-12-06 | mini | 新增 | [來源 1](https://twice.jype.com/discography)、[來源 2](https://twiceshop.com/products/strategy-step-3-ver) |
+| twice-this-is-for | THIS IS FOR | 2025-07-11 | studio | 新增 | [來源 1](https://twice.jype.com/discography)、[來源 2](https://twiceshop.com/products/this-is-for-this-ver) |
+| twice-ten-the-story-goes-on | TEN: The Story Goes On | 2025-10-10 | special | 新增 | [來源 1](https://twice.jype.com/discography)、[來源 2](https://twiceshop.com/products/ten-the-story-goes-on-episode-ver) |
+
+### 韓國尚待完成
+
+- 各張普通版、限定版、成員版的逐項查證於第三階段處理；全部維持 `versionsComplete: false`。
+- `I GOT YOU`：官方商店保留 [CD Single 分類](https://twiceshop.com/collections/i-got-you-cd-single)，但沒有商品規格與實體首發日期；暫不加入正式 albums／versions。不可把數位 2024-02-02 自動當實體日期。
+- `The Feels`、`MOONLIGHT SUNRISE`、`CRY FOR ME`、`THE REMIXES`：目前未找到可確認的獨立官方實體商品；不因收錄在其他 CD 而另建單曲版本。
+- `Taste of Love` 官網列 2021-06-09；沿用官網作品日期，CD 商品發行日須另外核對。
+- JYP SHOP 舊商品的月份欄位有錯植（例如 LANE 2 寫 October 2017、YES or YES 寫 August 2018）；作品日以 JYP discography 為準，商品頁只用於規格／版本證據。
