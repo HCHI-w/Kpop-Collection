@@ -1,0 +1,11 @@
+{
+  "name": "my-kpop-collection",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/collection.test.js",
+    "test:browser": "node tests/browser.mjs",
+    "preview": "python3 -m http.server 8000"
+  }
+}

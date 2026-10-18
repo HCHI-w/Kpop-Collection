@@ -1,0 +1,138 @@
+{
+  "schemaVersion": 1,
+  "versions": [
+    {
+      "id": "twice-the-story-begins-original",
+      "albumId": "twice-the-story-begins",
+      "name": "Original ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-page-two-pink",
+      "albumId": "twice-page-two",
+      "name": "Pink ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-page-two-mint",
+      "albumId": "twice-page-two",
+      "name": "Mint ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-candy-pop-regular",
+      "albumId": "twice-candy-pop",
+      "name": "通常盤",
+      "format": "CD",
+      "source": "https://www.twicejapan.com/feature/candypop"
+    },
+    {
+      "id": "twice-bdz-regular",
+      "albumId": "twice-bdz",
+      "name": "通常盤",
+      "format": "CD",
+      "source": "https://www.twicejapan.com/feature/bdz"
+    },
+    {
+      "id": "twice-feel-special-a",
+      "albumId": "twice-feel-special",
+      "name": "A ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-feel-special-b",
+      "albumId": "twice-feel-special",
+      "name": "B ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-feel-special-c",
+      "albumId": "twice-feel-special",
+      "name": "C ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-eyes-wide-open-story",
+      "albumId": "twice-eyes-wide-open",
+      "name": "Story ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-eyes-wide-open-style",
+      "albumId": "twice-eyes-wide-open",
+      "name": "Style ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-eyes-wide-open-retro",
+      "albumId": "twice-eyes-wide-open",
+      "name": "Retro ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-celebrate-regular",
+      "albumId": "twice-celebrate",
+      "name": "通常盤",
+      "format": "CD",
+      "source": "https://www.twicejapan.com/feature/Celebrate"
+    },
+    {
+      "id": "twice-between-1-and-2-archive",
+      "albumId": "twice-between-1-and-2",
+      "name": "Archive ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-between-1-and-2-cryptography",
+      "albumId": "twice-between-1-and-2",
+      "name": "Cryptography ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-between-1-and-2-pathfinder",
+      "albumId": "twice-between-1-and-2",
+      "name": "Pathfinder ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-between-1-and-2-complete",
+      "albumId": "twice-between-1-and-2",
+      "name": "Complete ver.",
+      "format": "CD",
+      "source": "https://oncecollector.com/discography"
+    },
+    {
+      "id": "twice-ready-to-be-ready",
+      "albumId": "twice-ready-to-be",
+      "name": "READY ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+    },
+    {
+      "id": "twice-ready-to-be-to",
+      "albumId": "twice-ready-to-be",
+      "name": "TO ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+    },
+    {
+      "id": "twice-ready-to-be-be",
+      "albumId": "twice-ready-to-be",
+      "name": "BE ver.",
+      "format": "CD",
+      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+    }
+  ]
+}

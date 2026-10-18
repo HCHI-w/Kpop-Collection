@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#faf9f7">
+  <meta name="description" content="為每一張喜歡的專輯留個位置。管理 TWICE 實體專輯、版本與心願清單，收藏儲存在你的瀏覽器。">
+  <title>My K-pop Collection｜我的專輯收藏</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./css/style.css">
+  <script type="module" src="./js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#catalog">跳至專輯圖鑑</a>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="My K-pop Collection 首頁"><span class="brand-icon" aria-hidden="true">▤</span><span>My K-pop Collection<span class="brand-sub">A LITTLE ARCHIVE OF YOUR FAVORITES</span></span></a>
+    <nav class="main-nav" aria-label="收藏導覽">
+      <button type="button" data-list="all" aria-pressed="true">專輯圖鑑</button>
+      <button type="button" data-list="owned" aria-pressed="false">已擁有 <span aria-hidden="true">↗</span></button>
+      <button type="button" data-list="wanted" aria-pressed="false">想要 <span aria-hidden="true">♡</span></button>
+    </nav>
+    <button type="button" id="backup-open" class="button quiet backup-button"><span aria-hidden="true">↓↑</span> 匯入 / 匯出</button>
+  </header>
+  <main class="container">
+    <section class="intro" aria-labelledby="intro-title">
+      <div><p class="eyebrow"><span class="tiny-dot"></span> YOUR PERSONAL ALBUM ARCHIVE</p><h1 id="intro-title">每一張喜歡，都有位置。</h1><p class="intro-copy">從第一張心動，到慢慢完整。把屬於你的 K-pop 收藏，好好收著。</p></div>
+      <div class="intro-note"><span class="outline-heart" aria-hidden="true">♡</span><span>為喜歡的音樂<br>留下一點日常。</span></div>
+    </section>
+    <section id="stats" class="stats" aria-label="目前團體收藏統計"></section>
+    <section class="artist-section" aria-labelledby="artist-title"><p id="artist-title" class="eyebrow">選擇團體 <span class="muted">/ ARTISTS</span></p><div id="artists" class="artists"></div></section>
+    <section id="catalog" aria-labelledby="catalog-title">
+      <div class="catalog-heading"><div><p class="eyebrow">THE DISCOGRAPHY</p><h2 id="catalog-title">TWICE <span>專輯圖鑑</span></h2></div><span class="catalog-note">一張一張，收藏喜歡。</span></div>
+      <div class="filters">
+        <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜尋專輯名稱…" aria-label="搜尋專輯名稱" maxlength="150"></label>
+        <div class="filter-selects">
+          <label><span>發行年份</span><select id="year"><option value="">所有年份</option></select></label>
+          <label><span>發行地區</span><select id="region"><option value="">所有地區</option><option value="KR">韓國發行</option><option value="JP">日本發行</option></select></label>
+          <label><span>專輯類型</span><select id="type"><option value="">所有類型</option><option value="mini">迷你專輯</option><option value="studio">正規專輯</option><option value="single">單曲</option></select></label>
+          <button type="button" id="reset-filters" class="text-button">重設</button>
+        </div>
+      </div>
+      <div class="view-toolbar"><p id="result-count" role="status">正在載入圖鑑…</p><div class="segmented" role="group" aria-label="圖鑑檢視模式"><button type="button" data-view="albums" aria-pressed="true"><span aria-hidden="true">▦</span> 專輯總覽</button><button type="button" data-view="versions" aria-pressed="false"><span aria-hidden="true">☷</span> 版本詳細收藏</button></div></div>
+      <div id="catalog-content" aria-busy="true"><p class="empty">正在整理專輯目錄…</p></div>
+      <p class="data-note"><span class="tiny-dot"></span> 本圖鑑為部分示範目錄，非完整發行清單；封面皆為文字佔位圖。收藏數量僅依你實際記錄的版本計算。</p>
+    </section>
+    <section class="collection-tip"><span class="tip-icon" aria-hidden="true">＋</span><div><h3>還不確定手上是哪個版本？</h3><p>點開專輯，先記在「版本未確認」。找到版本後，可直接轉移張數，收藏不會重複計算。</p></div><span class="tip-label">COLLECT AT YOUR OWN PACE</span></section>
+  </main>
+  <footer class="site-footer container"><span>My K-pop Collection <span class="muted">/ 收藏的日常</span></span><span>僅儲存於此瀏覽器 · 記得定期匯出備份</span></footer>
+  <p id="notice" class="notice" role="status" aria-live="polite" hidden></p>
+  <div id="storage-alert" class="storage-alert" role="alert" hidden></div>
+  <dialog id="album-dialog" aria-labelledby="album-dialog-title"><div id="album-detail"></div></dialog>
+  <dialog id="backup-dialog" aria-labelledby="backup-title">
+    <div class="dialog-top"><p class="eyebrow">KEEP YOUR COLLECTION SAFE</p><button type="button" class="icon-button" data-close="backup-dialog" aria-label="關閉備份視窗">×</button></div>
+    <h2 id="backup-title">收藏備份</h2><p class="dialog-copy">收藏只存在目前的瀏覽器。換裝置或清除瀏覽資料前，請先下載備份。</p>
+    <section class="backup-section"><h3>匯出收藏</h3><p>下載包含全部團體、版本與未確認張數的 JSON 檔案。</p><button type="button" id="export" class="button primary">↓ 下載 JSON 備份</button></section>
+    <section class="backup-section"><h3>匯入收藏</h3><label class="file-label" for="import-file">選擇 JSON 備份檔（上限 2 MB）</label><input type="file" id="import-file" accept=".json,application/json"><p id="import-preview" class="import-preview" role="status">先選擇檔案，驗證通過後才能匯入。</p>
+      <fieldset><legend>匯入方式</legend><label class="radio-option"><input type="radio" name="import-mode" value="merge" checked><span><strong>合併</strong><small>已擁有張數取較大值、想要狀態合併，不累加相同備份。未確認張數由已確認版本抵扣。</small></span></label><label class="radio-option"><input type="radio" name="import-mode" value="replace"><span><strong>覆蓋</strong><small>以備份取代目前全部收藏，執行前會再次確認。</small></span></label></fieldset>
+      <button type="button" id="import-apply" class="button primary" disabled>確認匯入</button>
+    </section>
+  </dialog>
+  <noscript><p class="storage-alert">請啟用 JavaScript 才能載入專輯與管理收藏。</p></noscript>
+</body>
+</html>

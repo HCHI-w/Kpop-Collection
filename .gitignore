@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+coverage/
+test-results/
+playwright-report/
+my-kpop-collection*.json
+*.local.json
