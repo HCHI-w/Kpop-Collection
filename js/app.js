@@ -77,9 +77,7 @@ function meta(album) {
 function renderStats() {
   const stats = collectionStats(collection, catalog, filters.groupId);
   const items = [
-    ['已擁有專輯', stats.ownedAlbums, '種', '含有已確認版本或未確認張數'],
-    ['已確認版本', stats.ownedVersions, '種', '同一版本多張僅計為 1 種'],
-    ['實體專輯', stats.copies, '張', `含 ${stats.pendingCopies} 張版本未確認`],
+    ['已擁有專輯', stats.ownedAlbums, '種', '包含版本未確認的專輯'],
     ['想要收藏', stats.wantedVersions, '版本', `來自 ${stats.wantedAlbums} 種專輯`]
   ];
   $('#stats').innerHTML = items.map(([label, value, unit, caption]) => `<div class="stat"><p class="stat-label"><span class="stat-dot" aria-hidden="true"></span>${label}</p><p class="stat-value">${value}<small>${unit}</small></p><p class="stat-caption">${caption}</p></div>`).join('');
