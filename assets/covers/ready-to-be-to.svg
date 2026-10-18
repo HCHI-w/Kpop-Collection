@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" role="img" aria-labelledby="title desc">
+  <title id="title">READY TO BE — TO ver. placeholder</title>
+  <desc id="desc">Original text placeholder, not official album artwork.</desc>
+  <rect width="400" height="400" fill="#26313d"/>
+  <rect x="22" y="22" width="356" height="356" rx="4" fill="none" stroke="#b7c9d9" opacity=".5"/>
+  <g fill="#b7c9d9" font-family="sans-serif" text-anchor="middle">
+    <text x="200" y="90" font-size="18" letter-spacing="5">TWICE</text>
+    <text x="200" y="132" font-size="16" letter-spacing="2">READY TO BE</text>
+    <text x="200" y="237" font-size="58" font-weight="700">TO</text>
+    <text x="200" y="274" font-size="16">VERSION</text>
+    <text x="200" y="338" font-size="11" letter-spacing="1">PLACEHOLDER / NOT OFFICIAL ART</text>
+  </g>
+</svg>

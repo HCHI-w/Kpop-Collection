@@ -118,21 +118,30 @@
       "albumId": "twice-ready-to-be",
       "name": "READY ver.",
       "format": "CD",
-      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+      "cover": "./assets/covers/ready-to-be-ready.svg",
+      "coverAlt": "TWICE READY TO BE READY ver. 自製文字佔位封面（非官方美術）",
+      "coverIsPlaceholder": true
     },
     {
       "id": "twice-ready-to-be-to",
       "albumId": "twice-ready-to-be",
       "name": "TO ver.",
       "format": "CD",
-      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+      "cover": "./assets/covers/ready-to-be-to.svg",
+      "coverAlt": "TWICE READY TO BE TO ver. 自製文字佔位封面（非官方美術）",
+      "coverIsPlaceholder": true
     },
     {
       "id": "twice-ready-to-be-be",
       "albumId": "twice-ready-to-be",
       "name": "BE ver.",
       "format": "CD",
-      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+      "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+      "cover": "./assets/covers/ready-to-be-be.svg",
+      "coverAlt": "TWICE READY TO BE BE ver. 自製文字佔位封面（非官方美術）",
+      "coverIsPlaceholder": true
     }
   ]
 }

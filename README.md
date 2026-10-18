@@ -61,7 +61,7 @@ assets/
 data/
   groups.json               團體與各團體目錄路徑
   twice/albums.json         專輯目錄（名稱、日期、地區、類型、圖片、來源）
-  twice/versions.json       實體版本目錄（專輯關聯、名稱、媒介、來源）
+  twice/versions.json       實體版本目錄（專輯關聯、名稱、媒介、來源、可選獨立封面）
 tests/
   collection.test.js        Node 內建測試，無第三方依賴
   browser.mjs               Chromium DevTools Protocol 瀏覽器整合測試
@@ -231,6 +231,63 @@ JSON 是有固定標點的文字清單：文字使用英文雙引號 `"`；相�
 
 增加全新版本時才新增一筆紀錄：給它唯一的新 `id`，`albumId` 填所屬專輯原本的 `id`，並填寫已查證的名稱、媒介與來源。沒有確定名稱時先不新增，網站會顯示待補齊提示。不要為了開放收藏而建立「預設版」或假設的官方版本。
 
+### 版本獨立封面：設定、更換與還原
+
+專輯總覽一律讀取 `data/twice/albums.json` 的封面。版本詳細收藏清單與專輯詳情視窗則優先讀取 `data/twice/versions.json` 中每個版本的 `cover`；沒有設定（或留空）就沿用所屬專輯封面。圖片載入失敗時直接顯示統一的 `assets/covers/placeholder.svg`，不會顯示破圖。
+
+**上傳及設定版本封面：**
+
+1. 依前述上傳步驟，到 GitHub 的 **assets → covers → Add file → Upload files**，上傳有權公開使用的圖片。建議正方形 JPG、PNG 或 WebP，先適度壓縮，檔名使用英文小寫及連字號，例如 `ready-to-be-ready.jpg`。
+2. 到 **data → twice → versions.json → Edit this file**，找到 `twice-ready-to-be-ready` 那筆資料，加入下例的三個封面欄位。路徑從網站根目錄開始，保留 `./assets/covers/`，檔名大小寫與副檔名須完全一致。
+3. 更換正式封面時，將 `coverIsPlaceholder` 設為 `false`，更新 `coverAlt`，並記錄圖片來源／授權資訊於 PR 或另附授權文件。版本的 `source` 是發行資料來源，不能代替圖片使用授權。
+
+以下是一筆完整版本紀錄，可在圖片上傳後直接替換原本 READY 的物件（保留既有 `id`、`albumId`）：
+
+```json
+{
+  "id": "twice-ready-to-be-ready",
+  "albumId": "twice-ready-to-be",
+  "name": "READY ver.",
+  "format": "CD",
+  "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/",
+  "cover": "./assets/covers/ready-to-be-ready.jpg",
+  "coverAlt": "TWICE READY TO BE READY 版本封面",
+  "coverIsPlaceholder": false
+}
+```
+
+`cover`、`coverAlt`、`coverIsPlaceholder` **全部是可選欄位**，既有版本不用一次補齊。設定封面但省略 `coverAlt` 時，網站自動使用專輯名與版本名；省略 `coverIsPlaceholder` 則預設為 `false`。使用自製佔位圖時請填 `true`，並在圖片及替代文字明確註明。READY、TO、BE 目前各用不同配色與版本文字的自製 SVG 佔位圖，並非官方美術，未上傳第三方封面。
+
+**修改版本名稱：**只改該筆的 `name`，例如 `"name": "READY 寫真書版"`；需要時也能改 `format`。不要修改或重用既有版本 `id`，也不要更改 `albumId`。
+
+**還原為專輯預設封面：**刪除該版本的三個封面欄位即可；也可將 `cover` 留為空字串。沒有版本封面時，替代文字與佔位標記也沿用專輯設定。可直接還原成下例：
+
+```json
+{
+  "id": "twice-ready-to-be-ready",
+  "albumId": "twice-ready-to-be",
+  "name": "READY ver.",
+  "format": "CD",
+  "source": "https://m.en.thejypshop.com/product/twice-12th-mini-album-ready-to-be/1234/"
+}
+```
+
+**新增一個實體版本：**先核實版本名稱、媒介與發行來源，再在 `versions` 陣列追加一個完整物件。新版本才需要全新、跨目錄不重複且永久保留的 `id`；`albumId` 填所屬專輯既有 ID。以下用目前已收錄專輯 PAGE TWO 的 Pink 版本示範完整格式；該筆已存在，請勿重複貼上。新增時改用已核實的新版本資料與新 ID，未準備封面時可省略封面三欄：
+
+```json
+{
+  "id": "twice-page-two-pink",
+  "albumId": "twice-page-two",
+  "name": "Pink ver.",
+  "format": "CD",
+  "source": "https://oncecollector.com/discography"
+}
+```
+
+陣列中兩個物件之間用逗號分隔，最後一個物件後面不要加逗號。保留檔案外層的 `schemaVersion: 1` 與 `versions` 陣列；只增加版本無須更改 `albums.json` 的 ID，也不需要修改收藏 schema 或儲存鍵。新增後可重新整理確認版本自動出現，待全部版本核實收錄後再更新專輯的 `versionsComplete`。
+
+封面屬於公開目錄的顯示資料，**不會寫入個人收藏 localStorage 或 JSON 備份**。改圖、改名不會改變「已擁有」與「想要」狀態。
+
 ### 6. 提交 Commit 並等待網站更新
 
 1. 每次編輯後按 **Commit changes**，填簡短說明，例如「更換 PAGE TWO 封面與說明」。Commit 就是保存這次修改的一筆紀錄。
@@ -272,16 +329,17 @@ TEST_URL=http://localhost:8000/ npm run test:browser
 
 `npm test` 與 `npm run test` 執行相同的核心測試；實際 Chromium 測試命令為 `npm run test:browser`。
 
-腳本會使用獨立暫存瀏覽器設定檔與示範收藏，結束後移除，**不讀取你的日常瀏覽器收藏**。輸出到忽略的 `test-results/`：`desktop.png`（1280px）、`mobile.png`（375px）、`sticky-1280.png`／`sticky-375.png`、`detail-1280.png`／`detail-375.png`、`backup-1280.png`／`backup-375.png` 、`legacy-320.png`／`legacy-375.png` 及 `browser-result.json`。不需 Playwright 或瀏覽器擴充套件。
+腳本會使用獨立暫存瀏覽器設定檔與示範收藏，結束後移除，**不讀取你的日常瀏覽器收藏**。輸出到忽略的 `test-results/`：`desktop.png`（1280px）、`mobile.png`（375px）、`sticky-1280.png`／`sticky-375.png`、`detail-1280.png`／`detail-375.png`、`backup-1280.png`／`backup-375.png` 、`legacy-320.png`／`legacy-375.png` 、`versions-1280.png`／`versions-375.png` 及 `browser-result.json`。不需 Playwright 或瀏覽器擴充套件。
 
 自動化涵蓋：
 
-- 核心測試：穩定 ID、圖片檔案存在、獨立收藏、0／1 操作、舊數量保留、種數統計、舊 pending 合併保留、未知 ID、驗證、篩選、儲存錯誤。
+- 核心測試：可選版本封面驗證與正規化、專輯封面回退、封面不進入個人備份、穩定 ID、圖片檔案存在、獨立收藏、0／1 操作、舊數量保留、種數統計、舊 pending 合併保留、未知 ID、驗證、篩選、儲存錯誤。
+- Chromium 驗證 READY／TO／BE 獨立封面、總覽封面不變、未設定版本圖時沿用專輯圖、版本圖與專輯圖實際 404 回退，以及寬圖維持正方形裁切和 lazy loading。
 - Chromium 以 `/Kpop-Collection/` 子路徑載入，操作兩種檢視、勾選／取消、同時已擁有與想要、重新整理、無版本專輯提示，以及舊操作介面已移除。
 - 舊 localStorage 載入不改寫、一次性提醒、實際備份下載、保留／取消／確認移除、過期備份防護及寫入失敗保護。
 - JSON 錯誤格式拒絕、匯出、合併、覆蓋取消／確認、還原舊備份與目錄外紀錄保留。
 - 1600／1280／1024／768／375／320px：兩種檢視無水平溢出、團體／統計間距 20px、統計卡片含內距與邊框最多 150px、手機上下排列、深色 dialog、sticky header 及錨點位置。
-- 損壞資料救援、儲存失敗回復、Escape 關閉、無未捕捉 JavaScript／console 錯誤及失敗資源請求。
+- 損壞資料救援、儲存失敗回復、Escape 關閉、無未捕捉 JavaScript／console 錯誤及非預期失敗資源請求（測試刻意製造的封面 404 除外）。
 
 真實 iOS Safari／Firefox、螢幕閱讀器尚需人工驗收。正式環境的第三版驗收須待 PR 合併與 Pages 部署完成。
 

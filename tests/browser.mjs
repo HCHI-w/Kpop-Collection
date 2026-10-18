@@ -14,6 +14,8 @@ let socket;
 let dialogAccept = true;
 const errors = [];
 const badRequests = [];
+const expectedMissingAssets = new Set();
+const catalogFixtures = new Map();
 let sequence = 0;
 const pending = new Map();
 async function poll(fn, message, timeout = 10000) {
@@ -75,6 +77,14 @@ try {
     if (message.method === 'Runtime.consoleAPICalled' && message.params.type === 'error') errors.push(message.params);
     if (message.method === 'Network.responseReceived' && message.params.response.status >= 400) badRequests.push(message.params.response.url);
     if (message.method === 'Network.loadingFailed') badRequests.push(message.params.errorText);
+    if (message.method === 'Fetch.requestPaused') {
+      const fixture = catalogFixtures.get(new URL(message.params.request.url).pathname);
+      const requestId = message.params.requestId;
+      const response = fixture
+        ? send('Fetch.fulfillRequest', { requestId, responseCode: 200, responseHeaders: [{ name: 'Content-Type', value: 'application/json' }], body: Buffer.from(JSON.stringify(fixture)).toString('base64') })
+        : send('Fetch.continueRequest', { requestId });
+      response.catch(error => errors.push(error.message));
+    }
     if (message.method === 'Page.javascriptDialogOpening') send('Page.handleJavaScriptDialog', { accept: dialogAccept }).catch(() => {});
   });
   await send('Runtime.enable'); await send('Page.enable'); await send('Network.enable');
@@ -82,6 +92,65 @@ try {
   await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   await load();
+  const overviewSelector = '[data-album="twice-ready-to-be"] .cover-wrap img';
+  const versionImages = '.version-album:first-child .version-cover';
+  const versionSources = ['ready', 'to', 'be'].map(name => `./assets/covers/ready-to-be-${name}.svg`);
+  const sources = selector => evaluate(`[...document.querySelectorAll(${JSON.stringify(selector)})].map(i=>i.getAttribute('src'))`);
+  const loadImages = async selector => {
+    await evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center'})`);
+    await poll(() => evaluate(`[...document.querySelectorAll(${JSON.stringify(selector)})].every(i=>i.complete && i.naturalWidth>0)`), `images loaded: ${selector}`);
+  };
+  assert.deepEqual(await sources(overviewSelector), ['./assets/covers/ready-to-be.svg']);
+  await click('[data-view="versions"]');
+  assert.deepEqual(await sources(versionImages), versionSources);
+  await loadImages(versionImages);
+  const inheritedSelector = '#list-twice-page-two-pink-owned';
+  assert.equal(await evaluate(`document.querySelector('${inheritedSelector}').closest('.version-row').querySelector('img').getAttribute('src')`), './assets/covers/page-two.svg');
+  await click('[data-album="twice-ready-to-be"]');
+  assert.deepEqual(await sources('#album-dialog .version-cover'), versionSources);
+  assert.deepEqual(await sources('#album-dialog .detail-cover'), ['./assets/covers/ready-to-be.svg']);
+  await loadImages('#album-dialog .version-cover');
+  // A wide source must still occupy the same square as a square source.
+  await evaluate(`document.querySelector('#album-dialog .version-cover').src='data:image/svg+xml,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="400" height="180"><rect width="400" height="180" fill="pink"/></svg>')`);
+  await loadImages('#album-dialog .version-cover');
+  assert.equal(await evaluate(`(()=>{const i=document.querySelector('#album-dialog .version-cover');const r=i.getBoundingClientRect();return i.naturalWidth===400 && i.naturalHeight===180 && Math.abs(r.width-r.height)<1 && getComputedStyle(i).objectFit==='cover'})()`), true);
+  await click('[data-close="album-dialog"]');
+
+  // Load catalog JSON with missing images, exercising real 404s after rendering.
+  const versionsFixture = JSON.parse(await readFile(new URL('../data/twice/versions.json', import.meta.url), 'utf8'));
+  const albumsFixture = JSON.parse(await readFile(new URL('../data/twice/albums.json', import.meta.url), 'utf8'));
+  versionsFixture.versions.find(v=>v.id==='twice-ready-to-be-ready').cover = './assets/covers/test-missing-version.svg';
+  albumsFixture.albums.find(a=>a.id==='twice-page-two').cover = './assets/covers/test-missing-album.svg';
+  const baseURL = process.env.TEST_URL || 'http://127.0.0.1:8000/Kpop-Collection/';
+  for (const name of ['version', 'album']) expectedMissingAssets.add(new URL(`./assets/covers/test-missing-${name}.svg`, baseURL).href);
+  catalogFixtures.set(new URL('./data/twice/versions.json', baseURL).pathname, versionsFixture);
+  catalogFixtures.set(new URL('./data/twice/albums.json', baseURL).pathname, albumsFixture);
+  await send('Fetch.enable', { patterns: [{ urlPattern: '*data/twice/*.json' }] });
+  await load();
+  assert.deepEqual(await sources(overviewSelector), ['./assets/covers/ready-to-be.svg']);
+  await click('[data-album="twice-ready-to-be"]');
+  await loadImages('#album-dialog .version-cover');
+  assert.deepEqual(await sources('#album-dialog .version-cover'), ['./assets/covers/placeholder.svg', ...versionSources.slice(1)]);
+  assert.equal(await evaluate(`document.querySelector('#album-dialog .version-cover').alt`), '專輯封面佔位圖片');
+  await click('[data-close="album-dialog"]');
+  await click('[data-view="versions"]');
+  await loadImages(versionImages);
+  assert.deepEqual(await sources(versionImages), ['./assets/covers/placeholder.svg', ...versionSources.slice(1)]);
+  await click('[data-album="twice-page-two"]');
+  await loadImages('#album-dialog .version-cover');
+  assert.deepEqual(await sources('#album-dialog .version-cover'), ['./assets/covers/placeholder.svg', './assets/covers/placeholder.svg']);
+  await loadImages('#album-dialog .detail-cover');
+  assert.deepEqual(await sources('#album-dialog .detail-cover'), ['./assets/covers/placeholder.svg']);
+  await click('[data-close="album-dialog"]');
+  await click('[data-view="albums"]');
+  const missingAlbumSelector = '[data-album="twice-page-two"] .cover-wrap img';
+  await loadImages(missingAlbumSelector);
+  assert.deepEqual(await sources(missingAlbumSelector), ['./assets/covers/placeholder.svg']);
+  for (const url of expectedMissingAssets) assert.ok(badRequests.includes(url), `real missing image request: ${url}`);
+  await send('Fetch.disable');
+  catalogFixtures.clear();
+  await load();
+  console.log('PASS: independent version covers in list/dialog, album overview unchanged, inherited album covers, real version/album 404s use shared placeholder');
   assert.equal(await evaluate('document.documentElement.lang'), 'zh-Hant');
   assert.equal(await evaluate(`getComputedStyle(document.querySelector('.album-grid')).gridTemplateColumns.split(' ').length`), 5);
   await poll(() => evaluate(`[...document.querySelectorAll('.cover-wrap img')].every(i=>i.complete && i.naturalWidth>0)`), 'covers loaded');
@@ -237,6 +306,7 @@ try {
   const downloaded = await poll(async () => (await readdir(temp)).find(n => /^my-kpop-collection-\d{4}-\d{2}-\d{2}\.json$/.test(n)), 'download');
   const backup = JSON.parse(await readFile(join(temp, downloaded), 'utf8'));
   assert.equal(backup.schemaVersion, 1); assert.equal(backup.versions[ready].quantity, 1);
+  assert.doesNotMatch(JSON.stringify(backup), /cover|assets\//, 'catalog image metadata never enters downloaded backup');
   await upload('{broken'); assert.equal(await evaluate(`document.querySelector('#import-apply').disabled`), true);
   await assertDark('.import-preview.error');
   await upload({ ...backup, schemaVersion: 99 }, 'future.json'); assert.equal(await evaluate(`document.querySelector('#import-apply').disabled`), true);
@@ -276,6 +346,19 @@ try {
     assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true, `additional artists no overflow at ${width}`);
     await evaluate(`document.querySelectorAll('.test-artist').forEach(e=>e.remove())`);
     await click('[data-view="versions"]');
+    const coverLayout = await evaluate(`(()=>{const grid=document.querySelector('.version-grid');return {columns:getComputedStyle(grid).gridTemplateColumns.split(' ').length,covers:[...grid.querySelectorAll('.version-cover')].map(i=>{const r=i.getBoundingClientRect();return {width:r.width,height:r.height,fit:getComputedStyle(i).objectFit,lazy:i.loading}})}})()`);
+    assert.ok(coverLayout.columns >= 2, `version grid at ${width}`);
+    for (const cover of coverLayout.covers) {
+      assert.ok(Math.abs(cover.width-cover.height)<1, `square version cover at ${width}`);
+      assert.equal(cover.fit, 'cover');
+      assert.equal(cover.lazy, 'lazy');
+    }
+    if (width === 1280 || width === 375) {
+      await loadImages(versionImages);
+      await evaluate('window.scrollTo(0,0)');
+      const shot = await send('Page.captureScreenshot', { format: 'png' });
+      await writeFile(join(outputs, `versions-${width}.png`), Buffer.from(shot.data, 'base64'));
+    }
     assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true, `version view no overflow at ${width}`);
     assert.equal(await count('input[type=number], .pending-panel, .transfer-form, .collection-tip'), 0);
     await click('[data-view="albums"]');
@@ -349,8 +432,8 @@ try {
   assert.equal(await evaluate(`document.querySelector('#storage-alert').hidden`), true);
   console.log('PASS: quota failure rollback, corrupt-data preservation and confirmed backup recovery');
   assert.deepEqual(errors, [], 'no JavaScript errors');
-  assert.deepEqual(badRequests, [], 'no failed asset requests');
-  console.log('PASS: no uncaught JavaScript/console errors or failed HTTP requests');
+  assert.deepEqual(badRequests.filter(url => !expectedMissingAssets.has(url)), [], 'no unexpected failed asset requests');
+  console.log('PASS: no uncaught JavaScript/console errors or unexpected failed HTTP requests (intentional missing-cover 404s verified)');
   await writeFile(join(outputs, 'browser-result.json'), JSON.stringify({ passed: true, errors, badRequests, url: process.env.TEST_URL || 'http://127.0.0.1:8000/Kpop-Collection/' }, null, 2));
 } finally {
   socket?.close(); chrome.kill('SIGTERM');
