@@ -267,6 +267,11 @@ try {
   await change('#search', 'ready', 'input'); assert.equal(await count('.album-card'), 1);
   await change('#search', 'no-such-album', 'input'); assert.equal(await count('.album-card'), 0);
   await click('#empty-reset'); assert.equal(await count('.album-card'), albumCount);
+  for (const type of ['repackage', 'special', 'compilation']) {
+    await change('#type', type);
+    assert.equal(await count('.album-card'), releaseData.filter(a => a.type === type).length, type);
+  }
+  await click('#reset-filters');
   console.log('PASS: catalog, relative subpath assets, combined filters, normalized search, empty/reset');
 
   const ready = 'twice-ready-to-be-ready';
