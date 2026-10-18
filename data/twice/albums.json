@@ -1,0 +1,175 @@
+{
+  "schemaVersion": 1,
+  "albums": [
+    {
+      "id": "twice-the-story-begins",
+      "groupId": "twice",
+      "name": "THE STORY BEGINS",
+      "releaseDate": "2015-10-20",
+      "region": "KR",
+      "type": "mini",
+      "cover": "./assets/covers/the-story-begins.svg",
+      "coverAlt": "THE STORY BEGINS 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-page-two",
+      "groupId": "twice",
+      "name": "PAGE TWO",
+      "releaseDate": "2016-04-25",
+      "region": "KR",
+      "type": "mini",
+      "cover": "./assets/covers/page-two.svg",
+      "coverAlt": "PAGE TWO 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-twicetagram",
+      "groupId": "twice",
+      "name": "twicetagram",
+      "releaseDate": "2017-10-30",
+      "region": "KR",
+      "type": "studio",
+      "cover": "./assets/covers/twicetagram.svg",
+      "coverAlt": "twicetagram 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "版本名稱尚待進一步核實，先提供未確認張數暫存。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-candy-pop",
+      "groupId": "twice",
+      "name": "Candy Pop",
+      "releaseDate": "2018-02-07",
+      "region": "JP",
+      "type": "single",
+      "cover": "./assets/covers/candy-pop.svg",
+      "coverAlt": "Candy Pop 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄通常盤，未含限定盤與後續版本。",
+      "sources": [
+        "https://www.twicejapan.com/feature/candypop",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-bdz",
+      "groupId": "twice",
+      "name": "BDZ",
+      "releaseDate": "2018-09-12",
+      "region": "JP",
+      "type": "studio",
+      "cover": "./assets/covers/bdz.svg",
+      "coverAlt": "BDZ 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄通常盤，未含限定盤與後續版本。",
+      "sources": [
+        "https://www.twicejapan.com/feature/bdz",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-feel-special",
+      "groupId": "twice",
+      "name": "Feel Special",
+      "releaseDate": "2019-09-23",
+      "region": "KR",
+      "type": "mini",
+      "cover": "./assets/covers/feel-special.svg",
+      "coverAlt": "Feel Special 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-eyes-wide-open",
+      "groupId": "twice",
+      "name": "Eyes wide open",
+      "releaseDate": "2020-10-26",
+      "region": "KR",
+      "type": "studio",
+      "cover": "./assets/covers/eyes-wide-open.svg",
+      "coverAlt": "Eyes wide open 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-celebrate",
+      "groupId": "twice",
+      "name": "Celebrate",
+      "releaseDate": "2022-07-27",
+      "region": "JP",
+      "type": "studio",
+      "cover": "./assets/covers/celebrate.svg",
+      "coverAlt": "Celebrate 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄通常盤，未含限定盤與後續版本。",
+      "sources": [
+        "https://www.twicejapan.com/feature/Celebrate",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-between-1-and-2",
+      "groupId": "twice",
+      "name": "BETWEEN 1&2",
+      "releaseDate": "2022-08-26",
+      "region": "KR",
+      "type": "mini",
+      "cover": "./assets/covers/between-1-and-2.svg",
+      "coverAlt": "BETWEEN 1&2 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://oncecollector.com/discography"
+      ]
+    },
+    {
+      "id": "twice-ready-to-be",
+      "groupId": "twice",
+      "name": "READY TO BE",
+      "releaseDate": "2023-03-10",
+      "region": "KR",
+      "type": "mini",
+      "cover": "./assets/covers/ready-to-be.svg",
+      "coverAlt": "READY TO BE 文字佔位封面（非官方封面）",
+      "coverIsPlaceholder": true,
+      "versionsComplete": false,
+      "catalogNote": "僅示範 READY／TO／BE 寫真書版本，未含 Digipack、黑膠或店鋪限定。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://oncecollector.com/discography"
+      ]
+    }
+  ]
+}

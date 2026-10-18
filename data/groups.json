@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "groups": [
+    {
+      "id": "twice",
+      "name": "TWICE",
+      "description": "One in a million",
+      "albumsPath": "./data/twice/albums.json",
+      "versionsPath": "./data/twice/versions.json"
+    }
+  ]
+}
