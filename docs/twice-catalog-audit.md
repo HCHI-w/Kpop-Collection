@@ -23,7 +23,7 @@
 - [JYP 韓國完整分頁](https://twice.jype.com/discography)：逐頁確認名稱、日期、發行介紹；實體性由 JYP SHOP／官方唱片商店補證。
 - [日本官方完整分頁](https://www.twicejapan.com/discography/) 與 [Warner Music Japan](https://wmg.jp/twice/discography)：核對日期、類型、品番、版本及後續限定發行。
 - 同一作品不同商品版本保留同一 albumId；增加曲目的改版作品另建專輯。相同商品的再壓、通路特典與隨機附贈不另建版本。
-- 日期以實體首發為準；數位先行日不同時另外說明。未發行商品不加入 versions.json。
+- 作品 releaseDate 依官方作品目錄；數位與實體日期不同或實體日尚缺原始證據時另註，不能用數位先行日推算實體商品日期。未發行商品不加入 versions.json。
 - 本表會隨每階段補上逐張結果、來源、數量及待辦。未完成版本全查的專輯維持 versionsComplete: false。
 - 圖片只用既有自製或統一佔位圖；發行資料來源不是圖片授權，不下載官方美術。
 
@@ -164,3 +164,60 @@
 - `verificationStatus`：verified 已查證名稱／實體商品，pending 僅保留既有待核實紀錄，並附 `verificationNote`。這與舊個人收藏的 pending 暫存欄位完全獨立。
 - 每版本保留可選獨立 cover；省略時由資料載入器取得所屬專輯封面，失敗時統一 fallback。未下載或上傳任何官方圖片。
 - 所有專輯 `versionsComplete: false`：仍未完成歷年限定、特殊媒介及完整商品範圍全查。既有待核實版本可保留收藏操作，顯示明確待核實原因。
+
+## 第三階段 B：日本實體版本
+
+新增 119 種；日本共 122 種已核實商品。兩地共 210 筆版本（207 已核實、3 筆韓國既有待核實），相較起始 19 種新增 191 種。作品仍為 47 張（韓國 23、日本 24）。
+
+| 專輯 | 已核實商品版本 | 品番／版本官方證據 |
+| --- | --- | --- |
+| #TWICE | 3：通常盤（CD；WPCL-12635）、初回限定盤A（CD + PHOTO BOOK；WPCL-12634）、初回限定盤B（CD + DVD；WPZL-31298/9） | [證據 1](https://www.twicejapan.com/feature/album_twice?_normalbrowse_=1) |
+| One More Time | 4：通常盤（CD；WPCL-12761）、初回限定盤A（CD + DVD；WPZL-31379/80）、初回限定盤B（CD + DVD；WPZL-31381/2）、ONCE JAPAN限定盤（CD；WPCL-12768） | [證據 1](https://wmg.jp/twice/discography/18736)、[證據 2](https://wmg.jp/twice/discography/18734)、[證據 3](https://wmg.jp/twice/discography/18735)、[證據 4](https://wmg.jp/twice/discography/18737) |
+| Candy Pop | 4：通常盤（CD；WPCL-12820）、初回限定盤A（CD + DVD；WPZL-31403/04）、初回限定盤B（CD + DVD；WPZL-31405/06）、ONCE JAPAN限定盤（CD；WPCL-12821） | [證據 1](https://www.twicejapan.com/feature/candypop) |
+| Wake Me Up | 4：通常盤（CD；WPCL-12871）、初回限定盤A（CD + DVD；WPZL-31450/1）、初回限定盤B（CD + DVD；WPZL-31452/3）、ONCE JAPAN限定盤（CD；WPCL-12872） | [證據 1](https://www.twicejapan.com/feature/wakemeup) |
+| BDZ | 4：通常盤（CD；WPCL-12914）、初回限定盤A（CD + DVD；WPZL-31490/1）、初回限定盤B（CD + DVD；WPZL-31492/3）、ONCE JAPAN限定盤（CD；WPCL-12915） | [證據 1](https://www.twicejapan.com/feature/bdz) |
+| BDZ -Repackage- | 2：通常盤（CD；WPCL-12984）、初回限定盤（CD + DVD；WPZL-31564/5） | [證據 1](https://www.twicejapan.com/feature/bdz_re?_normalbrowse_=1) |
+| #TWICE2 | 3：通常盤（CD；WPCL-13020）、初回限定盤A（CD + PHOTO BOOK；WPCL-13019）、初回限定盤B（CD + DVD；WPZL-31583/84） | [證據 1](https://www.twicejapan.com/feature/2nd_bestalbum?_normalbrowse_=1) |
+| HAPPY HAPPY | 4：通常盤（CD；WPCL-13052）、初回限定盤A（CD + DVD；WPZL-31615/6）、初回限定盤B（CD + DVD；WPZL-31617/8）、ONCE JAPAN限定盤（CD；WPCL-13053） | [證據 1](https://www.twicejapan.com/feature/happyhappy_breakthrough?_normalbrowse_=1) |
+| Breakthrough | 4：通常盤（CD；WPCL-13054）、初回限定盤A（CD + DVD；WPZL-31621/2）、初回限定盤B（CD + DVD；WPZL-31623/4）、ONCE JAPAN限定盤（CD；WPCL-13055） | [證據 1](https://www.twicejapan.com/feature/happyhappy_breakthrough?_normalbrowse_=1) |
+| &TWICE | 4：通常盤（CD；WPCL-13122）、初回限定盤A（CD + DVD；WPZL-31685/6）、初回限定盤B（CD + DVD；WPZL-31689/90）、ONCE JAPAN限定盤（CD；WPCL-13123） | [證據 1](https://www.twicejapan.com/feature/andtwice?_normalbrowse_=1) |
+| &TWICE -Repackage- | 2：通常盤（CD；WPCL-13163）、初回限定盤（CD + DVD；WPZL-31720/21） | [證據 1](https://www.twicejapan.com/feature/andtwice_re?_normalbrowse_=1) |
+| Fanfare | 4：通常盤（CD；WPCL-13203）、初回限定盤A（CD + DVD；WPZL-31750/1）、初回限定盤B（CD + DVD；WPZL-31752/3）、ONCE JAPAN限定盤（CD；WPCL-13204） | [證據 1](https://www.twicejapan.com/feature/Fanfare?_normalbrowse_=1) |
+| #TWICE3 | 3：通常盤（CD；WPCL-13228）、初回限定盤A（CD + PHOTO BOOK；WPCL-13227）、初回限定盤B（CD + DVD；WPZL-31773/4） | [證據 1](https://wmg.jp/twice/discography/23280) |
+| BETTER | 4：通常盤（CD；WPCL-13246）、初回限定盤A（CD + DVD；WPZL-31785/6）、初回限定盤B（CD；WPCL-13259）、ONCE JAPAN限定盤（CD；WPCL-13247） | [證據 1](https://wmg.jp/twice/discography/23597) |
+| Kura Kura | 4：通常盤（CD；WPCL-13289）、初回限定盤A（CD + DVD；WPZL-31855/6）、初回限定盤B（CD；WPCL-13294）、ONCE JAPAN限定盤（CD；WPCL-13290） | [證據 1](https://www.twicejapan.com/feature/kurakura) |
+| Perfect World | 4：通常盤（CD；WPCL-13299）、初回限定盤A（CD + DVD；WPZL-31871）、初回限定盤B（CD；WPCL-13315）、ONCE JAPAN限定盤（CD；WPCL-13300） | [證據 1](https://www.twicejapan.com/feature/PerfectWorld) |
+| Doughnut | 4：通常盤（CD；WPCL-13347）、初回限定盤A（CD + DVD；WPZL-31920）、初回限定盤B（CD；WPCL-13353）、ONCE JAPAN限定盤（CD；WPCL-60001） | [證據 1](https://www.twicejapan.com/feature/Doughnut?_normalbrowse_=1) |
+| #TWICE4 | 3：通常盤（CD；WPCL-13364）、初回限定盤A（CD + PHOTO BOOK；WPCL-13363）、初回限定盤B（CD + DVD；WPZL-31947/8） | [證據 1](https://www.twicejapan.com/feature/4th_bestalbum?_normalbrowse_=1) |
+| Celebrate | 14：通常盤（CD；WPCL-13392）、初回限定盤A（CD + DVD；WPZL-31973/74）、初回限定盤B（CD；WPCL-13391）、ONCE JAPAN限定盤（CD；WPCL-60004）、NAYEON盤（CD；WPCL-60005）、JEONGYEON盤（CD；WPCL-60006）、MOMO盤（CD；WPCL-60007）、SANA盤（CD；WPCL-60008）、JIHYO盤（CD；WPCL-60009）、MINA盤（CD；WPCL-60010）、DAHYUN盤（CD；WPCL-60011）、CHAEYOUNG盤（CD；WPCL-60012）、TZUYU盤（CD；WPCL-60013）、5th Anniversary Collection BOX（9 CD；WPCL-60014） | [證據 1](https://www.twicejapan.com/feature/Celebrate) |
+| Hare Hare | 12：通常盤（CD；WPCL-13485）、初回限定盤A（CD + DVD；WPZL-32065/6）、初回限定盤B（CD；WPCL-13484）、NAYEON盤（CD；WPCL-60031）、JEONGYEON盤（CD；WPCL-60032）、MOMO盤（CD；WPCL-60033）、SANA盤（CD；WPCL-60034）、JIHYO盤（CD；WPCL-60035）、MINA盤（CD；WPCL-60036）、DAHYUN盤（CD；WPCL-60037）、CHAEYOUNG盤（CD；WPCL-60038）、TZUYU盤（CD；WPCL-60039） | [證據 1](https://www.twicejapan.com/feature/JAPAN10thSINGLE?_normalbrowse_=1) |
+| DIVE | 14：通常盤（CD；WPCL-13568）、初回限定盤A（CD + DVD；WPZL-32138/9）、初回限定盤B（CD；WPCL-13567）、ONCE JAPAN限定盤（CD；WPCL-60055）、NAYEON盤（CD；WPCL-60056）、JEONGYEON盤（CD；WPCL-60057）、MOMO盤（CD；WPCL-60058）、SANA盤（CD；WPCL-60059）、JIHYO盤（CD；WPCL-60060）、MINA盤（CD；WPCL-60061）、DAHYUN盤（CD；WPCL-60062）、CHAEYOUNG盤（CD；WPCL-60063）、TZUYU盤（CD；WPCL-60064）、7th Anniversary Collection BOX（9 CD；WPCL-60065〜WPCL-60073） | [證據 1](https://www.twicejapan.com/feature/DIVE) |
+| #TWICE5 | 3：通常盤（CD；WPCL-13636）、初回限定盤A（CD + PHOTO BOOK；WPCL-13635）、初回限定盤B（CD + DVD；WPZL-32193/4） | [證據 1](https://www.twicejapan.com/feature/5th_bestalbum) |
+| ENEMY | 13：通常盤（CD；WPCL-13686）、初回限定盤A（CD + DVD；WPZL-32225/6）、初回限定盤B（CD；WPCL-13685）、ONCE JAPAN限定盤（CD；WPCL-60090）、NAYEON盤（CD；WPCL-60091）、JEONGYEON盤（CD；WPCL-60092）、MOMO盤（CD；WPCL-60093）、SANA盤（CD；WPCL-60094）、JIHYO盤（CD；WPCL-60095）、MINA盤（CD；WPCL-60096）、DAHYUN盤（CD；WPCL-60097）、CHAEYOUNG盤（CD；WPCL-60098）、TZUYU盤（CD；WPCL-60099） | [證據 1](https://www.twicejapan.com/feature/ENEMY) |
+| #BEST 2015-2025 | 2：通常盤（4 CD；WPCL-13806/9）、初回限定盤（4 CD + Blu-ray；WPZL-32321/5） | [證據 1](https://www.twicejapan.com/feature/bestalbum_thisisfor_livedvd?_normalbrowse_=1) |
+
+### 日本商品判定與尚待核實
+
+- 24 張作品每張都有已核實的通常盤 CD；初回盤依各商品實際內容區分 CD+DVD／CD+PHOTO BOOK／CD，不套用同一規格。
+- One More Time、Candy Pop 等 ONCE JAPAN 盤內附的 9 張換封片，仍是同一個官方品番，不拆成 9 個成員版。通常盤初壓僅小卡／序號差異也不另拆。
+- Celebrate、Hare Hare、DIVE、ENEMY 成員盤有明確的官方名稱與各自品番，分別建立 9 種；這些仍是 TWICE 團體作品，不是 SOLO。
+- Celebrate 5th Anniversary Collection BOX（WPCL-60014）及 DIVE 7th Anniversary Collection BOX（WPCL-60065〜WPCL-60073）有獨立商品名稱、規格、限定數量與品番，各列為 **1 種 9 CD 商品**。不是把內含 CD 再建立 9 種版本，收藏 BOX 也不會自動勾選成員盤。
+- BDZ、Candy Pop 等既有 CD 的通路三形態套裝只加贈收納盒，沒有另證實新唱片商品版本，不另建版本；不要把上述獨立 Collection BOX 和一般免費通路特典混為一談。
+- Perfect World 的 ONCE JAPAN 組合購買頁另提 A／B 絵柄（赤／黑）；目前仍依官方同一品番保留一筆 ONCE JAPAN 限定盤。兩種外觀是否獨立唱片商品待補證，不由贈品盒推算新版本。
+- #BEST 2015-2025 收錄 2026-08-26 的通常盤（4 CD）、初回限定盤（4 CD+Blu-ray）。2026-12-16 LIMITED BOX（WPCL-60129/32）尚未發行，不加入 albums／versions。來源是唱片商品頁，與同頁介紹的演唱會 DVD／Blu-ray 分開判讀。
+- 日本黑膠清單見第二階段待辦；尚未逐一核對品番、版本顏色與是否截止日前發行，未計入已核實版本數。
+- 仍需按官方歷史公告查漏其他限定包裝、後續再版與特殊媒介；沒有宣稱全部補齊，因此 47 張專輯的 versionsComplete 仍為 false。
+
+## 交付與維護
+
+| 階段 | 新增作品 | 新增版本 | 階段後累計作品／版本 |
+| --- | ---: | ---: | --- |
+| 基準 main（PR #4 已合併） | — | — | 10／19 |
+| 1 韓國（PR #5） | 16 | 0 | 26／19 |
+| 2 日本（PR #6） | 21 | 0 | 47／19 |
+| 3 A 韓國版本（PR #7） | 0 | 72 | 47／91 |
+| 3 B 日本版本（PR #8） | 0 | 119 | 47／210 |
+
+所有待查項目以本表為準；未確認發行日或商品規格的候選不加入正式已發行目錄。後續有官方證據才新增穩定 ID；原 ID／albumId、localStorage key、schemaVersion 永遠保留。圖片可在有公開使用權後依 README 更換，每版本封面獨立，不改個人收藏。
+
+核對限制：部分 JYP SHOP 歷史商品網址已轉址至 FANS SHOP，或偶有 502；已使用可讀的官方商品頁／搜尋索引摘錄確認本文所列資訊。未見完整原始規格的包裝對照仍列待核實，後續維護應保存可追溯的官方公告網址與查證日期，避免只憑第三方整理或記憶新增。
