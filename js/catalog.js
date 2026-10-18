@@ -51,7 +51,7 @@ export function filterAlbums(catalog, collection, filters) {
     if (filters.region && album.region !== filters.region) return false;
     if (filters.type && album.type !== filters.type) return false;
     const entries = catalog.versions.filter(v => v.albumId === album.id).map(v => collection.versions[v.id]);
-    if (filters.list === 'owned') return (collection.pending[album.id]?.quantity || 0) > 0 || entries.some(e => e?.quantity > 0);
+    if (filters.list === 'owned') return entries.some(e => e?.quantity > 0);
     if (filters.list === 'wanted') return entries.some(e => e?.wanted);
     return true;
   }).sort((a, b) => b.releaseDate.localeCompare(a.releaseDate) || a.id.localeCompare(b.id));

@@ -1,5 +1,5 @@
 import { loadCatalog, filterAlbums, TYPE_LABELS, REGION_LABELS } from './catalog.js';
-import { STORAGE_KEY, MAX_BACKUP_BYTES, MAX_QUANTITY, emptyCollection, loadCollection, saveCollection, setVersion, setPending, transferPending, albumStats, collectionStats, parseBackup, validateRelations, mergeCollections, exportBackup, unknownRecordCount } from './collection.js';
+import { STORAGE_KEY, MAX_BACKUP_BYTES, emptyCollection, loadCollection, saveCollection, setVersionStatus, pendingSignature, albumStats, collectionStats, parseBackup, validateRelations, mergeCollections, exportBackup, unknownRecordCount } from './collection.js';
 
 const $ = selector => document.querySelector(selector);
 const escapeHTML = value => String(value).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
@@ -15,6 +15,11 @@ const filters = { groupId: 'twice', list: 'all', search: '', year: '', region: '
 let view = 'albums';
 const albumDialog = $('#album-dialog');
 const backupDialog = $('#backup-dialog');
+const legacyDialog = $('#legacy-dialog');
+// A separate reminder receipt leaves the v1 collection and schema untouched.
+const LEGACY_REVIEW_KEY = 'my-kpop-collection:legacy-pending-reviewed';
+let legacyBackupSnapshot = null;
+const noVersionsMessage = '尚未收錄實體版本，待資料補齊後即可收藏。';
 
 function notify(message) {
   $('#notice').textContent = message;
@@ -77,7 +82,7 @@ function meta(album) {
 function renderStats() {
   const stats = collectionStats(collection, catalog, filters.groupId);
   const items = [
-    ['已擁有專輯', stats.ownedAlbums, '種', '包含版本未確認的專輯'],
+    ['已擁有專輯', stats.ownedAlbums, '種', `共 ${stats.ownedVersions} 種版本`],
     ['想要收藏', stats.wantedVersions, '版本', `來自 ${stats.wantedAlbums} 種專輯`]
   ];
   $('#stats').innerHTML = items.map(([label, value, unit, caption]) => `<div class="stat"><p class="stat-label"><span class="stat-dot" aria-hidden="true"></span>${label}</p><p class="stat-value">${value}<small>${unit}</small></p><p class="stat-caption">${caption}</p></div>`).join('');
@@ -86,23 +91,18 @@ function card(album) {
   const stats = albumStats(collection, album.id, catalog.versions);
   const versions = versionsFor(album.id);
   const index = String(catalog.albums.indexOf(album) + 1).padStart(2, '0');
-  return `<article class="album-card"><button type="button" class="album-open" data-album="${album.id}" aria-label="查看 ${escapeHTML(album.name)} 的版本與收藏"><div class="cover-wrap"><img src="${escapeHTML(album.cover)}" alt="${escapeHTML(album.coverAlt)}" width="400" height="400" loading="lazy"><span class="cover-index">${album.region} / ${album.releaseDate.slice(0, 4)}</span><span class="cover-status">${stats.copies > 0 ? '<span>✓ 已擁有</span>' : ''}${stats.wantedVersions > 0 ? '<span class="wanted">♡ 想要</span>' : ''}</span></div><h3 class="album-title">${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><div class="album-collection"><span>${stats.ownedVersions ? `<strong>已收 ${stats.ownedVersions}</strong>` : '已收 0'} / ${versions.length} 收錄版本</span><span class="${stats.pendingCopies ? 'pending-text' : ''}">${stats.copies ? `${stats.copies} 張${stats.pendingCopies ? ` · 待確認 ${stats.pendingCopies}` : ''}` : `NO. ${index}`}</span></div></article>`;
+  return `<article class="album-card"><button type="button" class="album-open" data-album="${album.id}" aria-label="查看 ${escapeHTML(album.name)} 的版本與收藏"><div class="cover-wrap"><img src="${escapeHTML(album.cover)}" alt="${escapeHTML(album.coverAlt)}" width="400" height="400" loading="lazy"><span class="cover-index">${album.region} / ${album.releaseDate.slice(0, 4)}</span><span class="cover-status">${stats.ownedVersions > 0 ? '<span>✓ 已擁有</span>' : ''}${stats.wantedVersions > 0 ? '<span class="wanted">♡ 想要</span>' : ''}</span></div><h3 class="album-title">${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><div class="album-collection"><span>${versions.length ? `${stats.ownedVersions ? `<strong>已收 ${stats.ownedVersions}</strong>` : '已收 0'} / ${versions.length} 收錄版本` : noVersionsMessage}</span>${versions.length ? `<span>NO. ${index}</span>` : ''}</div></article>`;
 }
 function versionRow(version, context) {
   const entry = collection.versions[version.id] || { quantity: 0, wanted: false };
   const prefix = `${context}-${version.id}`;
-  return `<div class="version-row"><div class="version-name">${escapeHTML(version.name)}<small>${escapeHTML(version.format)}</small></div><div class="version-controls"><label class="check" for="${prefix}-owned"><input id="${prefix}-owned" type="checkbox" data-version="${version.id}" data-field="owned" ${entry.quantity > 0 ? 'checked' : ''}>已擁有</label><label class="check" for="${prefix}-wanted"><input id="${prefix}-wanted" type="checkbox" data-version="${version.id}" data-field="wanted" ${entry.wanted ? 'checked' : ''}>想要</label><label class="quantity" for="${prefix}-quantity">張數<input id="${prefix}-quantity" type="number" inputmode="numeric" min="0" max="${MAX_QUANTITY}" step="1" value="${entry.quantity}" data-version="${version.id}" data-field="quantity" aria-label="${escapeHTML(version.name)} 擁有張數"></label></div></div>`;
-}
-function pendingPanel(album, context) {
-  const quantity = collection.pending[album.id]?.quantity || 0;
-  const versions = versionsFor(album.id);
-  return `<div class="pending-panel"><div class="pending-top"><h3>版本未確認</h3><label class="quantity" for="${context}-${album.id}-pending">暫存張數<input id="${context}-${album.id}-pending" type="number" inputmode="numeric" min="0" max="${MAX_QUANTITY}" step="1" value="${quantity}" data-pending="${album.id}" aria-label="${escapeHTML(album.name)} 版本未確認張數"></label></div><p>只記錄尚未分配到任何版本的實體張數，請勿把已確認的張數重複填入。</p>${quantity > 0 && versions.length ? `<form class="transfer-form" data-transfer="${album.id}"><label>確認版本<select name="version" aria-label="${escapeHTML(album.name)} 轉入版本">${versions.map(v => `<option value="${v.id}">${escapeHTML(v.name)}</option>`).join('')}</select></label><label>張數<input type="number" name="quantity" min="1" max="${quantity}" step="1" value="1" required aria-label="${escapeHTML(album.name)} 轉移張數"></label><button type="submit" class="button">轉移到此版本 ↗</button></form>` : ''}</div>`;
+  return `<div class="version-row"><div class="version-name">${escapeHTML(version.name)}<small>${escapeHTML(version.format)}</small></div><div class="version-controls"><label class="check" for="${prefix}-owned"><input id="${prefix}-owned" type="checkbox" data-version="${version.id}" data-field="owned" ${entry.quantity > 0 ? 'checked' : ''}>已擁有</label><label class="check" for="${prefix}-wanted"><input id="${prefix}-wanted" type="checkbox" data-version="${version.id}" data-field="wanted" ${entry.wanted ? 'checked' : ''}>想要</label></div></div>`;
 }
 function versionAlbum(album) {
   let versions = versionsFor(album.id);
   if (filters.list === 'owned') versions = versions.filter(v => collection.versions[v.id]?.quantity > 0);
   if (filters.list === 'wanted') versions = versions.filter(v => collection.versions[v.id]?.wanted);
-  return `<article class="version-album"><div class="version-album-heading"><img src="${escapeHTML(album.cover)}" width="64" height="64" alt="${escapeHTML(album.coverAlt)}" loading="lazy"><button type="button" class="album-open" data-album="${album.id}"><h3>${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><button type="button" class="text-button" data-album="${album.id}">專輯詳情 ↗</button></div>${versions.map(v => versionRow(v, 'list')).join('')}${!versions.length ? '<p class="no-versions">目前沒有符合的已確認版本，可先記錄未確認張數。</p>' : ''}${filters.list !== 'wanted' ? pendingPanel(album, 'list') : ''}</article>`;
+  return `<article class="version-album"><div class="version-album-heading"><img src="${escapeHTML(album.cover)}" width="64" height="64" alt="${escapeHTML(album.coverAlt)}" loading="lazy"><button type="button" class="album-open" data-album="${album.id}"><h3>${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><button type="button" class="text-button" data-album="${album.id}">專輯詳情 ↗</button></div>${versions.map(v => versionRow(v, 'list')).join('')}${!versions.length ? `<p class="no-versions">${noVersionsMessage}</p>` : ''}</article>`;
 }
 function render() {
   if (!catalog) return;
@@ -124,7 +124,7 @@ function renderDetail() {
   const versions = versionsFor(album.id);
   const stats = albumStats(collection, album.id, catalog.versions);
   const source = album.sources?.find(url => /^https:\/\//.test(url));
-  $('#album-detail').innerHTML = `<div class="dialog-top"><p class="eyebrow">ALBUM / ${REGION_LABELS[album.region]}</p><button type="button" id="detail-close" class="icon-button" data-close="album-dialog" aria-label="關閉專輯詳情">×</button></div><div class="detail-header"><img class="detail-cover" src="${escapeHTML(album.cover)}" alt="${escapeHTML(album.coverAlt)}" width="126" height="126"><div><h2 id="album-dialog-title">${escapeHTML(album.name)}</h2><p class="album-meta">${meta(album)}</p><p class="album-meta">已收 ${stats.ownedVersions} 種版本 · 共 ${stats.copies} 張 · 想要 ${stats.wantedVersions} 種版本</p>${source ? `<a class="detail-source" href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">發行資料來源 ↗</a>` : ''}</div></div><section class="version-section" aria-label="實體版本收藏"><div class="version-intro"><h3>實體版本 <span class="muted">/ ${versions.length} 種收錄</span></h3><p>「已擁有」與「想要」可以同時勾選</p></div><p class="dialog-copy">${escapeHTML(album.catalogNote)}</p>${versions.map(v => versionRow(v, 'detail')).join('')}${pendingPanel(album, 'detail')}</section>`;
+  $('#album-detail').innerHTML = `<div class="dialog-top"><p class="eyebrow">ALBUM / ${REGION_LABELS[album.region]}</p><button type="button" id="detail-close" class="icon-button" data-close="album-dialog" aria-label="關閉專輯詳情">×</button></div><div class="detail-header"><img class="detail-cover" src="${escapeHTML(album.cover)}" alt="${escapeHTML(album.coverAlt)}" width="126" height="126"><div><h2 id="album-dialog-title">${escapeHTML(album.name)}</h2><p class="album-meta">${meta(album)}</p><p class="album-meta">已收 ${stats.ownedVersions} 種版本 · 想要 ${stats.wantedVersions} 種版本</p>${source ? `<a class="detail-source" href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">發行資料來源 ↗</a>` : ''}</div></div><section class="version-section" aria-label="實體版本收藏"><div class="version-intro"><h3>實體版本 <span class="muted">/ ${versions.length} 種收錄</span></h3><p>「已擁有」與「想要」可以同時勾選</p></div><p class="dialog-copy">${escapeHTML(album.catalogNote)}</p>${versions.map(v => versionRow(v, 'detail')).join('')}${!versions.length ? `<p class="no-versions">${noVersionsMessage}</p>` : ''}</section>`;
   if (focusedId) document.getElementById(focusedId)?.focus({ preventScroll: true });
 }
 function openAlbum(id) {
@@ -155,6 +155,83 @@ function importError(message) {
 }
 function restoreFocus(id) { if (id) document.getElementById(id)?.focus({ preventScroll: true }); }
 
+function legacyError(error) {
+  $('#legacy-error').hidden = false;
+  $('#legacy-error').textContent = error.message;
+}
+function openLegacyReview() {
+  try {
+    const current = freshCollection();
+    if (pendingSignature(current) === '[]') { legacyDialog.close(); return; }
+    legacyBackupSnapshot = null;
+    $('#legacy-backed-up').checked = false;
+    $('#legacy-backed-up').disabled = true;
+    $('#legacy-clear').disabled = true;
+    $('#legacy-error').hidden = true;
+    $('#legacy-records').innerHTML = Object.entries(current.pending).filter(([, e]) => e.quantity > 0).map(([id, entry]) => {
+      const album = catalog.albums.find(a => a.id === id);
+      return `<li>${escapeHTML(album?.name || id)}：舊紀錄 ${entry.quantity} 張</li>`;
+    }).join('');
+    legacyDialog.dataset.signature = pendingSignature(current);
+    if (!legacyDialog.open) legacyDialog.showModal();
+    $('#legacy-keep').focus();
+  } catch (error) { notify(`無法讀取舊資料：${error.message}`); }
+}
+function maybeReviewLegacy() {
+  if (storageBlocked) return;
+  const signature = pendingSignature(collection);
+  if (signature === '[]') { if (legacyDialog.open) legacyDialog.close(); return; }
+  if (legacyDialog.open) { openLegacyReview(); return; }
+  let reviewed = null;
+  try { reviewed = window.localStorage.getItem(LEGACY_REVIEW_KEY); } catch { /* Show the reminder if no receipt is readable. */ }
+  if (reviewed !== signature) openLegacyReview();
+}
+function keepLegacy() {
+  try {
+    const current = freshCollection();
+    const signature = pendingSignature(current);
+    if (signature !== legacyDialog.dataset.signature) { openLegacyReview(); return; }
+    window.localStorage.setItem(LEGACY_REVIEW_KEY, signature);
+    legacyDialog.close();
+    notify('舊資料已保留，可隨收藏匯出備份');
+  } catch (error) { legacyError(error); }
+}
+$('#legacy-review').addEventListener('click', openLegacyReview);
+$('#legacy-keep').addEventListener('click', keepLegacy);
+$('#legacy-close').addEventListener('click', keepLegacy);
+legacyDialog.addEventListener('cancel', event => { event.preventDefault(); keepLegacy(); });
+$('#legacy-export').addEventListener('click', () => {
+  try {
+    const current = freshCollection();
+    download(exportBackup(current), 'my-kpop-collection-before-legacy-cleanup.json');
+    legacyBackupSnapshot = JSON.stringify(current);
+    $('#legacy-backed-up').disabled = false;
+    $('#legacy-backed-up').checked = false;
+    $('#legacy-clear').disabled = true;
+    $('#legacy-error').hidden = true;
+  } catch (error) { legacyError(error); }
+});
+$('#legacy-backed-up').addEventListener('change', event => { $('#legacy-clear').disabled = !event.target.checked; });
+$('#legacy-clear').addEventListener('click', () => {
+  try {
+    if (!legacyBackupSnapshot || !$('#legacy-backed-up').checked) return;
+    const current = freshCollection();
+    if (JSON.stringify(current) !== legacyBackupSnapshot) {
+      openLegacyReview();
+      throw new Error('收藏已在其他分頁變更。請重新下載完整備份，再確認移除。');
+    }
+    if (!window.confirm('確定已保存完整備份，並移除全部舊版 pending 資料？此操作無法復原；已收錄版本的收藏狀態會保留。')) return;
+    const next = structuredClone(current);
+    next.pending = {};
+    commit(next);
+    // A later restore of the removed archive should receive its own reminder.
+    try { window.localStorage.removeItem(LEGACY_REVIEW_KEY); } catch { /* The collection was already saved successfully. */ }
+    legacyDialog.close();
+    $('#legacy-backup-section').hidden = true;
+    notify('已移除舊版待整理資料，版本收藏保持不變');
+  } catch (error) { legacyError(error); }
+});
+
 document.addEventListener('click', event => {
   const target = event.target.closest('button');
   if (!target) return;
@@ -176,26 +253,12 @@ for (const key of ['search', 'year', 'region', 'type']) {
 $('#reset-filters').addEventListener('click', resetFilters);
 document.addEventListener('change', event => {
   const input = event.target;
-  if (!catalog || (!input.dataset.version && !input.dataset.pending)) return;
+  if (!catalog || !input.dataset.version) return;
+  const version = catalog.versions.find(v => v.id === input.dataset.version);
+  if (!version) return;
   const focusId = input.id;
-  if (input.type === 'number' && (!input.validity.valid || input.value.trim() === '')) {
-    notify('張數須為 0–9999 的整數。'); render(); if (albumDialog.open) renderDetail(); restoreFocus(focusId); return;
-  }
-  if (input.dataset.pending) tryMutation(current => setPending(current, input.dataset.pending, Number(input.value)));
-  else {
-    const version = catalog.versions.find(v => v.id === input.dataset.version);
-    const changes = input.dataset.field === 'wanted' ? { wanted: input.checked } : { quantity: input.dataset.field === 'owned' ? (input.checked ? Math.max(collection.versions[version.id]?.quantity || 0, 1) : 0) : Number(input.value) };
-    tryMutation(current => setVersion(current, version, changes));
-  }
+  tryMutation(current => setVersionStatus(current, version, input.dataset.field, input.checked));
   restoreFocus(focusId);
-});
-document.addEventListener('submit', event => {
-  const form = event.target.closest('[data-transfer]');
-  if (!form) return;
-  event.preventDefault();
-  const values = new FormData(form);
-  const version = catalog.versions.find(v => v.id === values.get('version') && v.albumId === form.dataset.transfer);
-  if (version) tryMutation(current => transferPending(current, version, Number(values.get('quantity'))));
 });
 albumDialog.addEventListener('close', () => {
   document.querySelector(`[data-album="${activeAlbumId}"]`)?.focus({ preventScroll: true });
@@ -206,7 +269,10 @@ for (const dialog of [albumDialog, backupDialog]) {
     if (event.target === dialog && (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom)) dialog.close();
   });
 }
-$('#backup-open').addEventListener('click', () => backupDialog.showModal());
+$('#backup-open').addEventListener('click', () => {
+  $('#legacy-backup-section').hidden = storageBlocked || pendingSignature(collection) === '[]';
+  backupDialog.showModal();
+});
 $('#export').addEventListener('click', () => {
   if (storageBlocked) { notify('目前收藏讀取異常，請使用頁面下方的「下載原始資料」保留原檔。'); return; }
   try {
@@ -229,16 +295,16 @@ $('#import-file').addEventListener('change', async event => {
     if (token !== importToken) return;
     imported = candidate;
     const entries = Object.values(candidate.versions);
-    const copies = entries.reduce((n, e) => n + e.quantity, 0) + Object.values(candidate.pending).reduce((n, e) => n + e.quantity, 0);
+    const legacy = pendingSignature(candidate) !== '[]';
     const unknown = unknownRecordCount(candidate, catalog);
-    $('#import-preview').textContent = `驗證通過 · ${entries.filter(e => e.quantity > 0).length} 種已確認版本 · ${copies} 張 · ${entries.filter(e => e.wanted).length} 種想要版本。${unknown ? `另有 ${unknown} 筆目前目錄外紀錄，將完整保留，待目錄擴充後顯示。` : ''} 合併採保守去重；不同裝置若各有不同的未確認實體，請於匯入後核對暫存張數。`;
+    $('#import-preview').textContent = `驗證通過 · ${entries.filter(e => e.quantity > 0).length} 種已擁有版本 · ${entries.filter(e => e.wanted).length} 種想要版本。${unknown ? `另有 ${unknown} 筆目前目錄外紀錄，將完整保留，待目錄擴充後顯示。` : ''}${legacy ? '包含舊版待整理資料（pending），匯入後會保留並提供備份與處理選擇；不納入收藏統計。' : ''} 合併會保留雙方的收藏狀態與舊資料，重複匯入不累加。`;
     $('#import-apply').disabled = false;
   } catch (error) { if (token === importToken) importError(`驗證失敗：${error.message}`); }
 });
 $('#import-apply').addEventListener('click', () => {
   if (!imported) return;
   const replace = $('input[name="import-mode"]:checked').value === 'replace';
-  if (replace && !window.confirm('確定以備份覆蓋全部收藏？目前的版本、想要與未確認張數都會被取代。建議先下載現有備份。')) return;
+  if (replace && !window.confirm('確定以備份覆蓋全部收藏？目前全部收藏與保留的舊資料都會被取代。確定已下載並保存現有備份後再繼續。')) return;
   try {
     const next = replace ? structuredClone(imported) : mergeCollections(freshCollection(), imported);
     commit(next, { replace });
@@ -248,12 +314,15 @@ $('#import-apply').addEventListener('click', () => {
     $('#import-preview').classList.remove('error');
     $('#import-preview').textContent = `已${replace ? '覆蓋' : '合併'}並儲存收藏。`;
     notify('收藏匯入完成');
+    $('#legacy-backup-section').hidden = pendingSignature(collection) === '[]';
+    maybeReviewLegacy();
   } catch (error) { importError(`未匯入：${error.message}`); }
 });
 window.addEventListener('storage', event => {
   if (event.key !== STORAGE_KEY && event.key !== null) return;
   if (!catalog) return;
   readStorage(); render(); if (albumDialog.open) renderDetail();
+  maybeReviewLegacy();
   notify('已同步此瀏覽器其他分頁的收藏變更');
 });
 async function start() {
@@ -263,6 +332,7 @@ async function start() {
     readStorage();
     $('#artists').innerHTML = catalog.groups.map(group => `<button type="button" class="artist" data-group="${group.id}" aria-pressed="${group.id === filters.groupId}"><span class="artist-mark" aria-hidden="true">${escapeHTML(group.name.slice(0, 2))}</span><span class="artist-name">${escapeHTML(group.name)}<span class="artist-count">${catalog.albums.filter(a => a.groupId === group.id).length} 張專輯 · ${escapeHTML(group.description || '')}</span></span><span class="artist-check" aria-hidden="true">✓</span></button>`).join('');
     refreshYears(); render();
+    maybeReviewLegacy();
   } catch (error) {
     $('#catalog-content').innerHTML = `<div class="empty"><strong>暫時無法載入圖鑑</strong><p>${escapeHTML(error.message)}。請以 HTTP 伺服器開啟網站，或稍後重新整理。</p></div>`;
     $('#catalog-content').setAttribute('aria-busy', 'false');

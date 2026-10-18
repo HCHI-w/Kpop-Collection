@@ -241,20 +241,31 @@ h1 {
   font-weight:200;
   transform:rotate(-12deg)
 }
+.collection-summary {
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:20px
+}
 .stats {
   display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
+  background:var(--bg);
+  grid-template-columns:repeat(2,minmax(0,150px));
+  flex:0 1 auto;
+  width:max-content;
+  max-width:100%;
+  gap:12px
+}
+.stat {
+  box-sizing:border-box;
+  width:100%;
+  max-width:150px;
+  min-width:0;
+  padding:16px;
   border:1px solid var(--line);
   background:var(--paper);
   border-radius:9px;
-  padding:21px 0
-}
-.stat {
-  padding:0 27px;
-  border-right:1px solid var(--line)
-}
-.stat:last-child {
-  border:0
+  overflow-wrap:anywhere
 }
 .stat-label {
   font-size:11px;
@@ -292,13 +303,18 @@ h1 {
   margin-top:3px
 }
 .artist-section {
-  padding:0 0 24px
+  flex:1 1 260px;
+  min-width:0;
+  margin:0;
+  padding:0;
+  border:0
 }
 .artist-section>.eyebrow {
   letter-spacing:1px
 }
 .artists {
   display:flex;
+  flex-wrap:wrap;
   margin-top:13px;
   gap:12px
 }
@@ -310,7 +326,8 @@ h1 {
   gap:12px;
   align-items:center;
   padding:11px 17px;
-  min-width:205px;
+  min-width:0;
+  max-width:100%;
   text-align:left
 }
 .artist:hover {
@@ -334,6 +351,8 @@ h1 {
   height:35px
 }
 .artist-name {
+  min-width:0;
+  overflow-wrap:anywhere;
   font-size:14px;
   font-weight:600;
   letter-spacing:1px
@@ -578,9 +597,6 @@ h1 {
   color:var(--green);
   font-weight:500
 }
-.album-collection .pending-text {
-  color:var(--peach)
-}
 .empty {
   padding:60px 20px;
   text-align:center;
@@ -608,37 +624,8 @@ h1 {
   gap:8px;
   margin-top:28px
 }
-.collection-tip {
-  display:flex;
-  gap:16px;
-  align-items:center;
-  background:var(--paper);
-  border:1px solid var(--line);
-  border-radius:7px;
-  padding:20px 23px;
-  margin:36px 0 46px
-}
-.tip-icon {
-  font-size:30px;
-  color:var(--muted)
-}
-.collection-tip h3 {
-  font-size:12px;
-  font-weight:550;
-  margin-bottom:4px
-}
-.collection-tip p {
-  font-size:11px;
-  color:var(--muted)
-}
-.tip-label {
-  margin-left:auto;
-  font-size:8px;
-  color:var(--muted);
-  letter-spacing:1.6px;
-  text-align:right
-}
 .site-footer {
+  margin-top:36px;
   border-top:1px solid var(--line);
   display:flex;
   justify-content:space-between;
@@ -820,73 +807,6 @@ dialog p {
   min-height:0;
   accent-color:var(--pink)
 }
-.quantity {
-  display:flex;
-  gap:6px;
-  align-items:center;
-  font-size:10px;
-  color:var(--muted)
-}
-.quantity input {
-  width:61px;
-  min-height:35px;
-  border:1px solid var(--line);
-  border-radius:4px;
-  padding:4px 6px;
-  background:var(--paper)
-}
-.pending-panel {
-  background:var(--warning-bg);
-  border:1px solid var(--warning-line);
-  border-radius:6px;
-  padding:16px;
-  margin-top:20px
-}
-.pending-panel p {
-  font-size:11px;
-  margin:5px 0 13px
-}
-.pending-top {
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px
-}
-.transfer-form {
-  border-top:1px solid var(--warning-line);
-  margin-top:12px;
-  padding-top:12px;
-  display:flex;
-  align-items:end;
-  flex-wrap:wrap;
-  gap:8px
-}
-.transfer-form label {
-  font-size:10px;
-  color:var(--muted);
-  display:grid;
-  gap:4px
-}
-.transfer-form select {
-  max-width:220px;
-  min-height:36px;
-  background:var(--paper);
-  border:1px solid var(--warning-line);
-  border-radius:4px;
-  padding:5px
-}
-.transfer-form input {
-  background:var(--paper);
-  width:65px;
-  min-height:36px;
-  border:1px solid var(--warning-line);
-  border-radius:4px;
-  padding:4px 8px
-}
-.transfer-form .button {
-  min-height:36px;
-  padding:7px 10px
-}
 .backup-section {
   border-top:1px solid var(--line);
   padding-top:20px;
@@ -988,11 +908,27 @@ legend {
 .version-album-heading .text-button {
   white-space:nowrap
 }
-.version-album .pending-panel {
-  margin-top:10px
-}
 .version-album .version-row {
   padding:10px 0
+}
+.legacy-records {
+  padding-left:22px;
+  max-height:25vh;
+  overflow:auto;
+  overflow-wrap:anywhere
+}
+.legacy-actions {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:18px
+}
+.legacy-confirm {
+  white-space:normal;
+  margin-bottom:12px
+}
+.legacy-confirm input {
+  flex-shrink:0
 }
 .no-versions {
   padding:12px 0;
@@ -1044,13 +980,7 @@ legend {
   .filter-selects label {
     flex:1
   }
-  .stat {
-    padding:0 20px
-  }
   .intro-note {
-    display:none
-  }
-  .tip-label {
     display:none
   }
 }
@@ -1114,12 +1044,18 @@ legend {
     max-width:300px;
     line-height:1.9
   }
+  .collection-summary {
+    flex-direction:column;
+    align-items:stretch
+  }
   .stats {
+    width:max-content;
     grid-template-columns:repeat(2,minmax(0,1fr));
-    padding:0
+    align-self:flex-start
   }
   .stat {
-    padding:15px 18px
+    width:100%;
+    padding:15px 12px
   }
   .stat-value {
     font-size:27px;
@@ -1132,11 +1068,11 @@ legend {
     font-size:9px
   }
   .artist-section {
-    padding:0 0 20px
+    flex:auto
   }
   .artist {
     padding:9px 13px;
-    min-width:192px
+    min-width:0
   }
   .artist-section .eyebrow {
     font-size:9px
@@ -1230,19 +1166,6 @@ legend {
     font-size:9px;
     margin-top:24px
   }
-  .collection-tip {
-    margin:25px 0 30px;
-    padding:16px 13px;
-    gap:12px;
-    align-items:flex-start
-  }
-  .collection-tip h3 {
-    font-size:11px
-  }
-  .collection-tip p {
-    font-size:10px;
-    line-height:1.9
-  }
   .site-footer {
     font-size:9px;
     flex-direction:column;
@@ -1290,26 +1213,9 @@ legend {
   .version-controls {
     gap:4px 9px
   }
-  .version-controls .quantity {
-    flex-basis:100%;
-    justify-content:flex-end
-  }
   .check {
     font-size:10px;
     min-height:32px
-  }
-  .quantity input {
-    width:55px;
-    min-height:32px
-  }
-  .pending-panel {
-    padding:13px
-  }
-  .pending-top h3 {
-    font-size:12px
-  }
-  .pending-top .quantity {
-    white-space:nowrap
   }
   .version-album {
     padding:13px
@@ -1326,9 +1232,6 @@ legend {
   }
   .version-album-heading>.text-button {
     font-size:9px
-  }
-  .transfer-form select {
-    max-width:175px
   }
   .storage-alert {
     font-size:10px
