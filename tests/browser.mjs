@@ -90,9 +90,10 @@ try {
   assert.equal(await evaluate(`document.title`), 'My K-pop Collection｜我的專輯收藏');
   assert.equal(await evaluate(`document.querySelector('.site-footer').textContent.includes('My K-pop Collection')`), true);
   assert.equal(await evaluate(`document.querySelector('meta[name="theme-color"]').content`), '#212121');
-  assert.deepEqual(await evaluate(`[...document.querySelector('main').children].slice(0,4).map(e=>e.id || e.className)`), ['intro', 'artist-section', 'stats', 'catalog']);
+  assert.deepEqual(await evaluate(`[...document.querySelector('main').children].slice(0,3).map(e=>e.id || e.className)`), ['intro', 'collection-summary', 'catalog']);
   assert.deepEqual(await evaluate(`[...document.querySelectorAll('.stat-label')].map(e=>e.textContent)`), ['已擁有專輯', '想要收藏']);
   for (const selector of ['body', '.site-header', '.artist', '.stats', '.filters', '#year', '.segmented button[aria-pressed=true]', '.cover-index', '.site-footer']) await assertDark(selector);
+  assert.equal(await count('input[type=number], .pending-panel, .transfer-form, .collection-tip'), 0);
   await send('Page.bringToFront');
   await send('Input.dispatchKeyEvent', { type: 'keyDown', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
   await send('Input.dispatchKeyEvent', { type: 'keyUp', key: 'Tab', code: 'Tab', windowsVirtualKeyCode: 9 });
@@ -104,17 +105,72 @@ try {
   const legacy = JSON.stringify({ schemaVersion: 1, versions: {
     'twice-ready-to-be-ready': { albumId: 'twice-ready-to-be', quantity: 2, wanted: true },
     'future-version': { albumId: 'future-album', quantity: 3, wanted: true }
-  }, pending: { 'twice-ready-to-be': { quantity: 1 }, 'future-album': { quantity: 2 } } });
+  }, pending: { 'twice-ready-to-be': { quantity: 1 }, 'future-album': { quantity: 2 }, 'twice-twicetagram': { quantity: 3 } } });
   await evaluate(`localStorage.setItem('my-kpop-collection:v1',${JSON.stringify(legacy)})`);
   await load();
   assert.equal(await evaluate(`localStorage.getItem('my-kpop-collection:v1')`), legacy);
   assert.deepEqual(await evaluate(`[...document.querySelectorAll('.stat-value')].map(e=>e.childNodes[0].textContent)`), ['1', '1']);
+  assert.equal(await count('#legacy-dialog[open]'), 1);
+  await assertDark('#legacy-dialog');
+  for (const width of [320, 375]) {
+    await send('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: true });
+    assert.equal(await evaluate(`document.querySelector('#legacy-dialog').scrollWidth<=document.querySelector('#legacy-dialog').clientWidth`), true, `legacy dialog no overflow at ${width}`);
+    assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true);
+    const shot = await send('Page.captureScreenshot', { format: 'png' });
+    await writeFile(join(outputs, `legacy-${width}.png`), Buffer.from(shot.data, 'base64'));
+  }
+  await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
+
+  assert.equal(await evaluate(`document.querySelector('#legacy-clear').disabled`), true);
+  assert.equal(await evaluate(`document.querySelector('#legacy-records').textContent.includes('twicetagram')`), true);
+  await click('#legacy-keep');
   await click('[data-group="twice"]');
   assert.equal(await evaluate(`localStorage.getItem('my-kpop-collection:v1')`), legacy);
-  // Only this disposable test profile is reset for the existing interaction scenarios.
+  await load();
+  assert.equal(await count('#legacy-dialog[open]'), 0, 'same pending receipt suppresses repeated reminder');
+  await click('[data-album="twice-ready-to-be"]');
+  assert.equal(await evaluate(`document.querySelector('#detail-twice-ready-to-be-ready-owned').checked`), true);
+  await click('#detail-twice-ready-to-be-ready-wanted');
+  assert.equal((await state()).versions['twice-ready-to-be-ready'].quantity, 2, 'wish change preserves legacy quantity');
+  await click('[data-close="album-dialog"]');
+  await click('#backup-open'); await click('#legacy-review');
+  await click('#legacy-export');
+  const legacyFile = 'my-kpop-collection-before-legacy-cleanup.json';
+  await poll(async () => (await readdir(temp)).includes(legacyFile), 'legacy backup download');
+  const legacyBackup = JSON.parse(await readFile(join(temp, legacyFile), 'utf8'));
+  assert.deepEqual(legacyBackup.pending, JSON.parse(legacy).pending);
+  assert.equal(legacyBackup.versions['future-version'].quantity, 3);
+  await click('#legacy-backed-up');
+  dialogAccept = false; await click('#legacy-clear');
+  assert.deepEqual((await state()).pending, legacyBackup.pending, 'cancel cleanup preserves pending');
+  await evaluate(`{const c=JSON.parse(localStorage.getItem('my-kpop-collection:v1'));c.pending['future-album'].quantity=4;localStorage.setItem('my-kpop-collection:v1',JSON.stringify(c));}`);
+  dialogAccept = true; await click('#legacy-clear');
+  assert.equal((await state()).pending['future-album'].quantity, 4);
+  assert.equal(await evaluate(`document.querySelector('#legacy-clear').disabled`), true);
+  assert.match(await evaluate(`document.querySelector('#legacy-error').textContent`), /重新下載/);
+  await click('#legacy-export'); await click('#legacy-backed-up');
+  await evaluate(`window.originalSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw new DOMException('Quota exceeded','QuotaExceededError')}`);
+  await click('#legacy-clear');
+  assert.equal((await state()).pending['future-album'].quantity, 4);
+  assert.equal(await count('#legacy-dialog[open]'), 1);
+  await evaluate(`Storage.prototype.setItem=window.originalSetItem`);
+  await click('#legacy-clear');
+  assert.deepEqual((await state()).pending, {});
+  assert.equal((await state()).versions['future-version'].quantity, 3);
+  assert.equal(await count('#legacy-dialog[open]'), 0);
+  await upload(legacyBackup, 'legacy-restore.json'); await click('input[value="replace"]'); await click('#import-apply');
+  assert.deepEqual((await state()).pending, legacyBackup.pending);
+  assert.equal(await count('#legacy-dialog[open]'), 1);
+  await click('#legacy-keep');
+  const conflicting = { ...legacyBackup, versions: { ...legacyBackup.versions, 'twice-ready-to-be-ready': { albumId: 'twice-ready-to-be', quantity: 9, wanted: true } } };
+  await upload(conflicting, 'legacy-merge.json'); await click('input[value="merge"]'); await click('#import-apply');
+  assert.equal((await state()).versions['twice-ready-to-be-ready'].quantity, 9);
+  assert.deepEqual((await state()).pending, legacyBackup.pending);
+  await click('[data-close="backup-dialog"]');
+  // Only this disposable test profile is reset for normal interaction scenarios.
   await evaluate(`localStorage.removeItem('my-kpop-collection:v1')`);
   await load();
-  console.log('PASS: existing v1 data, quantities, pending and unknown records preserved byte-for-byte on load/group selection');
+  console.log('PASS: legacy v1 data untouched on load, wish preserves quantity, once-only review, downloaded backup, explicit cleanup/cancel, stale backup guard, failed-write preservation, old JSON restore/merge');
   await change('#year', '2022'); assert.equal(await count('.album-card'), 2);
   await change('#region', 'JP'); await change('#type', 'studio'); assert.equal(await count('.album-card'), 1);
   assert.equal(await evaluate(`document.querySelector('.album-title').textContent`), 'Celebrate');
@@ -127,32 +183,51 @@ try {
   const ready = 'twice-ready-to-be-ready';
   const aid = 'twice-ready-to-be';
   await click(`[data-album="${aid}"]`);
-  for (const selector of ['#album-dialog', '.quantity input', '.pending-panel']) await assertDark(selector);
+  for (const selector of ['#album-dialog', '.version-row']) await assertDark(selector);
   assert.equal(await count('#album-dialog[open]'), 1);
   assert.equal(await count('#album-dialog [data-version][data-field="owned"]'), 3);
   await click(`#detail-${ready}-owned`);
   await click(`#detail-${ready}-wanted`);
-  await change(`#detail-${ready}-quantity`, '3');
   let saved = await state();
-  assert.equal(saved.versions[ready].quantity, 3); assert.equal(saved.versions[ready].wanted, true);
+  assert.equal(saved.versions[ready].quantity, 1); assert.equal(saved.versions[ready].wanted, true);
   assert.equal(Object.keys(saved.versions).length, 1);
-  await change(`#detail-${aid}-pending`, '2');
-  await assertDark('.transfer-form select'); await assertDark('.transfer-form input');
-  await click('#album-dialog .transfer-form button');
-  saved = await state();
-  assert.equal(saved.versions[ready].quantity, 4); assert.equal(saved.pending[aid].quantity, 1);
+  await click(`#detail-${ready}-owned`);
+  assert.equal((await state()).versions[ready].quantity, 0);
+  assert.equal((await state()).versions[ready].wanted, true);
+  await click(`#detail-${ready}-owned`);
+  await click(`#detail-${ready}-wanted`);
+  assert.equal((await state()).versions[ready].quantity, 1);
+  assert.equal((await state()).versions[ready].wanted, false);
+  await click(`#detail-${ready}-wanted`);
   assert.deepEqual(await evaluate(`[...document.querySelectorAll('.stat-value')].map(e=>e.childNodes[0].textContent)`), ['1', '1']);
-  assert.match(await evaluate(`document.querySelector('#album-detail .detail-header').textContent`), /共 5 張/);
+  assert.doesNotMatch(await evaluate(`document.querySelector('#album-detail').textContent`), /張數|未確認|共 \d+ 張/);
+  assert.equal(await count('input[type=number], .pending-panel, .transfer-form, .collection-tip'), 0);
   await send('Page.reload');
   await poll(() => evaluate(`document.querySelectorAll('.album-card').length===10`), 'reload');
-  assert.equal((await state()).versions[ready].quantity, 4);
+  assert.equal((await state()).versions[ready].quantity, 1);
   await click('[data-list="owned"]'); assert.equal(await count('.album-card'), 1);
   await click('[data-list="wanted"]'); assert.equal(await count('.album-card'), 1);
   await click('[data-view="versions"]'); assert.equal(await count('.version-row'), 1);
   await click('[data-list="all"]'); assert.equal(await count('.version-album'), 10);
   await assertDark('.version-album');
   await click('[data-view="albums"]');
-  console.log('PASS: version ownership + wishes, quantity, pending transfer, correct totals, reload persistence, collection lists, both views');
+  await click('[data-album="twice-twicetagram"]');
+  assert.equal(await count('#album-dialog .version-row'), 0);
+  assert.match(await evaluate(`document.querySelector('#album-detail .no-versions').textContent`), /尚未收錄實體版本/);
+  assert.doesNotMatch(await evaluate(`document.querySelector('#album-detail').textContent`), /未確認|張數/);
+  await click('[data-close="album-dialog"]');
+  await click('[data-view="versions"]');
+  assert.equal(await count('#catalog-content .no-versions'), 1);
+  assert.match(await evaluate(`document.querySelector('.no-versions').textContent`), /尚未收錄實體版本/);
+  await click('#list-twice-ready-to-be-to-wanted');
+  await click('#list-twice-ready-to-be-to-owned');
+  assert.equal((await state()).versions['twice-ready-to-be-to'].wanted, true);
+  assert.equal((await state()).versions[ready].quantity, 1);
+  await click('#list-twice-ready-to-be-to-wanted');
+  await click('#list-twice-ready-to-be-to-owned');
+  assert.equal((await state()).versions['twice-ready-to-be-to'], undefined);
+  await click('[data-view="albums"]');
+  console.log('PASS: independent ownership/wishes check/uncheck, version independence, kind-only statistics, reload persistence, both views, no-version album message, obsolete controls absent');
 
   await click('#backup-open');
   for (const selector of ['#backup-dialog', '.import-preview', '#import-apply']) await assertDark(selector);
@@ -161,30 +236,50 @@ try {
   await click('#export');
   const downloaded = await poll(async () => (await readdir(temp)).find(n => /^my-kpop-collection-\d{4}-\d{2}-\d{2}\.json$/.test(n)), 'download');
   const backup = JSON.parse(await readFile(join(temp, downloaded), 'utf8'));
-  assert.equal(backup.schemaVersion, 1); assert.equal(backup.versions[ready].quantity, 4);
+  assert.equal(backup.schemaVersion, 1); assert.equal(backup.versions[ready].quantity, 1);
   await upload('{broken'); assert.equal(await evaluate(`document.querySelector('#import-apply').disabled`), true);
   await assertDark('.import-preview.error');
   await upload({ ...backup, schemaVersion: 99 }, 'future.json'); assert.equal(await evaluate(`document.querySelector('#import-apply').disabled`), true);
   await upload(backup, 'valid.json');
   await click('#import-apply'); await upload(backup, 'repeat.json'); await click('#import-apply');
-  assert.equal((await state()).versions[ready].quantity, 4);
-  assert.equal((await state()).pending[aid].quantity, 1);
+  assert.equal((await state()).versions[ready].quantity, 1);
+  assert.deepEqual((await state()).pending, {});
   await upload({ schemaVersion: 1, versions: {}, pending: {} }, 'empty.json');
   await click('input[value="replace"]');
-  dialogAccept = false; await click('#import-apply'); assert.equal((await state()).versions[ready].quantity, 4);
+  dialogAccept = false; await click('#import-apply'); assert.equal((await state()).versions[ready].quantity, 1);
   dialogAccept = true; await click('#import-apply'); assert.deepEqual((await state()).versions, {});
   await upload(backup, 'restore.json'); await click('#import-apply');
-  assert.equal((await state()).versions[ready].quantity, 4);
+  assert.equal((await state()).versions[ready].quantity, 1);
   await click('[data-close="backup-dialog"]');
   console.log('PASS: actual JSON download, malformed/schema rejection, merge idempotence, overwrite cancel/confirm, restore');
   await poll(() => evaluate(`document.querySelector('#notice').hidden`), 'notice dismissed before screenshots');
 
-  for (const [width, columns] of [[1600, 6], [1280, 5], [1024, 4], [375, 2], [320, 2]]) {
+  for (const [width, columns] of [[1600, 6], [1280, 5], [1024, 4], [768, 4], [375, 2], [320, 2]]) {
     await send('Emulation.setDeviceMetricsOverride', { width, height: 1000, deviceScaleFactor: 1, mobile: width < 760 });
     assert.equal(await evaluate(`getComputedStyle(document.querySelector('.album-grid')).gridTemplateColumns.split(' ').length`), columns);
     assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true, `no overflow at ${width}`);
     assert.equal(await evaluate(`getComputedStyle(document.querySelector('#stats')).gridTemplateColumns.split(' ').length`), 2);
     assert.equal(await count('.stat'), 2);
+    const summary = await evaluate(`(()=>{const rect=s=>{const r=document.querySelector(s).getBoundingClientRect();return {left:r.left,right:r.right,top:r.top,bottom:r.bottom,width:r.width,center:r.top+r.height/2}};return {artist:rect('.artist-section'),stats:rect('#stats'),cards:[...document.querySelectorAll('.stat')].map(e=>e.getBoundingClientRect().width),gap:getComputedStyle(document.querySelector('.collection-summary')).gap}})()`);
+    assert.equal(summary.gap, '20px');
+    assert.ok(summary.cards.every(w => w <= 150), `stat maximum width at ${width}`);
+    assert.ok(summary.stats.width <= 312, 'stats follows actual cards');
+    if (width >= 768) {
+      assert.equal(summary.stats.left - summary.artist.right, 20, `horizontal gap at ${width}`);
+      assert.ok(Math.abs(summary.artist.center-summary.stats.center)<1, `vertical alignment at ${width}`);
+    } else {
+      assert.equal(summary.stats.top-summary.artist.bottom, 20, `stacked gap at ${width}`);
+      assert.equal(summary.stats.left, summary.artist.left);
+    }
+    // Extra group choices should wrap inside the left section at every width.
+    await evaluate(`{const artist=document.querySelector('.artist');for(let i=0;i<4;i++){const extra=artist.cloneNode(true);extra.classList.add('test-artist');extra.querySelector('.artist-name').firstChild.textContent='ADDITIONAL GROUP '+i;document.querySelector('#artists').append(extra);}}`);
+    assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true, `additional artists no overflow at ${width}`);
+    await evaluate(`document.querySelectorAll('.test-artist').forEach(e=>e.remove())`);
+    await click('[data-view="versions"]');
+    assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true, `version view no overflow at ${width}`);
+    assert.equal(await count('input[type=number], .pending-panel, .transfer-form, .collection-tip'), 0);
+    await click('[data-view="albums"]');
+
     await evaluate('window.scrollTo(0, 500)');
     await poll(() => evaluate('window.scrollY > 0'), 'page scrolled');
     assert.equal(await evaluate(`getComputedStyle(document.querySelector('.site-header')).position`), 'sticky');
@@ -232,14 +327,14 @@ try {
   await click('[data-view="versions"]');
   assert.equal(await evaluate('document.documentElement.scrollWidth <= window.innerWidth'), true);
   await click('[data-view="albums"]');
-  console.log('PASS: 1600/1280/1024/375/320 layouts, sticky header, anchor/navigation clearance, two statistics, dark dialogs, Escape dismissal');
+  console.log('PASS: 1600/1280/1024/768/375/320 layouts, 20px artist/stats gap, cards <=150px, sticky header, anchor/navigation clearance, two statistics, dark dialogs, Escape dismissal');
 
   // Storage denial must roll back the UI; damaged saved data must not be overwritten.
   await evaluate(`window.originalSetItem=Storage.prototype.setItem;Storage.prototype.setItem=function(){throw new DOMException('Quota exceeded','QuotaExceededError')}`);
   await click(`[data-album="${aid}"]`);
   await click(`#detail-${ready}-owned`);
   await assertDark('#storage-alert');
-  assert.equal((await state()).versions[ready].quantity, 4);
+  assert.equal((await state()).versions[ready].quantity, 1);
   assert.equal(await evaluate(`document.querySelector('#detail-${ready}-owned').checked`), true);
   await evaluate(`Storage.prototype.setItem=window.originalSetItem`);
   await click('[data-close="album-dialog"]');
@@ -250,7 +345,7 @@ try {
   assert.equal(await evaluate(`localStorage.getItem('my-kpop-collection:v1')`), '{broken');
   await click('[data-close="album-dialog"]'); await click('#backup-open');
   await upload(backup, 'repair.json'); await click('input[value="replace"]'); await click('#import-apply');
-  assert.equal((await state()).versions[ready].quantity, 4);
+  assert.equal((await state()).versions[ready].quantity, 1);
   assert.equal(await evaluate(`document.querySelector('#storage-alert').hidden`), true);
   console.log('PASS: quota failure rollback, corrupt-data preservation and confirmed backup recovery');
   assert.deepEqual(errors, [], 'no JavaScript errors');

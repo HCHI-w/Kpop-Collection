@@ -54,23 +54,14 @@ export function setVersion(collection, version, changes) {
   else next.versions[version.id] = entry;
   return next;
 }
-export function setPending(collection, albumId, quantity) {
-  check(validQuantity(quantity), '請輸入 0–9999 的整數張數。');
-  const next = structuredClone(collection);
-  if (quantity === 0) delete next.pending[albumId];
-  else next.pending[albumId] = { quantity };
-  return next;
+// Only an explicit ownership change normalizes quantity; changing a wish keeps
+// legacy quantities intact. Pending is archival data, never a daily control.
+export function setVersionStatus(collection, version, field, checked) {
+  check(['owned', 'wanted'].includes(field) && typeof checked === 'boolean', '收藏狀態不合法。');
+  return setVersion(collection, version, field === 'owned' ? { quantity: checked ? 1 : 0 } : { wanted: checked });
 }
-export function transferPending(collection, version, quantity) {
-  const pending = collection.pending[version.albumId]?.quantity || 0;
-  check(Number.isInteger(quantity) && quantity > 0 && quantity <= pending, '轉移張數必須大於 0，且不可超過未確認張數。');
-  const confirmed = collection.versions[version.id]?.quantity || 0;
-  let next = setVersion(collection, version, { quantity: confirmed + quantity });
-  next = setPending(next, version.albumId, pending - quantity);
-  return next;
-}
-function albumTotal(collection, albumId) {
-  return Object.values(collection.versions).filter(e => e.albumId === albumId).reduce((n, e) => n + e.quantity, 0) + (collection.pending[albumId]?.quantity || 0);
+export function pendingSignature(collection) {
+  return JSON.stringify(Object.entries(collection.pending).filter(([, e]) => e.quantity > 0).sort(([a], [b]) => a.localeCompare(b)));
 }
 export function mergeCollections(current, incoming) {
   const next = structuredClone(current);
@@ -79,27 +70,22 @@ export function mergeCollections(current, incoming) {
     check(!old || old.albumId === entry.albumId, `版本 ${id} 的專輯對應不一致，無法合併。`);
     next.versions[id] = { albumId: entry.albumId, quantity: Math.max(old?.quantity || 0, entry.quantity), wanted: Boolean(old?.wanted || entry.wanted) };
   }
-  // Reconcile pending copies against the union of confirmed copies: a backup
-  // made before a transfer must not resurrect the same unidentified copies.
+  // Preserve legacy pending explicitly. Inferring old transfers from quantities
+  // could silently discard data, especially after ownership becomes boolean.
   const albumIds = new Set([...Object.keys(current.pending), ...Object.keys(incoming.pending)]);
   for (const albumId of albumIds) {
-    const confirmed = Object.values(next.versions).filter(e => e.albumId === albumId).reduce((n, e) => n + e.quantity, 0);
-    const quantity = Math.max(0, Math.max(albumTotal(current, albumId), albumTotal(incoming, albumId)) - confirmed);
-    if (quantity) next.pending[albumId] = { quantity };
-    else delete next.pending[albumId];
+    next.pending[albumId] = { quantity: Math.max(current.pending[albumId]?.quantity || 0, incoming.pending[albumId]?.quantity || 0) };
   }
   return next;
 }
 export function albumStats(collection, albumId, versions) {
   const entries = versions.filter(v => v.albumId === albumId).map(v => collection.versions[v.id]);
-  const confirmedCopies = entries.reduce((n, e) => n + (e?.quantity || 0), 0);
-  const pendingCopies = collection.pending[albumId]?.quantity || 0;
-  return { ownedVersions: entries.filter(e => e?.quantity > 0).length, wantedVersions: entries.filter(e => e?.wanted).length, confirmedCopies, pendingCopies, copies: confirmedCopies + pendingCopies };
+  return { ownedVersions: entries.filter(e => e?.quantity > 0).length, wantedVersions: entries.filter(e => e?.wanted).length };
 }
 export function collectionStats(collection, catalog, groupId) {
   const albums = catalog.albums.filter(a => !groupId || a.groupId === groupId);
   const rows = albums.map(a => albumStats(collection, a.id, catalog.versions));
-  return { ownedAlbums: rows.filter(r => r.copies > 0).length, ownedVersions: rows.reduce((n, r) => n + r.ownedVersions, 0), copies: rows.reduce((n, r) => n + r.copies, 0), pendingCopies: rows.reduce((n, r) => n + r.pendingCopies, 0), wantedAlbums: rows.filter(r => r.wantedVersions > 0).length, wantedVersions: rows.reduce((n, r) => n + r.wantedVersions, 0) };
+  return { ownedAlbums: rows.filter(r => r.ownedVersions > 0).length, ownedVersions: rows.reduce((n, r) => n + r.ownedVersions, 0), wantedAlbums: rows.filter(r => r.wantedVersions > 0).length, wantedVersions: rows.reduce((n, r) => n + r.wantedVersions, 0) };
 }
 export function unknownRecordCount(collection, catalog) {
   const versions = new Set(catalog.versions.map(v => v.id));

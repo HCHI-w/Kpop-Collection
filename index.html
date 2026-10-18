@@ -26,8 +26,10 @@
       <div><p class="eyebrow"><span class="tiny-dot"></span> YOUR PERSONAL ALBUM ARCHIVE</p><h1 id="intro-title">每一張喜歡，都有位置。</h1><p class="intro-copy">從第一張心動，到慢慢完整。把屬於你的 K-pop 收藏，好好收著。</p></div>
       <div class="intro-note"><span class="outline-heart" aria-hidden="true">♡</span><span>為喜歡的音樂<br>留下一點日常。</span></div>
     </section>
-    <section class="artist-section" aria-labelledby="artist-title"><p id="artist-title" class="eyebrow">選擇團體 <span class="muted">/ ARTISTS</span></p><div id="artists" class="artists"></div></section>
-    <section id="stats" class="stats" aria-label="目前團體收藏統計"></section>
+    <div class="collection-summary">
+      <section class="artist-section" aria-labelledby="artist-title"><p id="artist-title" class="eyebrow">選擇團體 <span class="muted">/ ARTISTS</span></p><div id="artists" class="artists"></div></section>
+      <section id="stats" class="stats" aria-label="目前團體收藏統計"></section>
+    </div>
     <section id="catalog" aria-labelledby="catalog-title">
       <div class="catalog-heading"><div><p class="eyebrow">THE DISCOGRAPHY</p><h2 id="catalog-title">TWICE <span>專輯圖鑑</span></h2></div><span class="catalog-note">一張一張，收藏喜歡。</span></div>
       <div class="filters">
@@ -43,7 +45,6 @@
       <div id="catalog-content" aria-busy="true"><p class="empty">正在整理專輯目錄…</p></div>
       <p class="data-note"><span class="tiny-dot"></span> 本圖鑑為部分示範目錄，非完整發行清單；封面皆為文字佔位圖。收藏數量僅依你實際記錄的版本計算。</p>
     </section>
-    <section class="collection-tip"><span class="tip-icon" aria-hidden="true">＋</span><div><h3>還不確定手上是哪個版本？</h3><p>點開專輯，先記在「版本未確認」。找到版本後，可直接轉移張數，收藏不會重複計算。</p></div><span class="tip-label">COLLECT AT YOUR OWN PACE</span></section>
   </main>
   <footer class="site-footer container"><span>My K-pop Collection <span class="muted">/ 收藏的日常</span></span><span>僅儲存於此瀏覽器 · 記得定期匯出備份</span></footer>
   <p id="notice" class="notice" role="status" aria-live="polite" hidden></p>
@@ -52,11 +53,21 @@
   <dialog id="backup-dialog" aria-labelledby="backup-title">
     <div class="dialog-top"><p class="eyebrow">KEEP YOUR COLLECTION SAFE</p><button type="button" class="icon-button" data-close="backup-dialog" aria-label="關閉備份視窗">×</button></div>
     <h2 id="backup-title">收藏備份</h2><p class="dialog-copy">收藏只存在目前的瀏覽器。換裝置或清除瀏覽資料前，請先下載備份。</p>
-    <section class="backup-section"><h3>匯出收藏</h3><p>下載包含全部團體、版本與未確認張數的 JSON 檔案。</p><button type="button" id="export" class="button primary">↓ 下載 JSON 備份</button></section>
+    <section class="backup-section"><h3>匯出收藏</h3><p>下載包含全部團體收藏與保留舊資料的 JSON 檔案。</p><button type="button" id="export" class="button primary">↓ 下載 JSON 備份</button></section>
+    <section id="legacy-backup-section" class="backup-section" hidden><h3>保留的舊資料</h3><p>舊版待整理資料（pending）會隨 JSON 備份保留，不納入收藏統計。</p><button type="button" id="legacy-review" class="button">檢視舊資料處理選項</button></section>
     <section class="backup-section"><h3>匯入收藏</h3><label class="file-label" for="import-file">選擇 JSON 備份檔（上限 2 MB）</label><input type="file" id="import-file" accept=".json,application/json"><p id="import-preview" class="import-preview" role="status">先選擇檔案，驗證通過後才能匯入。</p>
-      <fieldset><legend>匯入方式</legend><label class="radio-option"><input type="radio" name="import-mode" value="merge" checked><span><strong>合併</strong><small>已擁有張數取較大值、想要狀態合併，不累加相同備份。未確認張數由已確認版本抵扣。</small></span></label><label class="radio-option"><input type="radio" name="import-mode" value="replace"><span><strong>覆蓋</strong><small>以備份取代目前全部收藏，執行前會再次確認。</small></span></label></fieldset>
+      <fieldset><legend>匯入方式</legend><label class="radio-option"><input type="radio" name="import-mode" value="merge" checked><span><strong>合併</strong><small>保留雙方的已擁有、想要狀態與舊資料；重複匯入不累加。</small></span></label><label class="radio-option"><input type="radio" name="import-mode" value="replace"><span><strong>覆蓋</strong><small>以備份取代目前全部收藏與舊資料，請先下載現有備份；執行前會再次確認。</small></span></label></fieldset>
       <button type="button" id="import-apply" class="button primary" disabled>確認匯入</button>
     </section>
+  </dialog>
+  <dialog id="legacy-dialog" aria-labelledby="legacy-title" aria-describedby="legacy-copy">
+    <div class="dialog-top"><p class="eyebrow">YOUR SAVED DATA IS SAFE</p><button type="button" class="icon-button" id="legacy-close" aria-label="保留舊資料並關閉">×</button></div>
+    <h2 id="legacy-title">舊版收藏資料提醒</h2>
+    <p id="legacy-copy" class="dialog-copy">偵測到舊版「版本未確認」資料（pending）。新版只記錄每個實體版本的已擁有與想要；這些舊資料仍完整保留，但不納入收藏清單與統計。你可以先備份，再依手上的專輯到已收錄版本勾選收藏。</p>
+    <ul id="legacy-records" class="legacy-records"></ul>
+    <p class="dialog-copy">選擇保留後，相同舊資料不再自動提醒；之後可從「匯入 / 匯出」重新開啟處理選項。沒有收錄版本的專輯可先保留舊資料，等待目錄補齊。</p>
+    <div class="legacy-actions"><button type="button" id="legacy-keep" class="button primary">保留舊資料，繼續使用</button><button type="button" id="legacy-export" class="button">下載完整 JSON 備份</button></div>
+    <section class="backup-section"><h3>備份後移除舊資料</h3><p>只移除 pending 紀錄，版本的已擁有與想要保持不變。此操作無法復原，需用備份還原。</p><label class="check legacy-confirm"><input type="checkbox" id="legacy-backed-up" disabled>我已確認完整備份檔已保存</label><button type="button" id="legacy-clear" class="button" disabled>移除舊版待整理資料…</button><p id="legacy-error" class="import-preview" role="status" hidden></p></section>
   </dialog>
   <noscript><p class="storage-alert">請啟用 JavaScript 才能載入專輯與管理收藏。</p></noscript>
 </body>
