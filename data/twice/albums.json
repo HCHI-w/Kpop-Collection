@@ -12,10 +12,13 @@
       "coverAlt": "THE STORY BEGINS 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
       "sources": [
-        "https://twice.jype.com/discography",
-        "https://oncecollector.com/discography"
+        "https://twice.jype.com/discography?PgIndex=6",
+        "https://m.en.thejypshop.com/product/twice-1st-mini-album-the-story-begins/126/"
+      ],
+      "physicalFormats": [
+        "CD"
       ]
     },
     {
@@ -29,10 +32,73 @@
       "coverAlt": "PAGE TWO 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
       "sources": [
-        "https://twice.jype.com/discography",
-        "https://oncecollector.com/discography"
+        "https://twice.jype.com/discography?PgIndex=6",
+        "https://m.en.thejypshop.com/product/twice-2nd-mini-album-page-two/125"
+      ],
+      "physicalFormats": [
+        "CD"
+      ]
+    },
+    {
+      "id": "twice-twicecoaster-lane-1",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "TWICEcoaster : LANE 1 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "TWICEcoaster : LANE 1",
+      "releaseDate": "2016-10-24",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=5",
+        "https://m.en.thejypshop.com/product/twice-3rd-mini-album-twicecoaster-lane-1/120/"
+      ]
+    },
+    {
+      "id": "twice-twicecoaster-lane-2",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "TWICEcoaster : LANE 2 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "TWICEcoaster : LANE 2",
+      "releaseDate": "2017-02-20",
+      "region": "KR",
+      "type": "repackage",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=5",
+        "https://m.en.thejypshop.com/product/twice-special-album-twicecoaster-lane-2/117/"
+      ]
+    },
+    {
+      "id": "twice-signal",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "SIGNAL 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "SIGNAL",
+      "releaseDate": "2017-05-15",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=5",
+        "https://m.en.thejypshop.com/product/twice-4th-mini-album-signal/116/"
       ]
     },
     {
@@ -46,10 +112,33 @@
       "coverAlt": "twicetagram 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "版本名稱尚待進一步核實，待資料補齊後即可逐一收藏。",
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
       "sources": [
-        "https://twice.jype.com/discography",
-        "https://oncecollector.com/discography"
+        "https://twice.jype.com/discography?PgIndex=5",
+        "https://twice.jype.com/discography/cpzs0rno"
+      ],
+      "physicalFormats": [
+        "CD"
+      ]
+    },
+    {
+      "id": "twice-merry-and-happy",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Merry & Happy 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Merry & Happy",
+      "releaseDate": "2017-12-11",
+      "region": "KR",
+      "type": "repackage",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=5",
+        "https://twice.jype.com/discography/hu3q4v3u"
       ]
     },
     {
@@ -70,6 +159,46 @@
       ]
     },
     {
+      "id": "twice-what-is-love",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "What is Love? 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "What is Love?",
+      "releaseDate": "2018-04-09",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=5",
+        "https://m.en.thejypshop.com/product/twice-5th-mini-album-what-is-love/108/category/45/display/1/"
+      ]
+    },
+    {
+      "id": "twice-summer-nights",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Summer Nights 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Summer Nights",
+      "releaseDate": "2018-07-09",
+      "region": "KR",
+      "type": "repackage",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=4",
+        "https://m.en.thejypshop.com/product/twice-2nd-summer-special-album-summer-nights/107/"
+      ]
+    },
+    {
       "id": "twice-bdz",
       "groupId": "twice",
       "name": "BDZ",
@@ -87,6 +216,66 @@
       ]
     },
     {
+      "id": "twice-yes-or-yes",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "YES or YES 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "YES or YES",
+      "releaseDate": "2018-11-05",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=4",
+        "https://m.en.thejypshop.com/product/twice-6th-mini-album-yes-or-yes/104/category/45/display/1/"
+      ]
+    },
+    {
+      "id": "twice-the-year-of-yes",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "The year of \"YES\" 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "The year of \"YES\"",
+      "releaseDate": "2018-12-12",
+      "region": "KR",
+      "type": "repackage",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=4",
+        "https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4"
+      ]
+    },
+    {
+      "id": "twice-fancy-you",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "FANCY YOU 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "FANCY YOU",
+      "releaseDate": "2019-04-22",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=4",
+        "https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4"
+      ]
+    },
+    {
       "id": "twice-feel-special",
       "groupId": "twice",
       "name": "Feel Special",
@@ -97,10 +286,33 @@
       "coverAlt": "Feel Special 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
       "sources": [
-        "https://twice.jype.com/discography",
-        "https://oncecollector.com/discography"
+        "https://twice.jype.com/discography?PgIndex=4",
+        "https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4"
+      ],
+      "physicalFormats": [
+        "CD"
+      ]
+    },
+    {
+      "id": "twice-more-and-more",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "MORE & MORE 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "MORE & MORE",
+      "releaseDate": "2020-06-01",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=4",
+        "https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4"
       ]
     },
     {
@@ -114,10 +326,53 @@
       "coverAlt": "Eyes wide open 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
       "sources": [
-        "https://twice.jype.com/discography",
-        "https://oncecollector.com/discography"
+        "https://twice.jype.com/discography?PgIndex=3",
+        "https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4"
+      ],
+      "physicalFormats": [
+        "CD"
+      ]
+    },
+    {
+      "id": "twice-taste-of-love",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Taste of Love 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Taste of Love",
+      "releaseDate": "2021-06-09",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。 官網發行日為 2021-06-09；CD 發行日需另核對，勿以數位先行日推算商品出貨日。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=3",
+        "https://twiceshop.com/products/taste-of-love-taste-version"
+      ]
+    },
+    {
+      "id": "twice-formula-of-love",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Formula of Love: O+T=<3 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Formula of Love: O+T=<3",
+      "releaseDate": "2021-11-12",
+      "region": "KR",
+      "type": "studio",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=3",
+        "https://twiceshop.com/products/formula-of-love-o-t-3-full-of-love-version"
       ]
     },
     {
@@ -148,10 +403,12 @@
       "coverAlt": "BETWEEN 1&2 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄部分初始實體版本，未含所有再版、限定版與店鋪特典。",
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
       "sources": [
-        "https://twice.jype.com/discography",
-        "https://oncecollector.com/discography"
+        "https://twice.jype.com/discography?PgIndex=2"
+      ],
+      "physicalFormats": [
+        "CD"
       ]
     },
     {
@@ -165,10 +422,93 @@
       "coverAlt": "READY TO BE 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅示範 READY／TO／BE 寫真書版本，未含 Digipack、黑膠或店鋪限定。",
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=2",
+        "https://twiceshop.com/products/ready-to-be-ready-ver-not-signed"
+      ],
+      "physicalFormats": [
+        "CD"
+      ]
+    },
+    {
+      "id": "twice-with-you-th",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "With YOU-th 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "With YOU-th",
+      "releaseDate": "2024-02-23",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography?PgIndex=2",
+        "https://twiceshop.com/products/with-you-th-forever-ver"
+      ]
+    },
+    {
+      "id": "twice-strategy",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "STRATEGY 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "STRATEGY",
+      "releaseDate": "2024-12-06",
+      "region": "KR",
+      "type": "mini",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
       "sources": [
         "https://twice.jype.com/discography",
-        "https://oncecollector.com/discography"
+        "https://twiceshop.com/products/strategy-step-3-ver"
+      ]
+    },
+    {
+      "id": "twice-this-is-for",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "THIS IS FOR 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "THIS IS FOR",
+      "releaseDate": "2025-07-11",
+      "region": "KR",
+      "type": "studio",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://twiceshop.com/products/this-is-for-this-ver"
+      ]
+    },
+    {
+      "id": "twice-ten-the-story-goes-on",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "TEN: The Story Goes On 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "TEN: The Story Goes On",
+      "releaseDate": "2025-10-10",
+      "region": "KR",
+      "type": "special",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認團體實體發行；版本仍在逐項核對，收錄不代表全部商品版本。",
+      "sources": [
+        "https://twice.jype.com/discography",
+        "https://twiceshop.com/products/ten-the-story-goes-on-episode-ver"
       ]
     }
   ]

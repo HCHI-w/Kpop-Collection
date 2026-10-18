@@ -6,6 +6,10 @@ import { mkdtemp, readFile, writeFile, readdir, mkdir, rm } from 'node:fs/promis
 import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { setTimeout as delay } from 'node:timers/promises';
+const releaseData = JSON.parse(await readFile(new URL('../data/twice/albums.json', import.meta.url), 'utf8')).albums;
+const versionData = JSON.parse(await readFile(new URL('../data/twice/versions.json', import.meta.url), 'utf8')).versions;
+const albumCount = releaseData.length;
+const noVersionCount = releaseData.filter(a => !versionData.some(v => v.albumId === a.id)).length;
 const temp = await mkdtemp(join(tmpdir(), 'kpop-browser-'));
 const outputs = resolve('test-results');
 await mkdir(outputs, { recursive: true });
@@ -50,7 +54,7 @@ async function assertDark(selector) {
 }
 async function load() {
   await send('Page.navigate', { url: process.env.TEST_URL || 'http://127.0.0.1:8000/Kpop-Collection/' });
-  await poll(() => evaluate(`document.querySelectorAll('.album-card').length===10`), 'catalog loaded');
+  await poll(() => evaluate(`document.querySelectorAll('.album-card').length===${albumCount}`), 'catalog loaded');
 }
 async function upload(value, filename = 'backup.json') {
   const path = join(temp, filename);
@@ -93,8 +97,10 @@ try {
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   await load();
   const overviewSelector = '[data-album="twice-ready-to-be"] .cover-wrap img';
-  const versionImages = '.version-album:first-child .version-cover';
-  const versionSources = ['ready', 'to', 'be'].map(name => `./assets/covers/ready-to-be-${name}.svg`);
+  const versionImages = '.version-album:has(#list-twice-ready-to-be-ready-owned) .version-cover';
+  const readyVersions = versionData.filter(v => v.albumId === 'twice-ready-to-be');
+  const versionSources = readyVersions.map(v => v.cover || './assets/covers/ready-to-be.svg');
+  assert.equal(new Set(versionSources.slice(0, 3)).size, 3);
   const sources = selector => evaluate(`[...document.querySelectorAll(${JSON.stringify(selector)})].map(i=>i.getAttribute('src'))`);
   const loadImages = async selector => {
     await evaluate(`document.querySelector(${JSON.stringify(selector)}).scrollIntoView({block:'center'})`);
@@ -246,7 +252,7 @@ try {
   await click('#reset-filters');
   await change('#search', 'ready', 'input'); assert.equal(await count('.album-card'), 1);
   await change('#search', 'no-such-album', 'input'); assert.equal(await count('.album-card'), 0);
-  await click('#empty-reset'); assert.equal(await count('.album-card'), 10);
+  await click('#empty-reset'); assert.equal(await count('.album-card'), albumCount);
   console.log('PASS: catalog, relative subpath assets, combined filters, normalized search, empty/reset');
 
   const ready = 'twice-ready-to-be-ready';
@@ -254,7 +260,7 @@ try {
   await click(`[data-album="${aid}"]`);
   for (const selector of ['#album-dialog', '.version-row']) await assertDark(selector);
   assert.equal(await count('#album-dialog[open]'), 1);
-  assert.equal(await count('#album-dialog [data-version][data-field="owned"]'), 3);
+  assert.equal(await count('#album-dialog [data-version][data-field="owned"]'), readyVersions.length);
   await click(`#detail-${ready}-owned`);
   await click(`#detail-${ready}-wanted`);
   let saved = await state();
@@ -272,12 +278,12 @@ try {
   assert.doesNotMatch(await evaluate(`document.querySelector('#album-detail').textContent`), /張數|未確認|共 \d+ 張/);
   assert.equal(await count('input[type=number], .pending-panel, .transfer-form, .collection-tip'), 0);
   await send('Page.reload');
-  await poll(() => evaluate(`document.querySelectorAll('.album-card').length===10`), 'reload');
+  await poll(() => evaluate(`document.querySelectorAll('.album-card').length===${albumCount}`), 'reload');
   assert.equal((await state()).versions[ready].quantity, 1);
   await click('[data-list="owned"]'); assert.equal(await count('.album-card'), 1);
   await click('[data-list="wanted"]'); assert.equal(await count('.album-card'), 1);
   await click('[data-view="versions"]'); assert.equal(await count('.version-row'), 1);
-  await click('[data-list="all"]'); assert.equal(await count('.version-album'), 10);
+  await click('[data-list="all"]'); assert.equal(await count('.version-album'), albumCount);
   await assertDark('.version-album');
   await click('[data-view="albums"]');
   await click('[data-album="twice-twicetagram"]');
@@ -286,7 +292,7 @@ try {
   assert.doesNotMatch(await evaluate(`document.querySelector('#album-detail').textContent`), /未確認|張數/);
   await click('[data-close="album-dialog"]');
   await click('[data-view="versions"]');
-  assert.equal(await count('#catalog-content .no-versions'), 1);
+  assert.equal(await count('#catalog-content .no-versions'), noVersionCount);
   assert.match(await evaluate(`document.querySelector('.no-versions').textContent`), /尚未收錄實體版本/);
   await click('#list-twice-ready-to-be-to-wanted');
   await click('#list-twice-ready-to-be-to-owned');

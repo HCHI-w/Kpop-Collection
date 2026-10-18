@@ -1,0 +1,92 @@
+{
+  "albumIds": [
+    "twice-the-story-begins",
+    "twice-page-two",
+    "twice-twicetagram",
+    "twice-candy-pop",
+    "twice-bdz",
+    "twice-feel-special",
+    "twice-eyes-wide-open",
+    "twice-celebrate",
+    "twice-between-1-and-2",
+    "twice-ready-to-be"
+  ],
+  "versions": [
+    {
+      "id": "twice-the-story-begins-original",
+      "albumId": "twice-the-story-begins"
+    },
+    {
+      "id": "twice-page-two-pink",
+      "albumId": "twice-page-two"
+    },
+    {
+      "id": "twice-page-two-mint",
+      "albumId": "twice-page-two"
+    },
+    {
+      "id": "twice-candy-pop-regular",
+      "albumId": "twice-candy-pop"
+    },
+    {
+      "id": "twice-bdz-regular",
+      "albumId": "twice-bdz"
+    },
+    {
+      "id": "twice-feel-special-a",
+      "albumId": "twice-feel-special"
+    },
+    {
+      "id": "twice-feel-special-b",
+      "albumId": "twice-feel-special"
+    },
+    {
+      "id": "twice-feel-special-c",
+      "albumId": "twice-feel-special"
+    },
+    {
+      "id": "twice-eyes-wide-open-story",
+      "albumId": "twice-eyes-wide-open"
+    },
+    {
+      "id": "twice-eyes-wide-open-style",
+      "albumId": "twice-eyes-wide-open"
+    },
+    {
+      "id": "twice-eyes-wide-open-retro",
+      "albumId": "twice-eyes-wide-open"
+    },
+    {
+      "id": "twice-celebrate-regular",
+      "albumId": "twice-celebrate"
+    },
+    {
+      "id": "twice-between-1-and-2-archive",
+      "albumId": "twice-between-1-and-2"
+    },
+    {
+      "id": "twice-between-1-and-2-cryptography",
+      "albumId": "twice-between-1-and-2"
+    },
+    {
+      "id": "twice-between-1-and-2-pathfinder",
+      "albumId": "twice-between-1-and-2"
+    },
+    {
+      "id": "twice-between-1-and-2-complete",
+      "albumId": "twice-between-1-and-2"
+    },
+    {
+      "id": "twice-ready-to-be-ready",
+      "albumId": "twice-ready-to-be"
+    },
+    {
+      "id": "twice-ready-to-be-to",
+      "albumId": "twice-ready-to-be"
+    },
+    {
+      "id": "twice-ready-to-be-be",
+      "albumId": "twice-ready-to-be"
+    }
+  ]
+}
