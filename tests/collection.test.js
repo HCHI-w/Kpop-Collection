@@ -88,6 +88,19 @@ test('cover metadata never enters collection storage or JSON backups', () => {
   assert.deepEqual(parseBackup(backup), saved);
 });
 test('physical edition evidence, pending labels, cover paths and metadata-free backups', async () => {
+  assert.equal(catalog.versions.filter(v => v.verificationStatus === 'verified').length, 207);
+  assert.equal(catalog.versions.filter(v => v.verificationStatus === 'pending').length, 3);
+  const jp = new Set(catalog.albums.filter(a => a.region === 'JP').map(a => a.id));
+  assert.equal(catalog.versions.filter(v => jp.has(v.albumId)).length, 122);
+  for (const albumId of jp) {
+    assert.ok(catalog.versions.some(v => v.albumId === albumId && v.id.endsWith('-regular')), `${albumId}: ordinary CD must not be omitted`);
+  }
+  for (const albumId of ['twice-celebrate', 'twice-hare-hare', 'twice-dive', 'twice-enemy']) {
+    assert.equal(catalog.versions.filter(v => v.albumId === albumId && v.editionType === 'member').length, 9);
+  }
+  assert.equal(catalog.versions.filter(v => v.albumId === 'twice-candy-pop').length, 4, 'nine changing jackets are not nine products');
+  assert.equal(catalog.versions.filter(v => v.albumId === 'twice-best-2015-2025').length, 2, 'December LIMITED BOX is not yet released');
+  assert.ok(!catalog.versions.some(v => v.catalogNumber === 'WPCL-60129/32'));
   const numbers = new Set();
   for (const v of catalog.versions) {
     assert.ok(['verified', 'pending'].includes(v.verificationStatus), v.id);
@@ -128,7 +141,7 @@ test('physical edition evidence, pending labels, cover paths and metadata-free b
 test('catalog: releases, unique IDs, correct references, relative existing covers', async () => {
   assert.equal(catalog.albums.length, 47);
   assert.equal(catalog.albums.filter(a => a.region === 'KR').length, 23);
-  assert.equal(catalog.versions.length, 91);
+  assert.equal(catalog.versions.length, 210);
   assert.equal(ready.id, 'twice-ready-to-be-ready');
   assert.equal(to.id, 'twice-ready-to-be-to');
   assert.equal(be.id, 'twice-ready-to-be-be');
