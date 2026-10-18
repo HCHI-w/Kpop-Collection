@@ -70,3 +70,41 @@
 - `The Feels`、`MOONLIGHT SUNRISE`、`CRY FOR ME`、`THE REMIXES`：目前未找到可確認的獨立官方實體商品；不因收錄在其他 CD 而另建單曲版本。
 - `Taste of Love` 官網列 2021-06-09；沿用官網作品日期，CD 商品發行日須另外核對。
 - JYP SHOP 舊商品的月份欄位有錯植（例如 LANE 2 寫 October 2017、YES or YES 寫 August 2018）；作品日以 JYP discography 為準，商品頁只用於規格／版本證據。
+
+## 第二階段結果
+
+新增 21 張；日本共 24 張（6 正規、6 精選、10 實體單曲、2 改版），兩地合計 47 張。版本仍是原有 19 種，第三階段另外核對。
+
+| 專輯 ID | 正式名稱 | 發行日 | 類型 | 原目錄 | 官方來源 |
+| --- | --- | --- | --- | --- | --- |
+| twice-hashtag-twice | #TWICE | 2017-06-28 | compilation | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=6)、[來源 2](https://www.twicejapan.com/feature/album_twice?_normalbrowse_=1) |
+| twice-one-more-time | One More Time | 2017-10-18 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=6)、[來源 2](https://wmg.jp/twice/discography/18736) |
+| twice-candy-pop | Candy Pop | 2018-02-07 | single | 既有 | [來源 1](https://www.twicejapan.com/discography/?page=6)、[來源 2](https://www.twicejapan.com/feature/candypop) |
+| twice-wake-me-up | Wake Me Up | 2018-05-16 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=6)、[來源 2](https://www.twicejapan.com/feature/wakemeup) |
+| twice-bdz | BDZ | 2018-09-12 | studio | 既有 | [來源 1](https://www.twicejapan.com/discography/?page=5)、[來源 2](https://www.twicejapan.com/feature/bdz) |
+| twice-bdz-repackage | BDZ -Repackage- | 2018-12-26 | repackage | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=5)、[來源 2](https://www.twicejapan.com/feature/bdz_re?_normalbrowse_=1) |
+| twice-hashtag-twice2 | #TWICE2 | 2019-03-06 | compilation | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=5)、[來源 2](https://www.twicejapan.com/feature/2nd_bestalbum?_normalbrowse_=1) |
+| twice-happy-happy | HAPPY HAPPY | 2019-07-17 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=5)、[來源 2](https://www.twicejapan.com/feature/happyhappy_breakthrough?_normalbrowse_=1) |
+| twice-breakthrough | Breakthrough | 2019-07-24 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=5)、[來源 2](https://www.twicejapan.com/feature/happyhappy_breakthrough?_normalbrowse_=1) |
+| twice-and-twice | &TWICE | 2019-11-20 | studio | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=5)、[來源 2](https://www.twicejapan.com/feature/andtwice?_normalbrowse_=1) |
+| twice-and-twice-repackage | &TWICE -Repackage- | 2020-02-05 | repackage | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=5)、[來源 2](https://www.twicejapan.com/feature/andtwice_re?_normalbrowse_=1) |
+| twice-fanfare | Fanfare | 2020-07-08 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=4)、[來源 2](https://www.twicejapan.com/feature/Fanfare?_normalbrowse_=1) |
+| twice-hashtag-twice3 | #TWICE3 | 2020-09-16 | compilation | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=4)、[來源 2](https://www.twicejapan.com/feature/3rd_bestalbum) |
+| twice-better | BETTER | 2020-11-18 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=4)、[來源 2](https://www.twicejapan.com/feature/better) |
+| twice-kura-kura | Kura Kura | 2021-05-12 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=4)、[來源 2](https://www.twicejapan.com/feature/kurakura) |
+| twice-perfect-world | Perfect World | 2021-07-28 | studio | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=4)、[來源 2](https://www.twicejapan.com/feature/PerfectWorld) |
+| twice-doughnut | Doughnut | 2021-12-15 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=4)、[來源 2](https://www.twicejapan.com/feature/Doughnut?_normalbrowse_=1) |
+| twice-hashtag-twice4 | #TWICE4 | 2022-03-16 | compilation | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=4)、[來源 2](https://www.twicejapan.com/feature/4th_bestalbum?_normalbrowse_=1) |
+| twice-celebrate | Celebrate | 2022-07-27 | studio | 既有 | [來源 1](https://www.twicejapan.com/discography/?page=3)、[來源 2](https://www.twicejapan.com/feature/Celebrate) |
+| twice-hare-hare | Hare Hare | 2023-05-31 | single | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=3)、[來源 2](https://www.twicejapan.com/feature/JAPAN10thSINGLE?_normalbrowse_=1) |
+| twice-dive | DIVE | 2024-07-17 | studio | 新增 | [來源 1](https://www.twicejapan.com/discography/?page=2)、[來源 2](https://www.twicejapan.com/feature/DIVE) |
+| twice-hashtag-twice5 | #TWICE5 | 2025-05-14 | compilation | 新增 | [來源 1](https://www.twicejapan.com/discography/)、[來源 2](https://www.twicejapan.com/feature/5th_bestalbum) |
+| twice-enemy | ENEMY | 2025-08-27 | studio | 新增 | [來源 1](https://www.twicejapan.com/discography/)、[來源 2](https://www.twicejapan.com/feature/ENEMY) |
+| twice-best-2015-2025 | #BEST 2015-2025 | 2026-08-26 | compilation | 新增 | [來源 1](https://www.twicejapan.com/discography/)、[來源 2](https://www.twicejapan.com/feature/bestalbum_thisisfor_livedvd?_normalbrowse_=1) |
+
+### 日本尚待完成
+
+- 普通／限定／成員版依官網品番及規格逐一加入第三階段；不由小卡或換封片數量推導版本。
+- #BEST 2015-2025 僅收 2026-08-26 已發行普通／初回限定商品；2026-12-16 LIMITED BOX 排除（同官方特設頁明載日期）。
+- 日本進口販售的韓國原版不重複建立日本專輯；數位先行曲、The wish、Dance Again、I WANT YOU BACK 等沒有獨立官方實體商品證據者不另建專輯。
+- 日本黑膠後續另核對：Celebrate（2022-12-28）、#TWICE 1–4（2023-09-27）、BDZ／&TWICE／Perfect World（2023-12-06）。先保留 CD 發行，不能把黑膠發行日當作品首發。

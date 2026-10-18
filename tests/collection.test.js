@@ -23,6 +23,9 @@ test('cutoff, original identities, new release types and chronological filters',
   }
   const sorted = filterAlbums(catalog, emptyCollection(), {});
   assert.deepEqual(sorted.map(a => a.releaseDate), sorted.map(a => a.releaseDate).sort().reverse());
+  assert.equal(catalog.albums.filter(a => a.region === 'JP').length, 24);
+  assert.equal(filterAlbums(catalog, emptyCollection(), { region: 'JP', type: 'compilation' }).length, 6);
+  assert.equal(filterAlbums(catalog, emptyCollection(), { year: '2026' })[0].id, 'twice-best-2015-2025');
   for (const type of ['repackage', 'special']) {
     const matching = filterAlbums(catalog, emptyCollection(), { region: 'KR', type });
     assert.ok(matching.length);
@@ -85,7 +88,7 @@ test('cover metadata never enters collection storage or JSON backups', () => {
   assert.deepEqual(parseBackup(backup), saved);
 });
 test('catalog: releases, unique IDs, correct references, relative existing covers', async () => {
-  assert.equal(catalog.albums.length, 26);
+  assert.equal(catalog.albums.length, 47);
   assert.equal(catalog.albums.filter(a => a.region === 'KR').length, 23);
   assert.equal(catalog.versions.length, 19);
   assert.equal(ready.id, 'twice-ready-to-be-ready');
@@ -169,7 +172,7 @@ test('reject malformed JSON, schema, unsafe IDs, wrong types, unsupported fields
 test('filters combine year/region/type/search; pending-only albums never enter owned or wanted', () => {
   const c = setVersion(emptyCollection(), ready, { wanted: true });
   c.pending['twice-bdz'] = { quantity: 2 };
-  assert.deepEqual(filterAlbums(catalog, c, { year: '2022' }).map(a => a.id), ['twice-between-1-and-2', 'twice-celebrate']);
+  assert.deepEqual(filterAlbums(catalog, c, { year: '2022' }).map(a => a.id), ['twice-between-1-and-2', 'twice-celebrate', 'twice-hashtag-twice4']);
   assert.equal(filterAlbums(catalog, c, { year: '2022', region: 'JP', type: 'studio' })[0].id, 'twice-celebrate');
   assert.equal(filterAlbums(catalog, c, { search: '  ＲＥＡＤＹ  ' })[0].id, ready.albumId);
   assert.deepEqual(filterAlbums(catalog, c, { list: 'owned' }).map(a => a.id), []);
