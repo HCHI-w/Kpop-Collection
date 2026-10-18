@@ -1,5 +1,6 @@
 export const TYPE_LABELS = { mini: '迷你專輯', studio: '正規專輯', single: '單曲', repackage: '改版專輯', special: '特別專輯', compilation: '精選專輯' };
 export const REGION_LABELS = { KR: '韓國發行', JP: '日本發行' };
+export const EDITION_LABELS = { standard: '普通版', limited: '限定版', member: '成員版', special: '特殊包裝版' };
 export const DEFAULT_COVER = './assets/covers/placeholder.svg';
 export const DEFAULT_COVER_ALT = '專輯封面佔位圖片';
 const ID = /^[a-z0-9][a-z0-9-]{0,119}$/;
@@ -23,10 +24,23 @@ export function validateCatalog(groups, albums, versions) {
     assert(TYPE_LABELS[album.type] && REGION_LABELS[album.region], '專輯類型或地區不合法。');
     assert(/^\d{4}-\d{2}-\d{2}$/.test(album.releaseDate) && new Date(album.releaseDate).toISOString().slice(0, 10) === album.releaseDate, '專輯日期不合法。');
     relativeAsset(album.cover);
+    if (album.versionsComplete !== undefined) assert(typeof album.versionsComplete === 'boolean', '版本完整標記必須是布林值。');
+    if (album.versionsComplete) {
+      const editions = versions.filter(v => v.albumId === album.id);
+      assert(editions.length > 0 && editions.every(v => v.verificationStatus === 'verified'), '尚未核實全部版本，不可標記完整。');
+    }
   }
   const albumsById = new Map(albums.map(album => [album.id, album]));
   const normalizedVersions = versions.map(version => {
     assert(albumIds.has(version.albumId), '版本沒有對應專輯。');
+    assert(typeof version.format === 'string' && version.format.trim().length > 0, '版本缺少實體媒介。');
+    if (version.editionType !== undefined) assert(Object.hasOwn(EDITION_LABELS, version.editionType), '版本商品類型不合法。');
+    if (version.verificationStatus !== undefined) assert(['verified', 'pending'].includes(version.verificationStatus), '版本核實狀態不合法。');
+    if (version.verificationStatus === 'verified') assert(version.source && version.editionType, '已核實版本必須記錄官方來源與商品類型。');
+    if (version.verificationStatus === 'pending') assert(typeof version.verificationNote === 'string' && version.verificationNote.trim().length > 0, '待核實版本必須說明原因。');
+    if (version.member !== undefined) assert(version.editionType === 'member' && typeof version.member === 'string' && version.member.trim().length > 0, '成員版本資料不合法。');
+    if (version.source !== undefined) assert(typeof version.source === 'string' && /^https:\/\/[^\s]+$/.test(version.source), '版本來源必須是 HTTPS 網址。');
+    if (version.catalogNumber !== undefined) assert(typeof version.catalogNumber === 'string' && version.catalogNumber.trim().length > 0, '版本品番不合法。');
     if (version.cover !== undefined) assert(typeof version.cover === 'string', '版本封面路徑必須是文字。');
     if (version.coverAlt !== undefined) assert(typeof version.coverAlt === 'string', '版本封面替代文字必須是文字。');
     if (version.coverIsPlaceholder !== undefined) assert(typeof version.coverIsPlaceholder === 'boolean', '版本封面佔位標記必須是布林值。');

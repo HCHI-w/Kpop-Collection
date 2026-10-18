@@ -1,4 +1,4 @@
-import { loadCatalog, filterAlbums, TYPE_LABELS, REGION_LABELS, DEFAULT_COVER, DEFAULT_COVER_ALT } from './catalog.js';
+import { loadCatalog, filterAlbums, TYPE_LABELS, REGION_LABELS, EDITION_LABELS, DEFAULT_COVER, DEFAULT_COVER_ALT } from './catalog.js';
 import { STORAGE_KEY, MAX_BACKUP_BYTES, emptyCollection, loadCollection, saveCollection, setVersionStatus, pendingSignature, albumStats, collectionStats, parseBackup, validateRelations, mergeCollections, exportBackup, unknownRecordCount } from './collection.js';
 
 const $ = selector => document.querySelector(selector);
@@ -109,7 +109,10 @@ function card(album) {
 function versionRow(version, context) {
   const entry = collection.versions[version.id] || { quantity: 0, wanted: false };
   const prefix = `${context}-${version.id}`;
-  return `<div class="version-row">${coverImage(version, 240, 'version-cover')}<div class="version-name">${escapeHTML(version.name)}<small>${escapeHTML(version.format)}</small></div><div class="version-controls"><label class="check" for="${prefix}-owned"><input id="${prefix}-owned" type="checkbox" data-version="${version.id}" data-field="owned" ${entry.quantity > 0 ? 'checked' : ''}>已擁有</label><label class="check" for="${prefix}-wanted"><input id="${prefix}-wanted" type="checkbox" data-version="${version.id}" data-field="wanted" ${entry.wanted ? 'checked' : ''}>想要</label></div></div>`;
+  const edition = version.editionType ? ` · ${EDITION_LABELS[version.editionType]}` : '';
+  const pending = version.verificationStatus === 'pending' ? `<small class="verification-pending">待核實：${escapeHTML(version.verificationNote)}</small>` : '';
+  const source = version.source ? `<small><a href="${escapeHTML(version.source)}" target="_blank" rel="noopener noreferrer">版本資料來源 ↗</a></small>` : '';
+  return `<div class="version-row">${coverImage(version, 240, 'version-cover')}<div class="version-name">${escapeHTML(version.name)}<small>${escapeHTML(version.format + edition)}${version.catalogNumber ? ` · ${escapeHTML(version.catalogNumber)}` : ''}</small>${pending}${source}</div><div class="version-controls"><label class="check" for="${prefix}-owned"><input id="${prefix}-owned" type="checkbox" data-version="${version.id}" data-field="owned" ${entry.quantity > 0 ? 'checked' : ''}>已擁有</label><label class="check" for="${prefix}-wanted"><input id="${prefix}-wanted" type="checkbox" data-version="${version.id}" data-field="wanted" ${entry.wanted ? 'checked' : ''}>想要</label></div></div>`;
 }
 function versionAlbum(album) {
   let versions = versionsFor(album.id);

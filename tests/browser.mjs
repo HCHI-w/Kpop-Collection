@@ -96,6 +96,17 @@ try {
   await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: 'reduce' }] });
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 1000, deviceScaleFactor: 1, mobile: false });
   await load();
+  const initialStorage = await evaluate(`localStorage.getItem('my-kpop-collection:v1')`);
+  for (const album of releaseData) {
+    await click(`[data-album="${album.id}"]`);
+    const expected = versionData.filter(v => v.albumId === album.id);
+    assert.equal(await count('#album-dialog .version-row'), expected.length, album.id);
+    assert.equal(await count('#album-dialog .verification-pending'), expected.filter(v => v.verificationStatus === 'pending').length, album.id);
+    assert.equal(await count('#album-dialog .no-versions'), expected.length ? 0 : 1, album.id);
+    await click('[data-close="album-dialog"]');
+  }
+  assert.equal(await evaluate(`localStorage.getItem('my-kpop-collection:v1')`), initialStorage);
+  console.log('PASS: every release opens its actual versions or explicit empty state, pending evidence labels, browsing leaves storage unchanged');
   const overviewSelector = '[data-album="twice-ready-to-be"] .cover-wrap img';
   const versionImages = '.version-album:has(#list-twice-ready-to-be-ready-owned) .version-cover';
   const readyVersions = versionData.filter(v => v.albumId === 'twice-ready-to-be');
@@ -159,6 +170,9 @@ try {
   console.log('PASS: independent version covers in list/dialog, album overview unchanged, inherited album covers, real version/album 404s use shared placeholder');
   assert.equal(await evaluate('document.documentElement.lang'), 'zh-Hant');
   assert.equal(await evaluate(`getComputedStyle(document.querySelector('.album-grid')).gridTemplateColumns.split(' ').length`), 5);
+  // A full catalog extends beyond Chromium's lazy-load distance. Request the
+  // offscreen images in this test without changing production loading policy.
+  await evaluate(`document.querySelectorAll('.cover-wrap img').forEach(i => i.loading = 'eager')`);
   await poll(() => evaluate(`[...document.querySelectorAll('.cover-wrap img')].every(i=>i.complete && i.naturalWidth>0)`), 'covers loaded');
   assert.equal(await evaluate(`document.querySelector('.brand').getAttribute('aria-label')`), '專輯圖鑑 首頁');
   assert.equal(await evaluate(`document.querySelector('.brand > span:last-child').childNodes[0].textContent`), '專輯圖鑑');
@@ -246,7 +260,7 @@ try {
   await evaluate(`localStorage.removeItem('my-kpop-collection:v1')`);
   await load();
   console.log('PASS: legacy v1 data untouched on load, wish preserves quantity, once-only review, downloaded backup, explicit cleanup/cancel, stale backup guard, failed-write preservation, old JSON restore/merge');
-  await change('#year', '2022'); assert.equal(await count('.album-card'), 2);
+  await change('#year', '2022'); assert.equal(await count('.album-card'), releaseData.filter(a => a.releaseDate.startsWith('2022')).length);
   await change('#region', 'JP'); await change('#type', 'studio'); assert.equal(await count('.album-card'), 1);
   assert.equal(await evaluate(`document.querySelector('.album-title').textContent`), 'Celebrate');
   await click('#reset-filters');
