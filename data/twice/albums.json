@@ -102,6 +102,46 @@
       ]
     },
     {
+      "id": "twice-hashtag-twice",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "#TWICE 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "#TWICE",
+      "releaseDate": "2017-06-28",
+      "region": "JP",
+      "type": "compilation",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=6",
+        "https://www.twicejapan.com/feature/album_twice?_normalbrowse_=1"
+      ]
+    },
+    {
+      "id": "twice-one-more-time",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "One More Time 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "One More Time",
+      "releaseDate": "2017-10-18",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=6",
+        "https://wmg.jp/twice/discography/18736"
+      ]
+    },
+    {
       "id": "twice-twicetagram",
       "groupId": "twice",
       "name": "twicetagram",
@@ -152,10 +192,13 @@
       "coverAlt": "Candy Pop 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄通常盤，未含限定盤與後續版本。",
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
       "sources": [
-        "https://www.twicejapan.com/feature/candypop",
-        "https://oncecollector.com/discography"
+        "https://www.twicejapan.com/discography/?page=6",
+        "https://www.twicejapan.com/feature/candypop"
+      ],
+      "physicalFormats": [
+        "CD"
       ]
     },
     {
@@ -176,6 +219,26 @@
       "sources": [
         "https://twice.jype.com/discography?PgIndex=5",
         "https://m.en.thejypshop.com/product/twice-5th-mini-album-what-is-love/108/category/45/display/1/"
+      ]
+    },
+    {
+      "id": "twice-wake-me-up",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Wake Me Up 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Wake Me Up",
+      "releaseDate": "2018-05-16",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=6",
+        "https://www.twicejapan.com/feature/wakemeup"
       ]
     },
     {
@@ -209,10 +272,13 @@
       "coverAlt": "BDZ 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄通常盤，未含限定盤與後續版本。",
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
       "sources": [
-        "https://www.twicejapan.com/feature/bdz",
-        "https://oncecollector.com/discography"
+        "https://www.twicejapan.com/discography/?page=5",
+        "https://www.twicejapan.com/feature/bdz"
+      ],
+      "physicalFormats": [
+        "CD"
       ]
     },
     {
@@ -256,6 +322,46 @@
       ]
     },
     {
+      "id": "twice-bdz-repackage",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "BDZ -Repackage- 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "BDZ -Repackage-",
+      "releaseDate": "2018-12-26",
+      "region": "JP",
+      "type": "repackage",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=5",
+        "https://www.twicejapan.com/feature/bdz_re?_normalbrowse_=1"
+      ]
+    },
+    {
+      "id": "twice-hashtag-twice2",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "#TWICE2 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "#TWICE2",
+      "releaseDate": "2019-03-06",
+      "region": "JP",
+      "type": "compilation",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=5",
+        "https://www.twicejapan.com/feature/2nd_bestalbum?_normalbrowse_=1"
+      ]
+    },
+    {
       "id": "twice-fancy-you",
       "groupId": "twice",
       "cover": "./assets/covers/placeholder.svg",
@@ -273,6 +379,46 @@
       "sources": [
         "https://twice.jype.com/discography?PgIndex=4",
         "https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4"
+      ]
+    },
+    {
+      "id": "twice-happy-happy",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "HAPPY HAPPY 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "HAPPY HAPPY",
+      "releaseDate": "2019-07-17",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=5",
+        "https://www.twicejapan.com/feature/happyhappy_breakthrough?_normalbrowse_=1"
+      ]
+    },
+    {
+      "id": "twice-breakthrough",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Breakthrough 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Breakthrough",
+      "releaseDate": "2019-07-24",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=5",
+        "https://www.twicejapan.com/feature/happyhappy_breakthrough?_normalbrowse_=1"
       ]
     },
     {
@@ -296,6 +442,46 @@
       ]
     },
     {
+      "id": "twice-and-twice",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "&TWICE 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "&TWICE",
+      "releaseDate": "2019-11-20",
+      "region": "JP",
+      "type": "studio",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=5",
+        "https://www.twicejapan.com/feature/andtwice?_normalbrowse_=1"
+      ]
+    },
+    {
+      "id": "twice-and-twice-repackage",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "&TWICE -Repackage- 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "&TWICE -Repackage-",
+      "releaseDate": "2020-02-05",
+      "region": "JP",
+      "type": "repackage",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=5",
+        "https://www.twicejapan.com/feature/andtwice_re?_normalbrowse_=1"
+      ]
+    },
+    {
       "id": "twice-more-and-more",
       "groupId": "twice",
       "cover": "./assets/covers/placeholder.svg",
@@ -313,6 +499,46 @@
       "sources": [
         "https://twice.jype.com/discography?PgIndex=4",
         "https://m.en.thejypshop.com/product/list_gallery.html?cate_no=45&page=4"
+      ]
+    },
+    {
+      "id": "twice-fanfare",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Fanfare 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Fanfare",
+      "releaseDate": "2020-07-08",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=4",
+        "https://www.twicejapan.com/feature/Fanfare?_normalbrowse_=1"
+      ]
+    },
+    {
+      "id": "twice-hashtag-twice3",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "#TWICE3 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "#TWICE3",
+      "releaseDate": "2020-09-16",
+      "region": "JP",
+      "type": "compilation",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=4",
+        "https://www.twicejapan.com/feature/3rd_bestalbum"
       ]
     },
     {
@@ -336,6 +562,46 @@
       ]
     },
     {
+      "id": "twice-better",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "BETTER 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "BETTER",
+      "releaseDate": "2020-11-18",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=4",
+        "https://www.twicejapan.com/feature/better"
+      ]
+    },
+    {
+      "id": "twice-kura-kura",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Kura Kura 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Kura Kura",
+      "releaseDate": "2021-05-12",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=4",
+        "https://www.twicejapan.com/feature/kurakura"
+      ]
+    },
+    {
       "id": "twice-taste-of-love",
       "groupId": "twice",
       "cover": "./assets/covers/placeholder.svg",
@@ -353,6 +619,26 @@
       "sources": [
         "https://twice.jype.com/discography?PgIndex=3",
         "https://twiceshop.com/products/taste-of-love-taste-version"
+      ]
+    },
+    {
+      "id": "twice-perfect-world",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Perfect World 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Perfect World",
+      "releaseDate": "2021-07-28",
+      "region": "JP",
+      "type": "studio",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=4",
+        "https://www.twicejapan.com/feature/PerfectWorld"
       ]
     },
     {
@@ -376,6 +662,46 @@
       ]
     },
     {
+      "id": "twice-doughnut",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Doughnut 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Doughnut",
+      "releaseDate": "2021-12-15",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=4",
+        "https://www.twicejapan.com/feature/Doughnut?_normalbrowse_=1"
+      ]
+    },
+    {
+      "id": "twice-hashtag-twice4",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "#TWICE4 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "#TWICE4",
+      "releaseDate": "2022-03-16",
+      "region": "JP",
+      "type": "compilation",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=4",
+        "https://www.twicejapan.com/feature/4th_bestalbum?_normalbrowse_=1"
+      ]
+    },
+    {
       "id": "twice-celebrate",
       "groupId": "twice",
       "name": "Celebrate",
@@ -386,10 +712,13 @@
       "coverAlt": "Celebrate 文字佔位封面（非官方封面）",
       "coverIsPlaceholder": true,
       "versionsComplete": false,
-      "catalogNote": "僅收錄通常盤，未含限定盤與後續版本。",
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
       "sources": [
-        "https://www.twicejapan.com/feature/Celebrate",
-        "https://oncecollector.com/discography"
+        "https://www.twicejapan.com/discography/?page=3",
+        "https://www.twicejapan.com/feature/Celebrate"
+      ],
+      "physicalFormats": [
+        "CD"
       ]
     },
     {
@@ -432,6 +761,26 @@
       ]
     },
     {
+      "id": "twice-hare-hare",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "Hare Hare 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "Hare Hare",
+      "releaseDate": "2023-05-31",
+      "region": "JP",
+      "type": "single",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=3",
+        "https://www.twicejapan.com/feature/JAPAN10thSINGLE?_normalbrowse_=1"
+      ]
+    },
+    {
       "id": "twice-with-you-th",
       "groupId": "twice",
       "cover": "./assets/covers/placeholder.svg",
@@ -449,6 +798,26 @@
       "sources": [
         "https://twice.jype.com/discography?PgIndex=2",
         "https://twiceshop.com/products/with-you-th-forever-ver"
+      ]
+    },
+    {
+      "id": "twice-dive",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "DIVE 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "DIVE",
+      "releaseDate": "2024-07-17",
+      "region": "JP",
+      "type": "studio",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/?page=2",
+        "https://www.twicejapan.com/feature/DIVE"
       ]
     },
     {
@@ -472,6 +841,26 @@
       ]
     },
     {
+      "id": "twice-hashtag-twice5",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "#TWICE5 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "#TWICE5",
+      "releaseDate": "2025-05-14",
+      "region": "JP",
+      "type": "compilation",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/",
+        "https://www.twicejapan.com/feature/5th_bestalbum"
+      ]
+    },
+    {
       "id": "twice-this-is-for",
       "groupId": "twice",
       "cover": "./assets/covers/placeholder.svg",
@@ -492,6 +881,26 @@
       ]
     },
     {
+      "id": "twice-enemy",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "ENEMY 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "ENEMY",
+      "releaseDate": "2025-08-27",
+      "region": "JP",
+      "type": "studio",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。",
+      "sources": [
+        "https://www.twicejapan.com/discography/",
+        "https://www.twicejapan.com/feature/ENEMY"
+      ]
+    },
+    {
       "id": "twice-ten-the-story-goes-on",
       "groupId": "twice",
       "cover": "./assets/covers/placeholder.svg",
@@ -509,6 +918,26 @@
       "sources": [
         "https://twice.jype.com/discography",
         "https://twiceshop.com/products/ten-the-story-goes-on-episode-ver"
+      ]
+    },
+    {
+      "id": "twice-best-2015-2025",
+      "groupId": "twice",
+      "cover": "./assets/covers/placeholder.svg",
+      "coverAlt": "#BEST 2015-2025 佔位封面（非官方美術）",
+      "coverIsPlaceholder": true,
+      "name": "#BEST 2015-2025",
+      "releaseDate": "2026-08-26",
+      "region": "JP",
+      "type": "compilation",
+      "physicalFormats": [
+        "CD"
+      ],
+      "versionsComplete": false,
+      "catalogNote": "已確認日本團體實體 CD 發行；普通、限定及成員商品版本仍在逐項核對。 2026-12-16 LIMITED BOX 晚於截止日，不計入已發行版本。",
+      "sources": [
+        "https://www.twicejapan.com/discography/",
+        "https://www.twicejapan.com/feature/bestalbum_thisisfor_livedvd?_normalbrowse_=1"
       ]
     }
   ]
