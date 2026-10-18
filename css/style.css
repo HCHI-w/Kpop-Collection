@@ -734,6 +734,7 @@ dialog p {
 .detail-cover {
   width:126px;
   height:126px;
+  object-fit:cover;
   border-radius:4px
 }
 .detail-header .album-meta {
@@ -759,18 +760,35 @@ dialog p {
 .version-intro p {
   font-size:10px
 }
+.version-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:16px
+}
 .version-row {
   display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:15px;
-  border-top:1px solid var(--line);
-  padding:15px 0
+  flex-direction:column;
+  align-items:stretch;
+  min-width:0;
+  gap:10px;
+  border:1px solid var(--line);
+  border-radius:5px;
+  padding:10px;
+  background:var(--paper)
+}
+.version-cover {
+  display:block;
+  width:100%;
+  height:auto;
+  aspect-ratio:1;
+  object-fit:cover;
+  border-radius:3px;
+  background:var(--bg)
 }
 .version-name {
   font-size:12px;
   font-weight:550;
-  min-width:95px
+  overflow-wrap:anywhere
 }
 .version-name small {
   display:block;
@@ -782,9 +800,9 @@ dialog p {
 .version-controls {
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
+  gap:4px 10px;
   align-items:center;
-  justify-content:flex-end
+  margin-top:auto
 }
 .check {
   display:flex;
@@ -907,9 +925,6 @@ legend {
 }
 .version-album-heading .text-button {
   white-space:nowrap
-}
-.version-album .version-row {
-  padding:10px 0
 }
 .legacy-records {
   padding-left:22px;
@@ -1200,15 +1215,17 @@ legend {
   .version-intro p {
     margin-top:4px
   }
+  .version-grid {
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:10px
+  }
   .version-row {
-    align-items:flex-start;
-    gap:7px
+    padding:8px;
+    gap:8px
   }
   .version-name {
     font-size:11px;
-    min-width:75px;
-    max-width:110px;
-    padding-top:6px
+    min-width:0
   }
   .version-controls {
     gap:4px 9px

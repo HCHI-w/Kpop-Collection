@@ -1,5 +1,7 @@
 export const TYPE_LABELS = { mini: '迷你專輯', studio: '正規專輯', single: '單曲' };
 export const REGION_LABELS = { KR: '韓國發行', JP: '日本發行' };
+export const DEFAULT_COVER = './assets/covers/placeholder.svg';
+export const DEFAULT_COVER_ALT = '專輯封面佔位圖片';
 const ID = /^[a-z0-9][a-z0-9-]{0,119}$/;
 const isObject = value => value && typeof value === 'object' && !Array.isArray(value);
 const assert = (condition, message) => { if (!condition) throw new Error(message); };
@@ -22,8 +24,23 @@ export function validateCatalog(groups, albums, versions) {
     assert(/^\d{4}-\d{2}-\d{2}$/.test(album.releaseDate) && new Date(album.releaseDate).toISOString().slice(0, 10) === album.releaseDate, '專輯日期不合法。');
     relativeAsset(album.cover);
   }
-  for (const version of versions) assert(albumIds.has(version.albumId), '版本沒有對應專輯。');
-  return { groups, albums, versions };
+  const albumsById = new Map(albums.map(album => [album.id, album]));
+  const normalizedVersions = versions.map(version => {
+    assert(albumIds.has(version.albumId), '版本沒有對應專輯。');
+    if (version.cover !== undefined) assert(typeof version.cover === 'string', '版本封面路徑必須是文字。');
+    if (version.coverAlt !== undefined) assert(typeof version.coverAlt === 'string', '版本封面替代文字必須是文字。');
+    if (version.coverIsPlaceholder !== undefined) assert(typeof version.coverIsPlaceholder === 'boolean', '版本封面佔位標記必須是布林值。');
+    const album = albumsById.get(version.albumId);
+    const cover = version.cover?.trim();
+    // Resolve display metadata without mutating the source catalog or collection.
+    return {
+      ...version,
+      cover: cover ? relativeAsset(cover) : album.cover,
+      coverAlt: cover ? (version.coverAlt?.trim() || `${album.name} ${version.name} 封面`) : album.coverAlt,
+      coverIsPlaceholder: cover ? (version.coverIsPlaceholder ?? false) : Boolean(album.coverIsPlaceholder)
+    };
+  });
+  return { groups, albums, versions: normalizedVersions };
 }
 async function readJSON(path) {
   const response = await fetch(new URL(relativeAsset(path), document.baseURI));

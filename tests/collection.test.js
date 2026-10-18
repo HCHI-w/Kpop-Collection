@@ -2,10 +2,62 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFile } from 'node:fs/promises';
 import { emptyCollection, setVersion, setVersionStatus, pendingSignature, mergeCollections, albumStats, collectionStats, parseBackup, exportBackup, validateRelations, loadCollection, saveCollection, STORAGE_KEY } from '../js/collection.js';
-import { validateCatalog, filterAlbums, relativeAsset } from '../js/catalog.js';
+import { validateCatalog, filterAlbums, relativeAsset, loadCatalog, DEFAULT_COVER } from '../js/catalog.js';
 const read = async path => JSON.parse(await readFile(new URL(path, import.meta.url), 'utf8'));
 const catalog = validateCatalog((await read('../data/groups.json')).groups, (await read('../data/twice/albums.json')).albums, (await read('../data/twice/versions.json')).versions);
 const [ready, to, be] = catalog.versions.filter(v => v.albumId === 'twice-ready-to-be');
+test('optional version covers normalize independently, inherit album metadata and validate types/paths', async () => {
+  const album = catalog.albums.find(a => a.id === ready.albumId);
+  const legacy = { id: ready.id, albumId: ready.albumId, name: ready.name, format: 'CD' };
+  const normalize = overrides => validateCatalog(catalog.groups, catalog.albums, [{ ...legacy, ...overrides }]).versions[0];
+  for (const overrides of [{}, { cover: '' }, { cover: '  ', coverAlt: 'unused', coverIsPlaceholder: false }]) {
+    const normalized = normalize(overrides);
+    assert.equal(normalized.cover, album.cover);
+    assert.equal(normalized.coverAlt, album.coverAlt);
+    assert.equal(normalized.coverIsPlaceholder, album.coverIsPlaceholder);
+  }
+  const own = normalize({ cover: ' ./assets/covers/ready-to-be-ready.svg ', coverAlt: ' READY 封面 ', coverIsPlaceholder: true });
+  assert.equal(own.cover, ready.cover);
+  assert.equal(own.coverAlt, 'READY 封面');
+  assert.equal(own.coverIsPlaceholder, true);
+  const minimal = normalize({ cover: ready.cover });
+  assert.match(minimal.coverAlt, /READY TO BE READY ver\./);
+  assert.equal(minimal.coverIsPlaceholder, false);
+  assert.equal(legacy.cover, undefined, 'source record is unchanged');
+  assert.equal(album.cover, './assets/covers/ready-to-be.svg', 'album overview stays independent');
+  for (const overrides of [{ cover: null }, { cover: 1 }, { coverAlt: 1 }, { coverIsPlaceholder: 'true' }, ...['/cover.jpg', '../cover.jpg', './a/../cover.jpg', 'https://example.com/cover.jpg', './cover.svg?x=1'].map(cover => ({ cover }))]) {
+    assert.throws(() => normalize(overrides));
+  }
+  assert.equal(new Set([ready.cover, to.cover, be.cover]).size, 3);
+  for (const cover of [ready.cover, to.cover, be.cover, DEFAULT_COVER]) await readFile(new URL('../' + cover, import.meta.url));
+});
+test('loadCatalog reads optional version cover fields through JSON fetch', async () => {
+  const originalFetch = globalThis.fetch;
+  const originalDocument = globalThis.document;
+  const groupData = await read('../data/groups.json');
+  const albumData = await read('../data/twice/albums.json');
+  const versionData = await read('../data/twice/versions.json');
+  const resources = new Map([['/Kpop-Collection/data/groups.json', groupData], ['/Kpop-Collection/data/twice/albums.json', albumData], ['/Kpop-Collection/data/twice/versions.json', versionData]]);
+  try {
+    globalThis.document = { baseURI: 'https://example.com/Kpop-Collection/' };
+    globalThis.fetch = async url => ({ ok: true, json: async () => structuredClone(resources.get(url.pathname)) });
+    const loaded = await loadCatalog();
+    assert.equal(loaded.versions.find(v => v.id === ready.id).cover, ready.cover);
+    const inherited = loaded.versions.find(v => v.id === 'twice-page-two-pink');
+    assert.equal(inherited.cover, loaded.albums.find(a => a.id === inherited.albumId).cover);
+  } finally {
+    globalThis.fetch = originalFetch;
+    if (originalDocument === undefined) delete globalThis.document; else globalThis.document = originalDocument;
+  }
+});
+test('cover metadata never enters collection storage or JSON backups', () => {
+  const saved = setVersionStatus(setVersionStatus(emptyCollection(), ready, 'owned', true), ready, 'wanted', true);
+  const backup = exportBackup(saved);
+  assert.doesNotMatch(backup, /cover|assets\//);
+  assert.equal(saved.schemaVersion, 1);
+  assert.deepEqual(saved.versions[ready.id], { albumId: ready.albumId, quantity: 1, wanted: true });
+  assert.deepEqual(parseBackup(backup), saved);
+});
 test('catalog: releases, unique IDs, correct references, relative existing covers', async () => {
   assert.ok(catalog.albums.length >= 10);
   assert.equal(ready.id, 'twice-ready-to-be-ready');

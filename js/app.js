@@ -1,4 +1,4 @@
-import { loadCatalog, filterAlbums, TYPE_LABELS, REGION_LABELS } from './catalog.js';
+import { loadCatalog, filterAlbums, TYPE_LABELS, REGION_LABELS, DEFAULT_COVER, DEFAULT_COVER_ALT } from './catalog.js';
 import { STORAGE_KEY, MAX_BACKUP_BYTES, emptyCollection, loadCollection, saveCollection, setVersionStatus, pendingSignature, albumStats, collectionStats, parseBackup, validateRelations, mergeCollections, exportBackup, unknownRecordCount } from './collection.js';
 
 const $ = selector => document.querySelector(selector);
@@ -20,6 +20,19 @@ const legacyDialog = $('#legacy-dialog');
 const LEGACY_REVIEW_KEY = 'my-kpop-collection:legacy-pending-reviewed';
 let legacyBackupSnapshot = null;
 const noVersionsMessage = '尚未收錄實體版本，待資料補齊後即可收藏。';
+
+function coverImage(item, size, className = '') {
+  return `<img class="${className}" data-cover data-placeholder="${Boolean(item.coverIsPlaceholder)}" src="${escapeHTML(item.cover)}" alt="${escapeHTML(item.coverAlt)}" width="${size}" height="${size}" loading="lazy">`;
+}
+// Image errors do not bubble; capture covers in both newly rendered views/dialogs.
+document.addEventListener('error', event => {
+  const image = event.target;
+  if (!(image instanceof HTMLImageElement) || !image.hasAttribute('data-cover')) return;
+  if (image.getAttribute('src') === DEFAULT_COVER) { image.style.visibility = 'hidden'; return; }
+  image.alt = DEFAULT_COVER_ALT;
+  image.dataset.placeholder = 'true';
+  image.src = DEFAULT_COVER;
+}, true);
 
 function notify(message) {
   $('#notice').textContent = message;
@@ -91,18 +104,18 @@ function card(album) {
   const stats = albumStats(collection, album.id, catalog.versions);
   const versions = versionsFor(album.id);
   const index = String(catalog.albums.indexOf(album) + 1).padStart(2, '0');
-  return `<article class="album-card"><button type="button" class="album-open" data-album="${album.id}" aria-label="查看 ${escapeHTML(album.name)} 的版本與收藏"><div class="cover-wrap"><img src="${escapeHTML(album.cover)}" alt="${escapeHTML(album.coverAlt)}" width="400" height="400" loading="lazy"><span class="cover-index">${album.region} / ${album.releaseDate.slice(0, 4)}</span><span class="cover-status">${stats.ownedVersions > 0 ? '<span>✓ 已擁有</span>' : ''}${stats.wantedVersions > 0 ? '<span class="wanted">♡ 想要</span>' : ''}</span></div><h3 class="album-title">${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><div class="album-collection"><span>${versions.length ? `${stats.ownedVersions ? `<strong>已收 ${stats.ownedVersions}</strong>` : '已收 0'} / ${versions.length} 收錄版本` : noVersionsMessage}</span>${versions.length ? `<span>NO. ${index}</span>` : ''}</div></article>`;
+  return `<article class="album-card"><button type="button" class="album-open" data-album="${album.id}" aria-label="查看 ${escapeHTML(album.name)} 的版本與收藏"><div class="cover-wrap">${coverImage(album, 400)}<span class="cover-index">${album.region} / ${album.releaseDate.slice(0, 4)}</span><span class="cover-status">${stats.ownedVersions > 0 ? '<span>✓ 已擁有</span>' : ''}${stats.wantedVersions > 0 ? '<span class="wanted">♡ 想要</span>' : ''}</span></div><h3 class="album-title">${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><div class="album-collection"><span>${versions.length ? `${stats.ownedVersions ? `<strong>已收 ${stats.ownedVersions}</strong>` : '已收 0'} / ${versions.length} 收錄版本` : noVersionsMessage}</span>${versions.length ? `<span>NO. ${index}</span>` : ''}</div></article>`;
 }
 function versionRow(version, context) {
   const entry = collection.versions[version.id] || { quantity: 0, wanted: false };
   const prefix = `${context}-${version.id}`;
-  return `<div class="version-row"><div class="version-name">${escapeHTML(version.name)}<small>${escapeHTML(version.format)}</small></div><div class="version-controls"><label class="check" for="${prefix}-owned"><input id="${prefix}-owned" type="checkbox" data-version="${version.id}" data-field="owned" ${entry.quantity > 0 ? 'checked' : ''}>已擁有</label><label class="check" for="${prefix}-wanted"><input id="${prefix}-wanted" type="checkbox" data-version="${version.id}" data-field="wanted" ${entry.wanted ? 'checked' : ''}>想要</label></div></div>`;
+  return `<div class="version-row">${coverImage(version, 240, 'version-cover')}<div class="version-name">${escapeHTML(version.name)}<small>${escapeHTML(version.format)}</small></div><div class="version-controls"><label class="check" for="${prefix}-owned"><input id="${prefix}-owned" type="checkbox" data-version="${version.id}" data-field="owned" ${entry.quantity > 0 ? 'checked' : ''}>已擁有</label><label class="check" for="${prefix}-wanted"><input id="${prefix}-wanted" type="checkbox" data-version="${version.id}" data-field="wanted" ${entry.wanted ? 'checked' : ''}>想要</label></div></div>`;
 }
 function versionAlbum(album) {
   let versions = versionsFor(album.id);
   if (filters.list === 'owned') versions = versions.filter(v => collection.versions[v.id]?.quantity > 0);
   if (filters.list === 'wanted') versions = versions.filter(v => collection.versions[v.id]?.wanted);
-  return `<article class="version-album"><div class="version-album-heading"><img src="${escapeHTML(album.cover)}" width="64" height="64" alt="${escapeHTML(album.coverAlt)}" loading="lazy"><button type="button" class="album-open" data-album="${album.id}"><h3>${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><button type="button" class="text-button" data-album="${album.id}">專輯詳情 ↗</button></div>${versions.map(v => versionRow(v, 'list')).join('')}${!versions.length ? `<p class="no-versions">${noVersionsMessage}</p>` : ''}</article>`;
+  return `<article class="version-album"><div class="version-album-heading">${coverImage(album, 64)}<button type="button" class="album-open" data-album="${album.id}"><h3>${escapeHTML(album.name)}</h3><p class="album-meta">${meta(album)}</p></button><button type="button" class="text-button" data-album="${album.id}">專輯詳情 ↗</button></div><div class="version-grid">${versions.map(v => versionRow(v, 'list')).join('')}</div>${!versions.length ? `<p class="no-versions">${noVersionsMessage}</p>` : ''}</article>`;
 }
 function render() {
   if (!catalog) return;
@@ -124,7 +137,7 @@ function renderDetail() {
   const versions = versionsFor(album.id);
   const stats = albumStats(collection, album.id, catalog.versions);
   const source = album.sources?.find(url => /^https:\/\//.test(url));
-  $('#album-detail').innerHTML = `<div class="dialog-top"><p class="eyebrow">ALBUM / ${REGION_LABELS[album.region]}</p><button type="button" id="detail-close" class="icon-button" data-close="album-dialog" aria-label="關閉專輯詳情">×</button></div><div class="detail-header"><img class="detail-cover" src="${escapeHTML(album.cover)}" alt="${escapeHTML(album.coverAlt)}" width="126" height="126"><div><h2 id="album-dialog-title">${escapeHTML(album.name)}</h2><p class="album-meta">${meta(album)}</p><p class="album-meta">已收 ${stats.ownedVersions} 種版本 · 想要 ${stats.wantedVersions} 種版本</p>${source ? `<a class="detail-source" href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">發行資料來源 ↗</a>` : ''}</div></div><section class="version-section" aria-label="實體版本收藏"><div class="version-intro"><h3>實體版本 <span class="muted">/ ${versions.length} 種收錄</span></h3><p>「已擁有」與「想要」可以同時勾選</p></div><p class="dialog-copy">${escapeHTML(album.catalogNote)}</p>${versions.map(v => versionRow(v, 'detail')).join('')}${!versions.length ? `<p class="no-versions">${noVersionsMessage}</p>` : ''}</section>`;
+  $('#album-detail').innerHTML = `<div class="dialog-top"><p class="eyebrow">ALBUM / ${REGION_LABELS[album.region]}</p><button type="button" id="detail-close" class="icon-button" data-close="album-dialog" aria-label="關閉專輯詳情">×</button></div><div class="detail-header">${coverImage(album, 126, 'detail-cover')}<div><h2 id="album-dialog-title">${escapeHTML(album.name)}</h2><p class="album-meta">${meta(album)}</p><p class="album-meta">已收 ${stats.ownedVersions} 種版本 · 想要 ${stats.wantedVersions} 種版本</p>${source ? `<a class="detail-source" href="${escapeHTML(source)}" target="_blank" rel="noopener noreferrer">發行資料來源 ↗</a>` : ''}</div></div><section class="version-section" aria-label="實體版本收藏"><div class="version-intro"><h3>實體版本 <span class="muted">/ ${versions.length} 種收錄</span></h3><p>「已擁有」與「想要」可以同時勾選</p></div><p class="dialog-copy">${escapeHTML(album.catalogNote)}</p><div class="version-grid">${versions.map(v => versionRow(v, 'detail')).join('')}</div>${!versions.length ? `<p class="no-versions">${noVersionsMessage}</p>` : ''}</section>`;
   if (focusedId) document.getElementById(focusedId)?.focus({ preventScroll: true });
 }
 function openAlbum(id) {
