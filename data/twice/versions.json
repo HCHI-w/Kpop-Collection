@@ -781,6 +781,9 @@
       "name": "Episode Ver.",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-episode-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_EPISODE Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_EPISODE Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "standard",
       "verificationStatus": "verified"
     },
@@ -790,6 +793,9 @@
       "name": "Cast Ver. (NAYEON)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Nayeon CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_NAYEON Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "NAYEON"
@@ -800,6 +806,9 @@
       "name": "Cast Ver. (JEONGYEON)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Jeongyeon CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_JEONGYEON Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "JEONGYEON"
@@ -810,6 +819,9 @@
       "name": "Cast Ver. (MOMO)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Momo CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_MOMO Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "MOMO"
@@ -820,6 +832,9 @@
       "name": "Cast Ver. (SANA)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Sana CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_SANA Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "SANA"
@@ -830,6 +845,9 @@
       "name": "Cast Ver. (JIHYO)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Jihyo CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_JIHYO Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "JIHYO"
@@ -840,6 +858,9 @@
       "name": "Cast Ver. (MINA)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Mina CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_MINA Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "MINA"
@@ -850,6 +871,9 @@
       "name": "Cast Ver. (DAHYUN)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Dahyun CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_DAHYUN Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "DAHYUN"
@@ -860,6 +884,9 @@
       "name": "Cast Ver. (CHAEYOUNG)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Chaeyoung CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_CHAEYOUNG Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "CHAEYOUNG"
@@ -870,9 +897,38 @@
       "name": "Cast Ver. (TZUYU)",
       "format": "CD",
       "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Tzuyu CAST Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_TZUYU Ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "TZUYU"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-Lemon-Spark-Vinyl",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (Lemon Spark Vinyl)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TEN_The Story Goes On_Lemon Spark Vinyl Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_Lemon Spark Vinyl Ver.",
+      "coverIsPlaceholder": true,
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "Lemon-Spark-Vinyl"
+    },
+    {
+      "id": "twice-ten-the-story-goes-on-cast-Exclusive-Magical-Sky-Vinyl",
+      "albumId": "twice-ten-the-story-goes-on",
+      "name": "Cast Ver. (Exclusive Magical Sky Vinyl)",
+      "format": "CD",
+      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
+      "cover": "./assets/covers/TWICE STORE Exclusive Magical Sky Vinyl Ver.webp",
+      "coverAlt": "TWICE TEN The Story Goes On_Exclusive Magical Sky Vinyl Ver.",
+      "coverIsPlaceholder": true,
+      "editionType": "member",
+      "verificationStatus": "verified",
+      "member": "Exclusive-Magical-Sky-Vinyl"
     },
     {
       "id": "twice-one-more-time-regular",
