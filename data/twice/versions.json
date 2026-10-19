@@ -655,6 +655,9 @@
       "name": "THIS ver.",
       "format": "CD",
       "source": "https://twiceshop.com/collections/this-is-for",
+      "cover": "./assets/covers/THIS IS FOR_THIS ver.webp",
+      "coverAlt": "THIS IS FOR_THIS ver.",
+      "coverIsPlaceholder": true,
       "editionType": "standard",
       "verificationStatus": "verified"
     },
@@ -664,6 +667,9 @@
       "name": "IS ver.",
       "format": "CD",
       "source": "https://twiceshop.com/collections/this-is-for",
+      "cover": "./assets/covers/THIS IS FOR_IS ver.webp",
+      "coverAlt": "THIS IS FOR_IS ver.",
+      "coverIsPlaceholder": true,
       "editionType": "standard",
       "verificationStatus": "verified"
     },
@@ -673,6 +679,9 @@
       "name": "FOR ver.",
       "format": "CD",
       "source": "https://twiceshop.com/collections/this-is-for",
+      "cover": "./assets/covers/THIS IS FOR_FOR ver.webp",
+      "coverAlt": "THIS IS FOR_FOR ver.",
+      "coverIsPlaceholder": true,
       "editionType": "standard",
       "verificationStatus": "verified"
     },
@@ -682,6 +691,9 @@
       "name": "CONFETTI ver.",
       "format": "Mini CD",
       "source": "https://twiceshop.com/products/this-is-for-confetti-ver",
+      "cover": "./assets/covers/THIS IS FOR_CONFETTI ver.webp",
+      "coverAlt": "THIS IS FOR_CONFETTI ver.",
+      "coverIsPlaceholder": true,
       "editionType": "special",
       "verificationStatus": "verified"
     },
@@ -691,6 +703,9 @@
       "name": "DIGIPACK ver. (NAYEON)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Nayeon ver.webp",
+      "coverAlt": "THIS IS FOR_Nayeon ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "NAYEON"
@@ -701,6 +716,9 @@
       "name": "DIGIPACK ver. (JEONGYEON)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Jeongyeon ver.webp",
+      "coverAlt": "THIS IS FOR_Jeongyeon ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "JEONGYEON"
@@ -711,6 +729,9 @@
       "name": "DIGIPACK ver. (MOMO)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Momo ver.webp",
+      "coverAlt": "THIS IS FOR_Momo ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "MOMO"
@@ -721,6 +742,9 @@
       "name": "DIGIPACK ver. (SANA)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Sana ver.webp",
+      "coverAlt": "THIS IS FOR_Sana ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "SANA"
@@ -731,6 +755,9 @@
       "name": "DIGIPACK ver. (JIHYO)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Jihyo ver.webp",
+      "coverAlt": "THIS IS FOR_Jihyo ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "JIHYO"
@@ -741,6 +768,9 @@
       "name": "DIGIPACK ver. (MINA)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Mina ver.webp",
+      "coverAlt": "THIS IS FOR_Mina ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "MINA"
@@ -751,6 +781,9 @@
       "name": "DIGIPACK ver. (DAHYUN)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Dahyun ver.webp",
+      "coverAlt": "THIS IS FOR_Dahyun ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "DAHYUN"
@@ -761,6 +794,9 @@
       "name": "DIGIPACK ver. (CHAEYOUNG)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Chaeyoung ver.webp",
+      "coverAlt": "THIS IS FOR_Chaeyoung ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "CHAEYOUNG"
@@ -771,6 +807,9 @@
       "name": "DIGIPACK ver. (TZUYU)",
       "format": "CD",
       "source": "https://twiceshop.com/products/this-is-for-digipack-ver",
+      "cover": "./assets/covers/THIS IS FOR_Tzuyu ver.webp",
+      "coverAlt": "THIS IS FOR_Tzuyu ver.",
+      "coverIsPlaceholder": true,
       "editionType": "member",
       "verificationStatus": "verified",
       "member": "TZUYU"
