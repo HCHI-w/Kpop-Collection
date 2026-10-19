@@ -905,32 +905,6 @@
       "member": "TZUYU"
     },
     {
-      "id": "twice-ten-the-story-goes-on-cast-Lemon-Spark-Vinyl",
-      "albumId": "twice-ten-the-story-goes-on",
-      "name": "Cast Ver. (Lemon Spark Vinyl)",
-      "format": "CD",
-      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
-      "cover": "./assets/covers/TEN_The Story Goes On_Lemon Spark Vinyl Ver.webp",
-      "coverAlt": "TWICE TEN The Story Goes On_Lemon Spark Vinyl Ver.",
-      "coverIsPlaceholder": true,
-      "editionType": "member",
-      "verificationStatus": "verified",
-      "member": "Lemon-Spark-Vinyl"
-    },
-    {
-      "id": "twice-ten-the-story-goes-on-cast-Exclusive-Magical-Sky-Vinyl",
-      "albumId": "twice-ten-the-story-goes-on",
-      "name": "Cast Ver. (Exclusive Magical Sky Vinyl)",
-      "format": "CD",
-      "source": "https://twiceshop.com/products/ten-the-story-goes-on-cast-ver",
-      "cover": "./assets/covers/TWICE STORE Exclusive Magical Sky Vinyl Ver.webp",
-      "coverAlt": "TWICE TEN The Story Goes On_Exclusive Magical Sky Vinyl Ver.",
-      "coverIsPlaceholder": true,
-      "editionType": "member",
-      "verificationStatus": "verified",
-      "member": "Exclusive-Magical-Sky-Vinyl"
-    },
-    {
       "id": "twice-one-more-time-regular",
       "albumId": "twice-one-more-time",
       "name": "通常盤",
